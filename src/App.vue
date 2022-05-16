@@ -1,17 +1,14 @@
 <template>
-  <MainHeader />
-  <MainPresentation />
+  <MainPage />
 </template>
 
 <script>
 import axios from 'axios';
-import MainHeader from './components/MainHeader.vue';
-import MainPresentation from './components/MainPresentation.vue';
+import MainPage from './components/MainPage.vue';
 
 export default {
   components: {
-    MainHeader,
-    MainPresentation,
+    MainPage,
   },
   data() {
     return {
@@ -20,12 +17,6 @@ export default {
     };
   },
   methods: {
-    addLike() {
-      this.likes += 1;
-    },
-    addDislike() {
-      this.dislikes += 1;
-    },
     async fetchData() {
       console.log('START');
       const response = await axios.get('https://fakestoreapi.com/products/categories');

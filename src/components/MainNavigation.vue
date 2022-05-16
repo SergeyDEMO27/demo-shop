@@ -1,24 +1,35 @@
 <template>
   <nav class="mainNavigation">
     <ul class="mainNavigation__list">
-      <li class="mainNavigation__item">
-        <a class="mainNavigation__link" href="#">electronics</a>
-      </li>
-      <li class="mainNavigation__item">
-        <a class="mainNavigation__link" href="#">jewelry</a>
-      </li>
-      <li class="mainNavigation__item">
-        <a class="mainNavigation__link" href="#">men's clothing</a>
-      </li>
-      <li class="mainNavigation__item">
-        <a class="mainNavigation__link" href="#">women's clothing</a>
+      <li class="mainNavigation__item" v-for="(navItem, index) in navItems" :key="index">
+        <a
+          class="mainNavigation__link"
+          href="#"
+          :id="`${index}`"
+          @mouseover="changePreviewId"
+          @focus="changePreviewId"
+        >
+          {{ navItem }}
+        </a>
       </li>
     </ul>
   </nav>
 </template>
 
 <script>
-export default {};
+export default {
+  props: {
+    navItems: {
+      type: Array,
+      required: true,
+    },
+  },
+  methods: {
+    changePreviewId(e) {
+      this.$emit('create', e.target.id);
+    },
+  },
+};
 </script>
 
 <style lang="scss" scoped>
@@ -51,7 +62,7 @@ export default {};
       width: 0;
       height: 2px;
       background-color: $color-default-white;
-      transition: 0.5s ease-in-out;
+      transition: 0.4s ease-in-out;
     }
 
     &:hover {
