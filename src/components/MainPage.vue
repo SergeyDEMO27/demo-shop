@@ -3,6 +3,9 @@
   <MainPresentation :previewId="previewId" />
   <AboutUs />
   <MainElectronic />
+  <MainGoods />
+  <MainFeedback />
+  <MainFooter />
 </template>
 
 <script>
@@ -11,6 +14,9 @@ import MainHeader from './MainHeader.vue';
 import MainPresentation from './MainPresentation.vue';
 import AboutUs from './AboutUs.vue';
 import MainElectronic from './MainElectronic.vue';
+import MainGoods from './MainGoods.vue';
+import MainFeedback from './MainFeedback.vue';
+import MainFooter from './MainFooter.vue';
 
 export default {
   components: {
@@ -18,6 +24,9 @@ export default {
     MainPresentation,
     AboutUs,
     MainElectronic,
+    MainGoods,
+    MainFeedback,
+    MainFooter,
   },
   data() {
     return {

@@ -16,6 +16,24 @@
     url('../fonts/supreme/supreme-bold.woff') format('woff');
 }
 
+@font-face {
+  font-family: 'Lexend Deca';
+  font-weight: 400;
+  font-style: normal;
+  font-display: auto;
+  src: url('../fonts/lexend/LexendDeca-Regular.woff2') format('woff2'),
+    url('../fonts/lexend/LexendDeca-Regular.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'Lexend Deca';
+  font-weight: 700;
+  font-style: normal;
+  font-display: auto;
+  src: url('../fonts/lexend/LexendDeca-Bold.woff2') format('woff2'),
+    url('../fonts/lexend/LexendDeca-Bold.woff') format('woff');
+}
+
 $color-default-black: rgb(0, 0, 0);
 $color-default-white: rgb(255, 255, 255);
 $color-transparent: rgba(255, 255, 255, 0);
@@ -24,3 +42,26 @@ $color-black: #0e0e0e;
 $color-white: #f2f2f2;
 $color-blue: #2c39f2;
 $color-yellow: rgb(252, 250, 238);
+$color-orange: #ff8c00;
+$color-light-black: rgb(25, 24, 23);
+$color-gray: rgb(229, 229, 229);
+
+@mixin main-title {
+  margin-bottom: 30px;
+  font-family: 'Lexend Deca', Arial, Helvetica, sans-serif;
+  font-size: 38px;
+  font-weight: normal;
+  text-transform: capitalize;
+}
+
+@mixin main-description {
+  font-family: 'Supreme', Arial, Helvetica, sans-serif;
+  font-size: 20px;
+  text-indent: 40px;
+}
+
+@mixin reset-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
