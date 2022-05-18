@@ -47,7 +47,7 @@ $color-light-black: rgb(25, 24, 23);
 $color-gray: rgb(229, 229, 229);
 
 @mixin main-title {
-  margin-bottom: 30px;
+  // margin-bottom: 30px;
   font-family: 'Lexend Deca', Arial, Helvetica, sans-serif;
   font-size: 38px;
   font-weight: normal;
@@ -57,7 +57,7 @@ $color-gray: rgb(229, 229, 229);
 @mixin main-description {
   font-family: 'Supreme', Arial, Helvetica, sans-serif;
   font-size: 20px;
-  text-indent: 40px;
+  // text-indent: 40px;
 }
 
 @mixin reset-list {

@@ -1,14 +1,17 @@
 <template>
-  <MainPage />
+  <!-- <MainPage /> -->
+  <FilterPage />
 </template>
 
 <script>
 import axios from 'axios';
-import MainPage from './components/MainPage.vue';
+// import MainPage from './components/MainPage.vue';
+import FilterPage from './components/FilterPage.vue';
 
 export default {
   components: {
-    MainPage,
+    // MainPage,
+    FilterPage,
   },
   data() {
     return {
