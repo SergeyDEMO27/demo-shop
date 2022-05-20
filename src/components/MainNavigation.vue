@@ -2,7 +2,8 @@
   <nav class="mainNavigation">
     <ul class="mainNavigation__list">
       <li class="mainNavigation__item" v-for="(navItem, index) in navItems" :key="index">
-        <a
+        <router-link
+          to="/jewelry"
           class="mainNavigation__link"
           href="#"
           :id="`${index}`"
@@ -10,7 +11,7 @@
           @focus="changePreviewId"
         >
           {{ navItem }}
-        </a>
+        </router-link>
       </li>
     </ul>
   </nav>

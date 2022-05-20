@@ -1,5 +1,5 @@
 <template>
-  <MainHeader @create="changePreviewId" />
+  <MainHeader @create="changePreviewId" :isMainPage="true" />
   <MainPresentation :previewId="previewId" />
   <AboutUs />
   <MainElectronic />

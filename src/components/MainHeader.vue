@@ -1,10 +1,14 @@
 <template>
   <div class="mainHeader">
     <div class="mainHeader__container">
-      <div class="mainHeader__logo">
+      <div v-if="isMainPage" class="mainHeader__logo">
         <img class="mainHeader__logo-image" :src="mainLogoSrc" alt="my-logo" />
         <h1 class="mainHeader__title">THE SHOP PROJECT LOGO</h1>
       </div>
+      <router-link to="/" v-else class="mainHeader__logo">
+        <img class="mainHeader__logo-image" :src="mainLogoSrc" alt="my-logo" />
+        <h1 class="mainHeader__title">THE SHOP PROJECT LOGO</h1>
+      </router-link>
       <MainNavigation @create="changePreviewId" :navItems="mainNavItems" />
     </div>
     <MainNavigation :navItems="userNavItems" />
@@ -18,6 +22,12 @@ import mainLogoSrc from '../images/svg/vue-logo.svg';
 export default {
   components: {
     MainNavigation,
+  },
+  props: {
+    isMainPage: {
+      type: Boolean,
+      default: false,
+    },
   },
   setup() {
     return {

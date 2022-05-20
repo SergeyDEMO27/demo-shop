@@ -12,6 +12,7 @@ export default {};
 
 <style lang="scss">
 .main-button__link {
+  display: inline-block;
   min-width: 140px;
   padding: 10px 32px;
   font-family: 'Lexend Deca', Arial, Helvetica, sans-serif;

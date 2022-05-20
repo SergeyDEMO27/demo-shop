@@ -1,7 +1,7 @@
 <template>
   <ul class="all-goods">
     <li class="all-goods__item" v-for="good in goods" :key="good.id">
-      <a class="all-goods__link" href="#">
+      <router-link class="all-goods__link" to="/product">
         <div class="all-goods__picture">
           <img
             class="all-goods__image"
@@ -14,7 +14,7 @@
           <p class="all-goods__description">{{ good.description }}</p>
           <p class="all-goods__price">${{ good.price }}</p>
         </div>
-      </a>
+      </router-link>
     </li>
   </ul>
 </template>

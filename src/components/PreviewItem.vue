@@ -31,7 +31,7 @@ export default {
       required: true,
     },
     horisonal: {
-      type: String,
+      type: Boolean,
       required: false,
     },
   },
