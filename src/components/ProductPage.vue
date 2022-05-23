@@ -10,11 +10,12 @@
       </section>
       <section class="product-page__sign">
         <div class="product-page__sign-wrapper">
-          <MainSign />
+          <MainSign @showModal="isModalShown = true" />
         </div>
       </section>
     </div>
     <MainFooter />
+    <MainModal v-show="isModalShown" @hideModal="isModalShown = false"><FeedbackModal /></MainModal>
   </div>
 </template>
 
@@ -24,6 +25,8 @@ import MainFooter from '@/components/MainFooter.vue';
 import ProductInfo from '@/components/ProductInfo.vue';
 import ProductSlider from '@/components/ProductSlider.vue';
 import MainSign from '@/components/MainSign.vue';
+import MainModal from '@/components/MainModal.vue';
+import FeedbackModal from './FeedbackModal.vue';
 
 export default {
   components: {
@@ -32,7 +35,19 @@ export default {
     ProductInfo,
     ProductSlider,
     MainSign,
+    MainModal,
+    FeedbackModal,
   },
+  data() {
+    return {
+      isModalShown: false,
+    };
+  },
+  // methods: {
+  //   showModalHandler(isShowModal) {
+  //     this.isModalShown = isShowModal;
+  //   },
+  // },
 };
 </script>
 

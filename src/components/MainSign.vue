@@ -5,12 +5,12 @@
       Enjoy new and limited products, exclusive events, special offers and much more before anyone
       else.
     </p>
-    <MainButton>Sign up now</MainButton>
+    <MainButton @click="$emit('showModal')">Sign up now</MainButton>
   </section>
 </template>
 
 <script>
-import MainButton from './MainButton.vue';
+import MainButton from '@/components/MainButton.vue';
 
 export default {
   components: {

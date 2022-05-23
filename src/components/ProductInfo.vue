@@ -6,8 +6,15 @@
       headphones that redefine grab-and-go listening.
     </p>
     <ul class="product-info__color">
-      <li class="product-info__color-item" v-for="color in colors" :key="color">
-        <button :style="{ backgroundColor: color }" type="button"></button>
+      <li
+        class="product-info__color-item"
+        :class="{ 'product-info__color-item-active': activeColor === index }"
+        @click="changeColorHandler(index)"
+        @keypress.enter="changeColorHandler(index)"
+        v-for="(color, index) in colors"
+        :key="color"
+      >
+        <div :style="{ backgroundColor: color }"></div>
       </li>
     </ul>
     <p class="product-info__price">$899</p>
@@ -29,8 +36,14 @@ export default {
   },
   data() {
     return {
-      colors: ['black', 'orange', 'brown', 'blue', 'gray', 'white'],
+      colors: ['black', 'orange', 'brown', 'blue', 'gray', 'green'],
+      activeColor: 0,
     };
+  },
+  methods: {
+    changeColorHandler(index) {
+      this.activeColor = index;
+    },
   },
 };
 </script>
@@ -55,15 +68,47 @@ export default {
   margin-bottom: 15px;
 
   .product-info__color-item {
-    margin-right: 10px;
+    position: relative;
+    width: 26px;
+    height: 26px;
+    margin-right: 8px;
+    background-color: $color-default-white;
+    border: 1px solid rgba(0, 0, 0, 40%);
+    border-radius: 50%;
+    cursor: pointer;
 
-    button {
-      width: 20px;
-      height: 20px;
-      padding: 2px;
-      border: 1px solid black;
+    div {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 17px;
+      height: 17px;
       border-radius: 50%;
-      cursor: pointer;
+      transition: 0.1s;
+    }
+
+    &:hover {
+      div {
+        width: 100%;
+        height: 100%;
+      }
+    }
+
+    &-active {
+      border-color: $color-default-black;
+
+      div {
+        width: 21px;
+        height: 21px;
+      }
+
+      &:hover {
+        div {
+          width: 21px;
+          height: 21px;
+        }
+      }
     }
   }
 }
@@ -90,8 +135,16 @@ export default {
   font-size: 16px;
 
   .product-info__special-item {
-    width: 30%;
+    // width: 30%;
+    position: relative;
     text-align: center;
+
+    &::before {
+      position: absolute;
+      top: -2px;
+      left: -18px;
+      content: '\2714';
+    }
   }
 }
 </style>

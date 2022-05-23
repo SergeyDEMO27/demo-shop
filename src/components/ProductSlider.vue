@@ -1,7 +1,14 @@
 <template>
   <div class="product-slider">
     <div class="product-slider__picture">
-      <img class="product-slider__image" src="@/images/background/main-bg-0.jpeg" alt="" />
+      <transition-group :name="slideDirection === 'right' ? 'slide-fade-right' : 'slide-fade-left'">
+        <img
+          class="product-slider__image"
+          :src="require(`@/images/background/main-bg-${activeImage}.jpeg`)"
+          alt=""
+          :key="`@/images/background/main-bg-${activeImage}.jpeg`"
+        />
+      </transition-group>
     </div>
     <div class="product-slider__controls">
       <button
@@ -9,7 +16,7 @@
         type="button"
         @click="prevSlideHandler"
       >
-        <!-- Left -->
+        <span>Left</span>
       </button>
       <ul class="product-slider__selector">
         <li
@@ -17,17 +24,18 @@
           :class="{ 'product-slider__item-active': activeSlide === index }"
           v-for="(item, index) of slideCount"
           :key="index"
-          @click="activeSlide = index"
-          @keypress.enter="activeSlide = index"
+          @click="slidePressHandler(index)"
+          @keypress.enter="slidePressHandler(index)"
           tabindex="0"
         ></li>
       </ul>
+
       <button
         class="product-slider__button product-slider__button-next"
         type="button"
         @click="nextSlideHandler"
       >
-        <!-- Right -->
+        <span>Right</span>
       </button>
     </div>
   </div>
@@ -37,16 +45,52 @@
 export default {
   data() {
     return {
-      slideCount: 20,
+      images: [
+        '0',
+        '1',
+        '2',
+        '3',
+        '0',
+        '1',
+        '2',
+        '3',
+        '0',
+        '1',
+        '2',
+        '3',
+        '0',
+        '1',
+        '2',
+        '3',
+        '0',
+        '1',
+        '2',
+        '3',
+      ],
       activeSlide: 0,
+      slideDirection: 'right',
     };
   },
   methods: {
     prevSlideHandler() {
       this.activeSlide = this.activeSlide - 1 < 0 ? this.slideCount - 1 : this.activeSlide - 1;
+      this.slideDirection = 'left';
     },
     nextSlideHandler() {
       this.activeSlide = this.activeSlide + 1 > this.slideCount - 1 ? 0 : this.activeSlide + 1;
+      this.slideDirection = 'right';
+    },
+    slidePressHandler(index) {
+      this.slideDirection = index > this.activeSlide ? 'right' : 'left';
+      this.activeSlide = index;
+    },
+  },
+  computed: {
+    slideCount() {
+      return this.images.length;
+    },
+    activeImage() {
+      return this.images[this.activeSlide];
     },
   },
 };
@@ -59,11 +103,16 @@ export default {
 }
 
 .product-slider__picture {
-  width: 100%;
+  // width: 100%;
+  width: 576px;
+  height: 315px;
   margin-bottom: 20px;
 
   .product-slider__image {
-    width: 100%;
+    width: 576px;
+    height: 315px;
+    object-fit: cover;
+    object-position: center;
     border-radius: 4px;
   }
 }
@@ -117,10 +166,7 @@ export default {
   position: relative;
   width: 20px;
   height: 30px;
-  // padding: 10px;
   border: none;
-  // border-left: 2px solid black;
-  // border-top: 2px solid black;
   background-color: transparent;
   cursor: pointer;
 
@@ -153,6 +199,46 @@ export default {
       left: -20%;
       transform: rotate(135deg);
     }
+  }
+
+  span {
+    @include visually-hidden;
+  }
+}
+
+.slide-fade-left {
+  &-enter-active {
+    position: absolute;
+    transition: all 0.4s ease-out;
+  }
+
+  &-leave-active {
+    position: absolute;
+    transition: all 0.4s cubic-bezier(1, 0.5, 0.8, 1);
+  }
+
+  &-enter-from,
+  &-leave-to {
+    transform: translateX(20px);
+    opacity: 0.8;
+  }
+}
+
+.slide-fade-right {
+  &-enter-active {
+    position: absolute;
+    transition: all 0.4s ease-out;
+  }
+
+  &-leave-active {
+    position: absolute;
+    transition: all 0.4s cubic-bezier(1, 0.5, 0.8, 1);
+  }
+
+  &-enter-from,
+  &-leave-to {
+    transform: translateX(-20px);
+    opacity: 0.8;
   }
 }
 </style>

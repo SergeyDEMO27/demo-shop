@@ -76,12 +76,7 @@ export default {
   }
 
   .mainHeader__title {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    margin: -1px;
-    clip: rect(0 0 0 0);
-    overflow: hidden;
+    @include visually-hidden;
   }
 }
 </style>
