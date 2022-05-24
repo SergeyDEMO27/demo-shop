@@ -4,9 +4,30 @@
       <div class="main-footer__wrapper">
         <p class="main-footer__copyright">© Made by Sergey Lutsenko 2022</p>
         <ul class="main-footer__social">
-          <li class="main-footer__item"><a class="main-footer__link" href="#">telegram</a></li>
-          <li class="main-footer__item"><a class="main-footer__link" href="#">github</a></li>
-          <li class="main-footer__item"><a class="main-footer__link" href="#">email</a></li>
+          <li class="main-footer__item">
+            <a class="main-footer__link" aria-label="telegram" href="https://t.me/barialibasov">
+              <svg class="main-footer__icon" width="27" height="27" viewBox="0 0 60 60">
+                <use :href="`${sprite}#icon-telegram`"></use>
+              </svg>
+              <span>telegram</span></a
+            >
+          </li>
+          <li class="main-footer__item">
+            <a class="main-footer__link" aria-label="github" href="https://github.com/edji777">
+              <svg class="main-footer__icon" width="25" height="25" viewBox="0 0 20 20">
+                <use :href="`${sprite}#icon-github`"></use>
+              </svg>
+              <span>github</span></a
+            >
+          </li>
+          <li class="main-footer__item">
+            <a class="main-footer__link" aria-label="email" href="mailto: demo27@vk.com">
+              <svg class="main-footer__icon" width="25" height="25" viewBox="0 0 474 474">
+                <use :href="`${sprite}#icon-mail`"></use>
+              </svg>
+              <span>email</span>
+            </a>
+          </li>
         </ul>
       </div>
     </div>
@@ -14,7 +35,18 @@
 </template>
 
 <script>
-export default {};
+import sprite from '@/images/sprite/sprite.svg';
+
+export default {
+  components: {
+    // SvgSprite,
+  },
+  setup() {
+    return {
+      sprite,
+    };
+  },
+};
 </script>
 
 <style lang="scss">
@@ -50,12 +82,26 @@ export default {};
   @include reset-list;
   display: flex;
   justify-content: space-between;
-  width: 30%;
+  width: 25%;
 
   .main-footer__link {
     font-family: 'Supreme', Arial, Helvetica, sans-serif;
     color: $color-orange;
     text-decoration: none;
+
+    .main-footer__icon {
+      fill: $color-orange;
+    }
+
+    span {
+      @include visually-hidden;
+    }
+
+    &:hover {
+      .main-footer__icon {
+        opacity: 80%;
+      }
+    }
   }
 }
 </style>

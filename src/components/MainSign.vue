@@ -31,8 +31,12 @@ export default {
     transform: translateX(-50%);
     width: 75px;
     height: 75px;
-    content: '\2709';
+    content: '';
     background-color: $color-orange;
+    background-image: url('~@/images/background/envelope.png');
+    background-size: 60% auto;
+    background-repeat: no-repeat;
+    background-position: center;
     border-radius: 50%;
   }
 }
