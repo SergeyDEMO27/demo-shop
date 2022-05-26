@@ -3,7 +3,7 @@
     <ul class="mainNavigation__list">
       <li class="mainNavigation__item" v-for="(navItem, index) in navItems" :key="index">
         <router-link
-          to="/jewelry"
+          :to="`/products/${navItem}`"
           class="mainNavigation__link"
           href="#"
           :id="`${index}`"

@@ -2,7 +2,11 @@
   <section class="main-goods">
     <div class="main-goods__container">
       <h2 class="main-goods__title">Best Jewels of East Coast</h2>
-      <PreviewItem :preview="previews" :horisonal="true" />
+      <PreviewItem
+        v-if="previewsFake[categories[0]]"
+        :preview="previewsFake[categories[0]]"
+        :horisonal="true"
+      />
       <p class="main-goods__description">
         Extremity sweetness difficult behaviour he of. On disposal of as landlord horrible. Afraid
         at highly months do things on at. Situation recommend objection do intention so questions.
@@ -15,10 +19,10 @@
       </p>
       <div class="main-goods__wrapper">
         <div class="main-goods__item">
-          <PreviewItem :preview="previews" />
+          <PreviewItem v-if="previewsFake[categories[1]]" :preview="previewsFake[categories[1]]" />
         </div>
         <div class="main-goods__item">
-          <PreviewItem :preview="previews" />
+          <PreviewItem v-if="previewsFake[categories[2]]" :preview="previewsFake[categories[2]]" />
         </div>
       </div>
     </div>
@@ -26,6 +30,7 @@
 </template>
 
 <script>
+import axios from 'axios';
 import PreviewItem from './PreviewItem.vue';
 
 export default {
@@ -41,7 +46,29 @@ export default {
         { id: Date.now(), title: 'audiosystem', path: '0' },
         { id: Date.now(), title: 'computer', path: '1' },
       ],
+      categories: ['jewelery', "men's clothing", "women's clothing"],
+      previewsFake: {},
     };
+  },
+  methods: {
+    async fetchProducts() {
+      try {
+        this.categories.map(async (categorie) => {
+          const requestPath = `https://fakestoreapi.com/products/category/${categorie}?limit=1`;
+          const response = await axios(requestPath);
+          this.previewsFake[categorie] = response.data;
+        });
+
+        // const response = await axios('https://api.storerestapi.com/categories/computers');
+        // const response = await axios('https://fakestoreapi.com/products/category/jewelery');
+        // console.log(response.data);
+      } catch (error) {
+        console.log(error);
+      }
+    },
+  },
+  mounted() {
+    this.fetchProducts();
   },
 };
 </script>
@@ -49,20 +76,22 @@ export default {
 <style lang="scss">
 .main-goods {
   min-height: 700px;
-  padding-top: 60px;
-  padding-bottom: 60px;
+  // padding-top: 60px;
+  // padding-bottom: 60px;
   background-color: $color-default-white;
 }
 
 .main-goods__container {
-  max-width: 1200px;
-  margin-right: auto;
-  margin-left: auto;
-  text-align: right;
+  @include main-container;
+  // max-width: 1200px;
+  // margin-right: auto;
+  // margin-left: auto;
+  // text-align: right;
 }
 
 .main-goods__title {
   @include main-title;
+  margin-bottom: 30px;
 }
 
 .main-goods__description {

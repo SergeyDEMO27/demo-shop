@@ -1,9 +1,8 @@
 <template>
   <div class="product-info">
-    <h2 class="product-info__header">Ultimate over-ear headphones</h2>
+    <h2 class="product-info__title">{{ product.title }}</h2>
     <p class="product-info__description">
-      Moving, masterful, mesmerising. Get lost in your music with adjustable noise-cancelling
-      headphones that redefine grab-and-go listening.
+      {{ product.description }}
     </p>
     <ul class="product-info__color">
       <li
@@ -17,7 +16,7 @@
         <div :style="{ backgroundColor: color }"></div>
       </li>
     </ul>
-    <p class="product-info__price">$899</p>
+    <p class="product-info__price">${{ product.price }}</p>
     <MainButton class="product-info__button">Add to basket</MainButton>
     <ul class="product-info__special">
       <li class="product-info__special-item">Free express delivery</li>
@@ -31,6 +30,9 @@
 import MainButton from '@/components/MainButton.vue';
 
 export default {
+  props: {
+    product: Object,
+  },
   components: {
     MainButton,
   },
@@ -49,10 +51,15 @@ export default {
 </script>
 
 <style lang="scss">
-.product-info__header {
+.product-info__title {
   @include main-title;
   margin-bottom: 30px;
-  font-size: 32px;
+  font-size: 30px;
+  text-transform: lowercase;
+
+  &::first-letter {
+    text-transform: uppercase;
+  }
 }
 
 .product-info__description {
@@ -65,7 +72,7 @@ export default {
   @include reset-list;
   display: flex;
   // justify-content: space-between;
-  margin-bottom: 15px;
+  margin-bottom: 30px;
 
   .product-info__color-item {
     position: relative;
@@ -114,7 +121,7 @@ export default {
 }
 
 .product-info__price {
-  margin-bottom: 15px;
+  margin-bottom: 30px;
   font-family: 'Lexend Deca', Arial, Helvetica, sans-serif;
   font-weight: normal;
   text-transform: capitalize;
@@ -123,7 +130,7 @@ export default {
 
 .product-info__button {
   width: 290px;
-  margin-bottom: 15px;
+  margin-bottom: 30px;
 }
 
 .product-info__special {
@@ -131,7 +138,7 @@ export default {
   @include main-description;
   display: flex;
   justify-content: space-between;
-  margin-left: 10px;
+  margin-left: 16px;
   font-size: 16px;
 
   .product-info__special-item {

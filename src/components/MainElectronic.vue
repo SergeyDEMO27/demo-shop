@@ -7,7 +7,7 @@
       </div>
       <div class="main-electronic__wrapper">
         <div class="main-electronic__wrapper-item">
-          <PreviewItem :preview="previews" />
+          <!-- <PreviewItem :preview="previews" /> -->
         </div>
         <div class="main-electronic__wrapper-item">
           <p class="main-electronic__description">
@@ -32,12 +32,12 @@
 <script>
 // import CategoryPreviews from './CategoryPreviews.vue';
 import ProductPreview from './ProductPreview.vue';
-import PreviewItem from './PreviewItem.vue';
+// import PreviewItem from './PreviewItem.vue';
 
 export default {
   components: {
     ProductPreview,
-    PreviewItem,
+    // PreviewItem,
   },
   data() {
     return {

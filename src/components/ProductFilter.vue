@@ -1,5 +1,5 @@
 <template>
-  <form class="product-filter">
+  <form @submit.prevent class="product-filter">
     <select
       class="product-filter__select"
       name=""
@@ -21,6 +21,7 @@
       >
       <input
         class="product-filter__input"
+        :class="{ 'product-filter__input-active': searchValue || isInputActive }"
         @input="$emit('updateSearch', $event)"
         @focus="isInputActive = true"
         @blur="isInputActive = false"
@@ -58,14 +59,21 @@ export default {
   min-width: 100px;
   margin-right: 20px;
   font-size: 16px;
-  background-color: $color-gray;
+  background-color: $color-default-white;
   border: none;
   border-bottom: 2px solid $color-default-black;
   text-transform: capitalize;
   text-align: center;
+  outline: none;
+  transition: 0.4s;
 
   & > option {
-    background-color: $color-gray;
+    background-color: $color-default-white;
+  }
+
+  &:active,
+  &:focus {
+    border-color: $color-orange;
   }
 }
 
@@ -88,14 +96,20 @@ export default {
 
   .product-filter__input {
     @include main-title;
+    margin-right: 20px;
     padding-left: 20px;
     font-size: 16px;
     // width: 100%;
     // height: 30px;
     border: none;
     border-bottom: 2px solid $color-default-black;
-    background-color: $color-gray;
+    background-color: $color-default-white;
     text-transform: none;
+    transition: 0.4s;
+
+    &-active {
+      border-color: $color-orange;
+    }
 
     &:active,
     &:focus {

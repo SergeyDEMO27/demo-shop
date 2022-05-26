@@ -36,7 +36,7 @@ export default {
   },
   data() {
     return {
-      mainNavItems: ['electronics', 'jewelry', 'men"s clothing', 'women"s clothing'],
+      mainNavItems: ['electronics', 'jewelery', "men's clothing", "women's clothing"],
       userNavItems: ['login', 'basket'],
     };
   },

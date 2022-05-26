@@ -9,11 +9,15 @@ const routes = [
     component: MainPage,
   },
   {
-    path: '/jewelry',
+    path: '/products/:id',
     component: FilterPage,
   },
   {
     path: '/product',
+    component: ProductPage,
+  },
+  {
+    path: '/product/:id',
     component: ProductPage,
   },
 ];

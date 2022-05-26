@@ -4,7 +4,7 @@
       <transition-group :name="slideDirection === 'right' ? 'slide-fade-right' : 'slide-fade-left'">
         <img
           class="product-slider__image"
-          :src="require(`@/images/background/main-bg-${activeImage}.jpeg`)"
+          :src="product.image"
           alt=""
           :key="`@/images/background/main-bg-${activeImage}.jpeg`"
         />
@@ -43,6 +43,9 @@
 
 <script>
 export default {
+  props: {
+    product: Object,
+  },
   data() {
     return {
       images: [
@@ -103,15 +106,20 @@ export default {
 }
 
 .product-slider__picture {
-  // width: 100%;
-  width: 576px;
-  height: 315px;
+  position: relative;
+  width: 100%;
+  // width: 576px;
+  height: 360px;
   margin-bottom: 20px;
 
   .product-slider__image {
-    width: 576px;
-    height: 315px;
-    object-fit: cover;
+    // position: absolute;
+    // top: 50%;
+    // left: 50%;
+    // transform: translate(-50%, -50%);
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
     object-position: center;
     border-radius: 4px;
   }
@@ -120,6 +128,8 @@ export default {
 .product-slider__controls {
   display: flex;
   justify-content: space-between;
+  width: 85%;
+  margin: 0 auto;
 }
 
 .product-slider__selector {
