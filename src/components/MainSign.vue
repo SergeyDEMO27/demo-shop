@@ -5,7 +5,7 @@
       Enjoy new and limited products, exclusive events, special offers and much more before anyone
       else.
     </p>
-    <MainButton @click="$emit('showModal')">Sign up now</MainButton>
+    <MainButton @click.prevent="$emit('showModal')">Sign up now</MainButton>
   </section>
 </template>
 

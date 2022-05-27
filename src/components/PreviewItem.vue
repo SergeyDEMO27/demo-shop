@@ -68,11 +68,6 @@ export default {
 .preview-item__link {
   width: 100%;
   // max-height: 360px;
-
-  &:hover ~ .main-button > .main-button__link {
-    background-color: $color-orange;
-    border-color: $color-orange;
-  }
 }
 
 .preview-item__picture {

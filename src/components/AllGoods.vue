@@ -1,5 +1,5 @@
 <template>
-  <ul class="all-goods">
+  <TransitionGroup class="all-goods" name="list" tag="ul">
     <li class="all-goods__item" v-for="product in products" :key="product.id">
       <router-link class="all-goods__link" :to="`/product/${product.id}`">
         <div class="all-goods__picture">
@@ -12,7 +12,7 @@
         </div>
       </router-link>
     </li>
-  </ul>
+  </TransitionGroup>
 </template>
 
 <script>
@@ -50,8 +50,13 @@ export default {
       height: 100%;
     }
 
-    .all-goods__title::after {
-      width: 100%;
+    .all-goods__title {
+      &::after {
+        width: 100%;
+      }
+      &::first-letter {
+        color: $color-orange;
+      }
     }
   }
 }
@@ -82,8 +87,9 @@ export default {
   position: relative;
   // display: inline;
   margin-bottom: 20px;
-  font-size: 16px;
-  text-transform: uppercase;
+  font-size: 20px;
+  text-transform: lowercase;
+  transition: 1s;
 
   &::after {
     position: absolute;
@@ -95,6 +101,10 @@ export default {
     background-color: $color-orange;
     border-radius: 25px;
     transition: 0.4s;
+  }
+
+  &::first-letter {
+    text-transform: uppercase;
   }
 }
 
@@ -108,5 +118,21 @@ export default {
 .all-goods__price {
   @include main-title;
   font-size: 14px;
+}
+
+.list-move,
+.list-enter-active,
+.list-leave-active {
+  transition: all 0.5s ease;
+}
+
+.list-enter-from,
+.list-leave-to {
+  opacity: 0;
+  transform: translateX(30px);
+}
+
+.list-leave-active {
+  position: absolute;
 }
 </style>

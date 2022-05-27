@@ -1,9 +1,10 @@
 <template>
   <div class="product-slider">
-    <div class="product-slider__picture">
+    <div class="product-slider__picture" :style="{ backgroundColor: `${activeColor}` }">
       <transition-group :name="slideDirection === 'right' ? 'slide-fade-right' : 'slide-fade-left'">
         <img
           class="product-slider__image"
+          :style="{ transform: `rotate(${randomDegree}deg)` }"
           :src="product.image"
           alt=""
           :key="`@/images/background/main-bg-${activeImage}.jpeg`"
@@ -45,6 +46,7 @@
 export default {
   props: {
     product: Object,
+    activeColor: String,
   },
   data() {
     return {
@@ -71,6 +73,7 @@ export default {
         '3',
       ],
       activeSlide: 0,
+      randomDegree: 0,
       slideDirection: 'right',
     };
   },
@@ -78,13 +81,20 @@ export default {
     prevSlideHandler() {
       this.activeSlide = this.activeSlide - 1 < 0 ? this.slideCount - 1 : this.activeSlide - 1;
       this.slideDirection = 'left';
+      this.randomDegree = Math.floor(Math.random() * (10 - 0 + 1)) + 0;
     },
     nextSlideHandler() {
       this.activeSlide = this.activeSlide + 1 > this.slideCount - 1 ? 0 : this.activeSlide + 1;
       this.slideDirection = 'right';
+      this.randomDegree = Math.floor(Math.random() * (360 - 350 + 1)) + 350;
     },
     slidePressHandler(index) {
       this.slideDirection = index > this.activeSlide ? 'right' : 'left';
+      // eslint-disable-next-line operator-linebreak
+      this.randomDegree =
+        this.slideDirection === 'right'
+          ? Math.floor(Math.random() * (360 - 350 + 1)) + 350
+          : Math.floor(Math.random() * (10 - 0 + 1)) + 0;
       this.activeSlide = index;
     },
   },
@@ -111,6 +121,7 @@ export default {
   // width: 576px;
   height: 360px;
   margin-bottom: 20px;
+  border-radius: 4px;
 
   .product-slider__image {
     // position: absolute;
@@ -219,36 +230,36 @@ export default {
 .slide-fade-left {
   &-enter-active {
     position: absolute;
-    transition: all 0.4s ease-out;
+    transition: all 0.1s ease-out;
   }
 
   &-leave-active {
     position: absolute;
-    transition: all 0.4s cubic-bezier(1, 0.5, 0.8, 1);
+    transition: all 0.1s cubic-bezier(1, 0.5, 0.8, 1);
   }
 
   &-enter-from,
   &-leave-to {
     transform: translateX(20px);
-    opacity: 0.8;
+    opacity: 0.1;
   }
 }
 
 .slide-fade-right {
   &-enter-active {
     position: absolute;
-    transition: all 0.4s ease-out;
+    transition: all 0.1s ease-out;
   }
 
   &-leave-active {
     position: absolute;
-    transition: all 0.4s cubic-bezier(1, 0.5, 0.8, 1);
+    transition: all 0.1s cubic-bezier(1, 0.5, 0.8, 1);
   }
 
   &-enter-from,
   &-leave-to {
     transform: translateX(-20px);
-    opacity: 0.8;
+    opacity: 0.1;
   }
 }
 </style>

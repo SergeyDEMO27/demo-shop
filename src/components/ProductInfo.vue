@@ -7,10 +7,10 @@
     <ul class="product-info__color">
       <li
         class="product-info__color-item"
-        :class="{ 'product-info__color-item-active': activeColor === index }"
-        @click="changeColorHandler(index)"
-        @keypress.enter="changeColorHandler(index)"
-        v-for="(color, index) in colors"
+        :class="{ 'product-info__color-item-active': activeColor === color }"
+        @click="$emit('changeColor', color)"
+        @keypress.enter="$emit('changeColor', color)"
+        v-for="color in colors"
         :key="color"
       >
         <div :style="{ backgroundColor: color }"></div>
@@ -32,21 +32,23 @@ import MainButton from '@/components/MainButton.vue';
 export default {
   props: {
     product: Object,
+    colors: Array,
+    activeColor: String,
   },
   components: {
     MainButton,
   },
   data() {
     return {
-      colors: ['black', 'orange', 'brown', 'blue', 'gray', 'green'],
-      activeColor: 0,
+      // colors: ['white', 'black', 'orange', 'brown', 'blue', 'red', 'green'],
+      // activeColor: 0,
     };
   },
-  methods: {
-    changeColorHandler(index) {
-      this.activeColor = index;
-    },
-  },
+  // methods: {
+  //   changeColorHandler(index) {
+  //     this.activeColor = index;
+  //   },
+  // },
 };
 </script>
 
@@ -91,6 +93,7 @@ export default {
       transform: translate(-50%, -50%);
       width: 17px;
       height: 17px;
+      border: 1px solid rgba(0, 0, 0, 40%);
       border-radius: 50%;
       transition: 0.1s;
     }
@@ -99,6 +102,7 @@ export default {
       div {
         width: 100%;
         height: 100%;
+        border: none;
       }
     }
 

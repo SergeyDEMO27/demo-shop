@@ -8,8 +8,18 @@
         </router-link>
         <section class="product-page__info">
           <div class="product-page__wrapper">
-            <ProductSlider class="product-page__item" :product="product" />
-            <ProductInfo class="product-page__item" :product="product" />
+            <ProductSlider
+              class="product-page__item"
+              :product="product"
+              :activeColor="activeColor"
+            />
+            <ProductInfo
+              class="product-page__item"
+              :product="product"
+              :colors="colors"
+              :activeColor="activeColor"
+              @changeColor="changeColorHandler"
+            />
           </div>
         </section>
       </div>
@@ -20,7 +30,11 @@
       </section>
     </div>
     <MainFooter />
-    <MainModal v-show="isModalShown" @hideModal="isModalShown = false"><FeedbackModal /></MainModal>
+    <Transition name="slide-fade">
+      <MainModal v-if="isModalShown" @hideModal="isModalShown = false">
+        <FeedbackModal />
+      </MainModal>
+    </Transition>
   </div>
 </template>
 
@@ -48,6 +62,8 @@ export default {
     return {
       isModalShown: false,
       product: {},
+      colors: ['white', 'black', 'orange', 'brown', 'blue', 'red', 'green'],
+      activeColor: 'white',
     };
   },
   methods: {
@@ -58,6 +74,9 @@ export default {
       } catch (error) {
         console.log(error);
       }
+    },
+    changeColorHandler(color) {
+      this.activeColor = color;
     },
   },
   mounted() {
@@ -137,5 +156,19 @@ export default {
     margin-left: auto;
     text-align: center;
   }
+}
+
+.slide-fade-enter-active {
+  transition: all 0.4s ease-out;
+}
+
+.slide-fade-leave-active {
+  transition: all 0.4s ease-out;
+}
+
+.slide-fade-enter-from,
+.slide-fade-leave-to {
+  transform: translateX(20px);
+  opacity: 0;
 }
 </style>

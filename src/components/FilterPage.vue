@@ -11,8 +11,14 @@
           :selectValue="selectValue"
           :selectOptions="selectOptions"
         />
+
         <ul class="filter-page__categories">
-          <li class="filter-page__item" v-for="category in categories" :key="category">
+          <li
+            class="filter-page__item"
+            :class="{ 'filter-page__item-active': activeCategory === category }"
+            v-for="category in categories"
+            :key="category"
+          >
             <button @click="fetchCategorieHandler(category)" type="button">{{ category }}</button>
           </li>
         </ul>
@@ -26,7 +32,11 @@
     </div>
   </div>
   <MainFooter />
-  <MainModal v-show="isModalShown" @hideModal="isModalShown = false"><FeedbackModal /></MainModal>
+  <Transition name="slide-fade">
+    <MainModal v-show="isModalShown" @hideModal="isModalShown = false">
+      <FeedbackModal />
+    </MainModal>
+  </Transition>
 </template>
 
 <script>
@@ -54,43 +64,7 @@ export default {
       searchValue: '',
       selectValue: '',
       categories: ['all', 'electronics', 'jewelery', "men's clothing", "women's clothing"],
-      // goods: [
-      //   {
-      //     id: Date.now(),
-      //     title: 'watch',
-      //     description: 'sadasdasadsasd',
-      //     price: 500,
-      //     path: '0',
-      //   },
-      //   {
-      //     id: Date.now(),
-      //     title: 'mobile',
-      //     description: 'sadasdasadsasd',
-      //     price: 200,
-      //     path: '1',
-      //   },
-      //   {
-      //     id: Date.now(),
-      //     title: 'television',
-      //     description: 'sadasdasadsasd',
-      //     price: 300,
-      //     path: '2',
-      //   },
-      //   {
-      //     id: Date.now(),
-      //     title: 'audiosystem',
-      //     description: 'sadasdasadsasd',
-      //     price: 400,
-      //     path: '0',
-      //   },
-      //   {
-      //     id: Date.now(),
-      //     title: 'computer',
-      //     description: 'sadasdasadsasd',
-      //     price: 100,
-      //     path: '1',
-      //   },
-      // ],
+      activeCategory: 'all',
       products: [],
       selectOptions: [
         { title: 'name', value: 'title' },
@@ -113,14 +87,13 @@ export default {
           `https://fakestoreapi.com/products/category/${this.$route.params.id}`
         );
         this.products = response.data;
-        console.log(this.products);
+        // console.log(this.products);
       } catch (error) {
         console.log(error);
       }
     },
     async fetchCategorieHandler(category) {
       try {
-        console.log(category);
         // eslint-disable-next-line operator-linebreak
         const path =
           category === 'all'
@@ -128,13 +101,14 @@ export default {
             : `https://fakestoreapi.com/products/category/${category}`;
         const response = await axios.get(path);
         this.products = response.data;
-        console.log(this.products);
+        this.activeCategory = category;
       } catch (error) {
         console.log(error);
       }
     },
   },
   mounted() {
+    this.activeCategory = this.$route.params.id;
     this.fetchCategorie();
   },
   computed: {
@@ -218,6 +192,20 @@ export default {
         }
       }
     }
+
+    &-active {
+      button {
+        color: $color-orange;
+        cursor: auto;
+
+        &:hover,
+        &:focus {
+          &::after {
+            width: 0;
+          }
+        }
+      }
+    }
   }
 }
 
@@ -233,5 +221,19 @@ export default {
     margin-left: auto;
     text-align: center;
   }
+}
+
+.slide-fade-enter-active {
+  transition: all 0.4s ease-out;
+}
+
+.slide-fade-leave-active {
+  transition: all 0.4s ease-out;
+}
+
+.slide-fade-enter-from,
+.slide-fade-leave-to {
+  transform: translateX(20px);
+  opacity: 0;
 }
 </style>

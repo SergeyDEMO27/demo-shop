@@ -1,5 +1,5 @@
 <template>
-  <form class="feedback-form" action="">
+  <form class="feedback-form" @submit.prevent="submitHandler" action="">
     <div class="feedback-form__item">
       <label
         class="feedback-form__label"
@@ -16,6 +16,7 @@
         :value="inputValues.email"
         id="feedbackEmail"
         type="email"
+        required
       />
     </div>
     <div class="feedback-form__wrapper">
@@ -35,6 +36,7 @@
           :value="inputValues.firstName"
           id="feedbackName"
           type="text"
+          require
         />
       </div>
       <div class="feedback-form__item">
@@ -53,6 +55,7 @@
           :value="inputValues.lastName"
           id="feedbackSurname"
           type="text"
+          required
         />
       </div>
     </div>
@@ -60,7 +63,7 @@
       By signing up to The SHOP PROJECT you accept that The SHOP PROJECT as well as The SHOP PROJECT
       branded shops can contact you and send you communication by email.
     </p>
-    <MainButton>Subscribe</MainButton>
+    <MainButton @click.prevent="submitHandler">Subscribe</MainButton>
   </form>
 </template>
 
@@ -84,6 +87,14 @@ export default {
         lastName: false,
       },
     };
+  },
+
+  methods: {
+    submitHandler() {
+      this.inputValues.email = '';
+      this.inputValues.firstName = '';
+      this.inputValues.lastName = '';
+    },
   },
 };
 </script>
