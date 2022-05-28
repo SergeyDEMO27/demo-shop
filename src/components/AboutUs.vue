@@ -30,9 +30,24 @@ export default {
   data() {
     return {
       previews: [
-        { id: Date.now(), title: 'electronics', path: '0' },
-        { id: Date.now(), title: 'jewels', path: '1' },
-        { id: Date.now(), title: 'cloth', path: '2' },
+        {
+          id: Date.now(),
+          title: 'electronics',
+          path: '0',
+          link: 'electronics',
+        },
+        {
+          id: Date.now(),
+          title: 'jewels',
+          path: '1',
+          link: 'jewelery',
+        },
+        {
+          id: Date.now(),
+          title: 'cloth',
+          path: '2',
+          link: "MEN'S CLOTHING",
+        },
       ],
     };
   },

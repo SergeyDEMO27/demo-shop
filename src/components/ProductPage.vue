@@ -1,6 +1,6 @@
 <template>
   <div class="product-page">
-    <MainHeader />
+    <MainHeader :productInBin="productInBin" />
     <div class="product-page__main">
       <div class="product-page__container">
         <router-link class="product-page__category" :to="`/products/${product.category}`">
@@ -19,6 +19,7 @@
               :colors="colors"
               :activeColor="activeColor"
               @changeColor="changeColorHandler"
+              @getProductInfo="(product) => productInBin.push(product)"
             />
           </div>
         </section>
@@ -62,6 +63,7 @@ export default {
     return {
       isModalShown: false,
       product: {},
+      productInBin: [],
       colors: ['white', 'black', 'orange', 'brown', 'blue', 'red', 'green'],
       activeColor: 'white',
     };
@@ -81,6 +83,11 @@ export default {
   },
   mounted() {
     this.fetchProduct();
+  },
+  watch: {
+    productInBin(value, oldValue) {
+      console.log('hello', value, oldValue);
+    },
   },
 };
 </script>

@@ -56,12 +56,9 @@ export default {
         this.categories.map(async (categorie) => {
           const requestPath = `https://fakestoreapi.com/products/category/${categorie}?limit=1`;
           const response = await axios(requestPath);
-          this.previewsFake[categorie] = response.data;
+          // eslint-disable-next-line prefer-destructuring
+          this.previewsFake[categorie] = response.data[0];
         });
-
-        // const response = await axios('https://api.storerestapi.com/categories/computers');
-        // const response = await axios('https://fakestoreapi.com/products/category/jewelery');
-        // console.log(response.data);
       } catch (error) {
         console.log(error);
       }

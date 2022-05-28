@@ -1,34 +1,80 @@
 <template>
-  <section class="main-presentation">
-    <img
-      class="main-presentation__image"
-      :src="require(`@/images/background/main-bg-${previewId}.jpeg`)"
-      :key="`main-bg-${previewId}`"
-      alt="bg"
-    />
+  <section
+    class="main-presentation"
+    :style="{
+      backgroundImage: `url(${require(`@/images/background/main-bg-${preview.id}.jpeg`)})`,
+    }"
+  >
+    <div class="main-presentation__container">
+      <p class="main-presentation__title">{{ preview.title }}</p>
+      <p class="main-presentation__description">
+        {{ preview.description }}
+      </p>
+      <router-link :to="`/products/${preview.link}`" class="mainNavigation__link" href="#"
+        ><MainButton class="main-presentation__link">Discover More</MainButton>
+      </router-link>
+    </div>
   </section>
 </template>
 
 <script>
+import MainButton from './MainButton.vue';
+
 export default {
+  components: {
+    MainButton,
+  },
   props: {
-    previewId: {
-      type: String,
-      required: true,
-    },
+    preview: Object,
   },
 };
 </script>
 
-<style>
-.main-presentation__image {
+<style lang="scss">
+.main-presentation {
+  position: relative;
   max-width: 100%;
   width: 100vw;
-  height: 100vh;
-  object-fit: cover;
-  object-position: center;
-  animation: imageChange 1.5s;
-  opacity: 1;
+  height: 50vh;
+  min-height: 640px;
+  padding-top: 20vh;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.main-presentation__container {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 60px 50px;
+  color: $color-yellow;
+}
+
+.main-presentation__title {
+  @include main-title;
+  max-width: 50%;
+  margin-bottom: 20px;
+  font-size: 46px;
+}
+
+.main-presentation__description {
+  @include main-description;
+  max-width: 35%;
+  margin-bottom: 20px;
+  font-size: 22px;
+}
+
+.main-presentation__link {
+  display: inline-block;
+  a {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    background-color: $color-orange;
+    border: none;
+    &:hover {
+      background-color: $color-default-white;
+    }
+  }
 }
 
 @keyframes imageChange {

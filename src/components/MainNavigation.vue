@@ -7,8 +7,6 @@
           class="mainNavigation__link"
           href="#"
           :id="`${index}`"
-          @mouseover="changePreviewId"
-          @focus="changePreviewId"
         >
           {{ navItem }}
         </router-link>
@@ -23,11 +21,6 @@ export default {
     navItems: {
       type: Array,
       required: true,
-    },
-  },
-  methods: {
-    changePreviewId(e) {
-      this.$emit('create', e.target.id);
     },
   },
 };

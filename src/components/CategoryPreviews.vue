@@ -1,14 +1,14 @@
 <template>
   <ul class="category-previews">
     <li class="category-previews__item" v-for="(preview, index) in previews" :key="index">
-      <a class="category-previews__link" href="#">
+      <router-link class="category-previews__link" :to="`/products/${preview.link}`">
         <h3 class="category-previews__title">{{ preview.title }}</h3>
         <img
           class="category-previews__image"
           :src="require(`@/images/background/main-bg-${preview.path}.jpeg`)"
           :alt="preview.title"
         />
-      </a>
+      </router-link>
     </li>
   </ul>
 </template>

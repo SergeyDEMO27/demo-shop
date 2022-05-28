@@ -17,7 +17,13 @@
       </li>
     </ul>
     <p class="product-info__price">${{ product.price }}</p>
-    <MainButton class="product-info__button">Add to basket</MainButton>
+    <MainButton
+      @click.prevent="
+        $emit('getProductInfo', { title: product.title, color: activeColor, price: product.price })
+      "
+      class="product-info__button"
+      >Add to basket</MainButton
+    >
     <ul class="product-info__special">
       <li class="product-info__special-item">Free express delivery</li>
       <li class="product-info__special-item">30-day free trial</li>

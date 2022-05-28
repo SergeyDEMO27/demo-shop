@@ -1,14 +1,32 @@
 <template>
   <div class="preview-item" :class="[horisonal ? 'preview-item--horisontal' : '']">
-    <router-link :to="`/product/${preview[0].id}`" class="preview-item__link">
+    <router-link
+      @mouseover="this.isHover = true"
+      @mouseout="this.isHover = false"
+      @focus="this.isHover = true"
+      @blur="this.isHover = false"
+      :to="`/product/${preview.id}`"
+      class="preview-item__link"
+      :class="{ 'preview-item__link-active': this.isHover }"
+    >
       <div class="preview-item__picture">
-        <img class="preview-item__image" :src="preview[0].image" alt="" />
+        <img class="preview-item__image" :src="preview.image" alt="" />
       </div>
     </router-link>
     <div class="preview-item__info">
-      <h3 class="preview-item__title">{{ preview[0].title }}</h3>
-      <p class="preview-item__description">{{ preview[0].description }}</p>
-      <MainButton @click="$router.push(`/product/${preview[0].id}`)">show more</MainButton>
+      <h3 class="preview-item__title" :class="{ 'preview-item__title-active': this.isHover }">
+        {{ preview.title }}
+      </h3>
+      <p class="preview-item__description">{{ preview.description }}</p>
+      <MainButton
+        :class="{ 'preview-item__button-active': this.isHover }"
+        @mouseover="this.isHover = true"
+        @mouseout="this.isHover = false"
+        @focus="this.isHover = true"
+        @blur="this.isHover = false"
+        @click="$router.push(`/product/${preview.id}`)"
+        >show more</MainButton
+      >
     </div>
   </div>
 </template>
@@ -22,13 +40,18 @@ export default {
   },
   props: {
     preview: {
-      type: Array,
+      type: Object,
       required: true,
     },
     horisonal: {
       type: Boolean,
       required: false,
     },
+  },
+  data() {
+    return {
+      isHover: false,
+    };
   },
 };
 </script>
@@ -51,23 +74,32 @@ export default {
       min-height: 360px;
     }
 
-    .preview-item__info {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      padding: 0 50px;
-      border-top-right-radius: 4px;
-      border-bottom-right-radius: 4px;
-      background-color: rgb(245, 244, 243);
-      text-align: center;
-    }
+    // .preview-item__info {
+    //   display: flex;
+    //   flex-direction: column;
+    //   justify-content: center;
+    //   align-items: center;
+    //   padding: 0 50px;
+    //   // border: 2px solid $color-black;
+    //   // border-radius: 4px;
+    //   // box-shadow: 4px 4px 8px 0px rgba(34, 60, 80, 0.2);
+    //   // background-color: rgb(245, 244, 243);
+    //   text-align: center;
+    // }
   }
 }
 
 .preview-item__link {
   width: 100%;
   // max-height: 360px;
+  &-active {
+    .preview-item__picture {
+      .preview-item__image {
+        width: 100%;
+        height: 100%;
+      }
+    }
+  }
 }
 
 .preview-item__picture {
@@ -102,6 +134,13 @@ export default {
 }
 
 .preview-item__info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 20px 50px;
+  border-radius: 4px;
+  box-shadow: -4px 4px 8px 0px rgba(34, 60, 80, 0.2);
   text-align: center;
 }
 
@@ -115,6 +154,12 @@ export default {
   &::first-letter {
     text-transform: uppercase;
   }
+
+  &-active {
+    &::first-letter {
+      color: $color-orange;
+    }
+  }
 }
 
 .preview-item__description {
@@ -122,5 +167,20 @@ export default {
   font-family: 'Supreme', Arial, Helvetica, sans-serif;
   font-size: 20px;
   color: rgba(0, 0, 0, 80%);
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  // color: #e5e5e5;
+  display: -webkit-box;
+  height: 3.9em;
+  line-height: 1.3em;
+  // max-width: 40%;
+  overflow: hidden;
+}
+
+.preview-item__button-active {
+  a {
+    background-color: $color-orange;
+    border-color: $color-orange;
+  }
 }
 </style>

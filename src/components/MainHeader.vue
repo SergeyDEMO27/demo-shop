@@ -9,25 +9,26 @@
         <img class="mainHeader__logo-image" :src="mainLogoSrc" alt="my-logo" />
         <h1 class="mainHeader__title">THE SHOP PROJECT LOGO</h1>
       </router-link>
-      <MainNavigation @create="changePreviewId" :navItems="mainNavItems" />
+      <MainNavigation :navItems="mainNavItems" />
     </div>
     <MainNavigation :navItems="userNavItems" />
+    <MainBin :productInBin="productInBin" />
   </div>
 </template>
 
 <script>
-import MainNavigation from './MainNavigation.vue';
-import mainLogoSrc from '../images/svg/vue-logo.svg';
+import mainLogoSrc from '@/images/svg/vue-logo.svg';
+import MainNavigation from '@/components/MainNavigation.vue';
+import MainBin from '@/components/MainBin.vue';
 
 export default {
   components: {
     MainNavigation,
+    MainBin,
   },
   props: {
-    isMainPage: {
-      type: Boolean,
-      default: false,
-    },
+    isMainPage: Boolean,
+    productInBin: Array,
   },
   setup() {
     return {
@@ -39,11 +40,6 @@ export default {
       mainNavItems: ['electronics', 'jewelery', "men's clothing", "women's clothing"],
       userNavItems: ['login', 'basket'],
     };
-  },
-  methods: {
-    changePreviewId(id) {
-      this.$emit('create', id);
-    },
   },
 };
 </script>

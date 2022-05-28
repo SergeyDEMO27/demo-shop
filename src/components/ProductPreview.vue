@@ -2,14 +2,10 @@
   <ul class="product-preview">
     <li class="product-preview__item" v-for="preview in previews" :key="preview.id">
       <a class="product-preview__link" href="#">
-        <h3 class="product-preview__title">{{ preview.title }}</h3>
         <div class="product-preview__picture">
-          <img
-            class="product-preview__image"
-            :src="require(`@/images/background/main-bg-${preview.path}.jpeg`)"
-            alt=""
-          />
+          <img class="product-preview__image" :src="preview.image" alt="" />
         </div>
+        <h3 class="product-preview__title">{{ preview.title }}</h3>
       </a>
     </li>
   </ul>
@@ -18,10 +14,7 @@
 <script>
 export default {
   props: {
-    previews: {
-      type: Array,
-      required: true,
-    },
+    previews: Array,
   },
 };
 </script>
@@ -75,9 +68,9 @@ export default {
 }
 
 .product-preview__title {
-  position: absolute;
+  // position: absolute;
   // position: relative;
-  bottom: -50px;
+  // bottom: -50px;
   color: #191817;
   font-family: 'Supreme', Arial, Helvetica, sans-serif;
   font-size: 26px;
