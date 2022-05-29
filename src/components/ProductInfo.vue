@@ -19,7 +19,13 @@
     <p class="product-info__price">${{ product.price }}</p>
     <MainButton
       @click.prevent="
-        $emit('getProductInfo', { title: product.title, color: activeColor, price: product.price })
+        addProductInBin({
+          id: product.id,
+          imagePath: product.image,
+          title: product.title,
+          color: activeColor,
+          price: product.price,
+        })
       "
       class="product-info__button"
       >Add to basket</MainButton
@@ -34,6 +40,7 @@
 
 <script>
 import MainButton from '@/components/MainButton.vue';
+import { mapActions } from 'vuex';
 
 export default {
   props: {
@@ -50,11 +57,11 @@ export default {
       // activeColor: 0,
     };
   },
-  // methods: {
-  //   changeColorHandler(index) {
-  //     this.activeColor = index;
-  //   },
-  // },
+  methods: {
+    ...mapActions({
+      addProductInBin: 'productsBin/addProductInBin',
+    }),
+  },
 };
 </script>
 

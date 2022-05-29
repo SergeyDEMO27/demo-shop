@@ -17,10 +17,15 @@
   <MainGoods />
   <MainFeedback />
   <MainFooter />
+  <MainModal>
+    <LoginForm />
+  </MainModal>
 </template>
 
 <script>
 // import axios from 'axios';
+import MainModal from '@/components/MainModal.vue';
+import LoginForm from '@/components/MainLogin.vue';
 import MainHeader from './MainHeader.vue';
 import MainPresentation from './MainPresentation.vue';
 import AboutUs from './AboutUs.vue';
@@ -38,6 +43,8 @@ export default {
     MainGoods,
     MainFeedback,
     MainFooter,
+    MainModal,
+    LoginForm,
   },
   data() {
     return {

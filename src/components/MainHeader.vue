@@ -12,23 +12,22 @@
       <MainNavigation :navItems="mainNavItems" />
     </div>
     <MainNavigation :navItems="userNavItems" />
-    <MainBin :productInBin="productInBin" />
+    <!-- <MainBin /> -->
   </div>
 </template>
 
 <script>
 import mainLogoSrc from '@/images/svg/vue-logo.svg';
 import MainNavigation from '@/components/MainNavigation.vue';
-import MainBin from '@/components/MainBin.vue';
+// import MainBin from '@/components/MainBin.vue';
 
 export default {
   components: {
     MainNavigation,
-    MainBin,
+    // MainBin,
   },
   props: {
     isMainPage: Boolean,
-    productInBin: Array,
   },
   setup() {
     return {

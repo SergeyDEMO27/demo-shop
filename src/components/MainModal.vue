@@ -2,7 +2,7 @@
   <div class="main-modal" @click="$emit('hideModal')" @keypress.enter="$emit('hideModal')">
     <div @click.stop class="main-modal__container">
       <div class="main-modal__wrapper">
-        <button class="main-modal__close" @click="$emit('hideModal')" type="button"></button>
+        <ButtonClose class="main-modal__close" @click="$emit('hideModal')" />
       </div>
       <slot></slot>
     </div>
@@ -10,7 +10,13 @@
 </template>
 
 <script>
-export default {};
+import ButtonClose from '@/components/ButtonClose.vue';
+
+export default {
+  components: {
+    ButtonClose,
+  },
+};
 </script>
 
 <style lang="scss">
@@ -47,34 +53,5 @@ export default {};
   position: absolute;
   top: 10px;
   right: 15px;
-  width: 17px;
-  height: 17px;
-  background-color: transparent;
-  border: none;
-  cursor: pointer;
-
-  &::before,
-  &::after {
-    position: absolute;
-    top: 8px;
-    right: 0;
-    width: 100%;
-    height: 2px;
-    content: '';
-    background-color: rgba(0, 0, 0, 50%);
-    transform: rotate(45deg);
-    transition: 0.4s;
-  }
-
-  &::after {
-    transform: rotate(-45deg);
-  }
-
-  &:hover {
-    &::before,
-    &::after {
-      background-color: $color-default-black;
-    }
-  }
 }
 </style>
