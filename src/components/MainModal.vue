@@ -1,8 +1,8 @@
 <template>
-  <div class="main-modal" @click="$emit('hideModal')" @keypress.enter="$emit('hideModal')">
-    <div @click.stop class="main-modal__container">
+  <div class="main-modal">
+    <div class="main-modal__container">
       <div class="main-modal__wrapper">
-        <ButtonClose class="main-modal__close" @click="$emit('hideModal')" />
+        <!-- <ButtonClose class="main-modal__close" @click="$emit('hideModal')" /> -->
       </div>
       <slot></slot>
     </div>
@@ -10,11 +10,11 @@
 </template>
 
 <script>
-import ButtonClose from '@/components/ButtonClose.vue';
+// import ButtonClose from '@/components/ButtonClose.vue';
 
 export default {
   components: {
-    ButtonClose,
+    // ButtonClose,
   },
 };
 </script>
@@ -40,13 +40,15 @@ export default {
   top: 50%;
   transform: translate(-50%, -50%);
   max-width: 1250px;
-  width: 100%;
+  // width: 100%;
   padding-right: 25px;
   padding-left: 25px;
 }
 
 .main-modal__wrapper {
   position: relative;
+  width: 100%;
+  height: 100%;
 }
 
 .main-modal__close {

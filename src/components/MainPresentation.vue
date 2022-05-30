@@ -14,6 +14,7 @@
         ><MainButton class="main-presentation__link">Discover More</MainButton>
       </router-link>
     </div>
+    <div ref="observer" class="main-presentation-observer"></div>
   </section>
 </template>
 
@@ -26,6 +27,29 @@ export default {
   },
   props: {
     preview: Object,
+  },
+  mounted() {
+    const options = {
+      root: document.querySelector('#mainHeader'),
+      rootMargin: '0px',
+      threshold: 0,
+    };
+
+    // const callback = function (entries, observer) {
+    //   entries.forEach((entry) => {
+    //     console.log(entry.target, observer);
+    //   });
+    // };
+
+    const onIntersect = (entries) => {
+      entries.forEach((entry) => {
+        // const theme = entry.target.dataset.section;
+        console.log('HEY', entry);
+      });
+    };
+
+    const observer = new IntersectionObserver(onIntersect, options);
+    observer.observe(this.$refs.observer);
   },
 };
 </script>
@@ -75,6 +99,15 @@ export default {
       background-color: $color-default-white;
     }
   }
+}
+
+.main-presentation-observer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 30px;
+  background-color: lightgreen;
 }
 
 @keyframes imageChange {

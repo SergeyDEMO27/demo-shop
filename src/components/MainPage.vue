@@ -1,5 +1,5 @@
 <template>
-  <MainHeader :isMainPage="true" />
+  <MainHeader @openLogin="isLoginForm = true" :isMainPage="true" />
 
   <!-- <TransitionGroup name="fade">
     <MainPresentation
@@ -17,15 +17,21 @@
   <MainGoods />
   <MainFeedback />
   <MainFooter />
-  <MainModal>
-    <LoginForm />
+  <MainModal
+    v-show="isLoginForm"
+    @click="isLoginForm = false"
+    @keypress.enter="isLoginForm = false"
+  >
+    <MainLogin @click.stop @closeForm="isLoginForm = false" />
+    <ButtonClose class="main-page__close" />
   </MainModal>
 </template>
 
 <script>
 // import axios from 'axios';
 import MainModal from '@/components/MainModal.vue';
-import LoginForm from '@/components/MainLogin.vue';
+import MainLogin from '@/components/MainLogin.vue';
+import ButtonClose from '@/components/ButtonClose.vue';
 import MainHeader from './MainHeader.vue';
 import MainPresentation from './MainPresentation.vue';
 import AboutUs from './AboutUs.vue';
@@ -44,12 +50,14 @@ export default {
     MainFeedback,
     MainFooter,
     MainModal,
-    LoginForm,
+    MainLogin,
+    ButtonClose,
   },
   data() {
     return {
       previewId: 0,
       previewInterval: '',
+      isLoginForm: false,
       presentationItems: [
         {
           id: 0,
@@ -102,6 +110,12 @@ export default {
 </script>
 
 <style lang="scss">
+.main-page__close {
+  position: absolute;
+  top: 10px;
+  right: 35px;
+}
+
 .v-enter-active,
 .v-leave-active {
   transition: opacity 0.5s ease;
