@@ -1,28 +1,36 @@
 <template>
   <div class="main-bin">
-    <div class="main-bin__wrapper">
-      <h2 class="main-bin__title">Main Products({{ productCount }})</h2>
-      <button class="main-bin__removeAll" type="button" @click="removeAllProductsInBin">
-        clear list
-      </button>
+    <div v-if="productCount" class="main-bin__main">
+      <div class="main-bin__wrapper">
+        <h2 class="main-bin__title">Main Products({{ productCount }})</h2>
+        <button class="main-bin__removeAll" type="button" @click="removeAllProductsInBin">
+          clear list
+        </button>
+      </div>
+      <div class="main-bin__container">
+        <ul class="main-bin__list">
+          <li class="main-bin__item" v-for="product in productsInBin" :key="product">
+            <div class="main-bin__item-picture">
+              <img class="main-bin__item-image" :src="product.imagePath" alt="" />
+            </div>
+            <router-link class="main-bin__item-link" :to="`/product/${product.id}`">
+              <p class="main-bin__item-description">{{ product.title }} / {{ product.color }}</p>
+            </router-link>
+            <p class="main-bin__item-price">${{ product.price }}</p>
+            <ButtonClose class="main-bin__item-remove" @click="removeProductInBin(product.id)" />
+          </li>
+        </ul>
+      </div>
+      <div class="main-bin__info">
+        <p class="main-bin__item-total">
+          <span>Total Price:</span> <span>${{ totalPrice }}</span>
+        </p>
+        <a class="main-bin__item-checkout" href="#" @click.prevent="">checkout</a>
+      </div>
     </div>
-    <div class="main-bin__container">
-      <ul class="main-bin__list">
-        <li class="main-bin__item" v-for="product in productsInBin" :key="product">
-          <div class="main-bin__item-picture">
-            <img class="main-bin__item-image" :src="product.imagePath" alt="" />
-          </div>
-          <router-link class="main-bin__item-link" :to="`/product/${product.id}`">
-            <p class="main-bin__item-description">{{ product.title }} / {{ product.color }}</p>
-          </router-link>
-          <p class="main-bin__item-price">${{ product.price }}</p>
-          <ButtonClose class="main-bin__item-remove" @click="removeProductInBin(product.id)" />
-        </li>
-      </ul>
+    <div v-if="productCount" class="main-bin__count">
+      <span>{{ productCount }}</span>
     </div>
-    <p class="main-bin__item-total">
-      <span>Total Price:</span> <span>${{ totalPrice }}</span>
-    </p>
   </div>
 </template>
 
@@ -54,9 +62,8 @@ export default {
   watch: {
     productsInBin: {
       handler(newValue) {
-        if (newValue.length === 0) {
-          this.totalPrice = 0;
-        } else {
+        this.totalPrice = 0;
+        if (newValue.length !== 0) {
           // eslint-disable-next-line no-return-assign
           newValue.map(({ price }) => (this.totalPrice += price));
         }
@@ -69,7 +76,17 @@ export default {
 </script>
 
 <style lang="scss">
-.main-bin {
+// .main-bin {
+//   width: 400px;
+//   height: 300px;
+//   padding: 20px;
+//   padding-right: 0;
+//   border-radius: 15px;
+//   background-color: $color-default-white;
+//   box-shadow: 0 0 12px rgba(0, 0, 0, 16%);
+// }
+
+.main-bin__main {
   width: 400px;
   height: 300px;
   padding: 20px;
@@ -92,13 +109,17 @@ export default {
   font-size: 16px;
 }
 
-.main-bin__removeAll {
+.main-bin__removeAll,
+.main-bin__item-checkout {
   @include main-title;
   font-size: 16px;
   text-transform: lowercase;
+  color: $color-default-black;
   opacity: 70%;
   background-color: transparent;
   border: none;
+  text-decoration: none;
+  transition: 0.4s;
   cursor: pointer;
 
   &:hover {
@@ -123,6 +144,16 @@ export default {
   align-items: center;
   margin-bottom: 10px;
   padding-right: 25px;
+
+  &::after {
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 98%;
+    height: 1px;
+    content: '';
+    background-color: $color-default-black;
+  }
 }
 
 .main-bin__item-picture {
@@ -171,5 +202,30 @@ export default {
   width: 15px;
   height: 15px;
   transform: translateY(-45%);
+}
+
+.main-bin__info {
+  display: flex;
+  justify-content: space-between;
+  padding-right: 30px;
+}
+
+.main-bin__count {
+  position: absolute;
+  top: -2px;
+  right: -19px;
+  padding: 13px;
+  opacity: 95%;
+  background-color: $color-orange;
+  border-radius: 50%;
+
+  span {
+    @include main-description;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 12px;
+  }
 }
 </style>

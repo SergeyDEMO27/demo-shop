@@ -60,8 +60,8 @@
       </div>
     </div>
     <p class="feedback-form__agreement">
-      By signing up to The SHOP PROJECT you accept that The SHOP PROJECT as well as The SHOP PROJECT
-      branded shops can contact you and send you communication by email.
+      By signing up to The Demo Shop you accept that The Demo Shop can contact you and send you
+      communication by email.
     </p>
     <MainButton @click.prevent="submitHandler">Subscribe</MainButton>
   </form>
@@ -141,6 +141,9 @@ export default {
 }
 
 .feedback-form__agreement {
+  @include main-description;
   margin-bottom: 30px;
+  font-size: 16px;
+  opacity: 75%;
 }
 </style>

@@ -121,6 +121,7 @@ export default {
 
     &-active {
       border-color: $color-default-black;
+      cursor: auto;
 
       div {
         width: 21px;
@@ -129,8 +130,8 @@ export default {
 
       &:hover {
         div {
-          width: 21px;
-          height: 21px;
+          width: 17px;
+          height: 17px;
         }
       }
     }

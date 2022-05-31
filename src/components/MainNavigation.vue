@@ -46,11 +46,11 @@ export default {
     letter-spacing: 0.07rem;
     text-transform: uppercase;
     text-decoration: none;
-    transition: 0.5s ease-in-out;
+    transition: 0.4s ease-in-out;
 
     &::after {
       position: absolute;
-      bottom: -10px;
+      bottom: -5px;
       left: 0;
       content: '';
       width: 0;
@@ -60,11 +60,11 @@ export default {
     }
 
     &:hover {
-      color: $color-default-black;
+      // color: $color-default-black;
 
       &::after {
         width: 100%;
-        background-color: $color-default-black;
+        background-color: $color-orange;
       }
     }
   }

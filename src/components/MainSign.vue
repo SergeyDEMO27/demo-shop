@@ -1,6 +1,6 @@
 <template>
   <section class="main-sign">
-    <h2 class="main-sign__title">JOIN THE SHOP PROJECT</h2>
+    <h2 class="main-sign__title">JOIN THE DEMO SHOP</h2>
     <p class="main-sign__description">
       Enjoy new and limited products, exclusive events, special offers and much more before anyone
       else.
@@ -45,6 +45,7 @@ export default {
   @include main-title;
   margin-bottom: 20px;
   font-size: 20px;
+  text-transform: uppercase;
 }
 
 .main-sign__description {

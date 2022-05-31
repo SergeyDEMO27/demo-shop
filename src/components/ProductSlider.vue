@@ -1,6 +1,7 @@
 <template>
   <div class="product-slider">
-    <div class="product-slider__picture" :style="{ backgroundColor: `${activeColor}` }">
+    <div class="product-slider__picture">
+      <div class="product-slider__color" :style="{ backgroundColor: `${activeColor}` }"></div>
       <transition-group :name="slideDirection === 'right' ? 'slide-fade-right' : 'slide-fade-left'">
         <img
           class="product-slider__image"
@@ -122,6 +123,16 @@ export default {
   height: 360px;
   margin-bottom: 20px;
   border-radius: 4px;
+
+  .product-slider__color {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 10%;
+    z-index: 10;
+  }
 
   .product-slider__image {
     // position: absolute;

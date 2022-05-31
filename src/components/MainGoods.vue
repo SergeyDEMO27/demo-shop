@@ -1,22 +1,24 @@
 <template>
   <section class="main-goods">
     <div class="main-goods__container">
-      <h2 class="main-goods__title">Best Jewels of East Coast</h2>
+      <h2 class="main-goods__title">Best fineries of Demo Shop</h2>
       <PreviewItem
         v-if="previewsFake[categories[0]]"
         :preview="previewsFake[categories[0]]"
         :horisonal="true"
       />
-      <p class="main-goods__description">
-        Extremity sweetness difficult behaviour he of. On disposal of as landlord horrible. Afraid
-        at highly months do things on at. Situation recommend objection do intention so questions.
-        As greatly removed calling pleased improve an. Last ask him cold feel met spot shy want.
-        Children me laughing we prospect answered followed. At it went is song that held help face.
-        Now residence dashwoods she excellent you. Shade being under his bed her, Much read on as
-        draw. Blessing for ignorant exercise any yourself unpacked. Pleasant horrible but confined
-        day end marriage. Eagerness furniture set preserved far recommend. Did even but nor are most
-        gave hope. Secure active living depend son repair day ladies now.
-      </p>
+      <div class="main-goods__text">
+        <p class="main-goods__description">
+          Extremity sweetness difficult behaviour he of. On disposal of as landlord horrible. Afraid
+          at highly months do things on at. Situation recommend objection do intention so questions.
+          As greatly removed calling pleased improve an. Last ask him cold feel met spot shy want.
+          Children me laughing we prospect answered followed. At it went is song that held help
+          face. Now residence dashwoods she excellent you. Shade being under his bed her, Much read
+          on as draw. Blessing for ignorant exercise any yourself unpacked. Pleasant horrible but
+          confined day end marriage. Eagerness furniture set preserved far recommend. Did even but
+          nor are most gave hope. Secure active living depend son repair day ladies now.
+        </p>
+      </div>
       <div class="main-goods__wrapper">
         <div class="main-goods__item">
           <PreviewItem v-if="previewsFake[categories[1]]" :preview="previewsFake[categories[1]]" />
@@ -76,6 +78,7 @@ export default {
   // padding-top: 60px;
   // padding-bottom: 60px;
   background-color: $color-default-white;
+  text-align: right;
 }
 
 .main-goods__container {
@@ -91,11 +94,16 @@ export default {
   margin-bottom: 30px;
 }
 
+.main-goods__text {
+  width: 100%;
+  text-align: center;
+}
+
 .main-goods__description {
+  display: inline-block;
   @include main-description;
   max-width: 50%;
   margin-top: 40px;
-  text-align: center;
 }
 
 .main-goods__wrapper {

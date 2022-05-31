@@ -59,6 +59,8 @@ export default {
 <style lang="scss">
 .preview-item {
   width: 100%;
+  box-shadow: -4px 4px 8px 0px rgba(34, 60, 80, 0.2);
+  border-radius: 15px;
 
   &--horisontal {
     display: flex;
@@ -68,10 +70,19 @@ export default {
       width: 50%;
     }
 
+    .preview-item__info {
+      border-radius: 0px;
+      border-top-right-radius: 15px;
+      border-bottom-right-radius: 15px;
+    }
+
     .preview-item__picture {
       width: 100%;
       height: 100%;
       min-height: 360px;
+      border-radius: 0;
+      border-top-left-radius: 15px;
+      border-bottom-left-radius: 15px;
     }
 
     // .preview-item__info {
@@ -91,12 +102,13 @@ export default {
 
 .preview-item__link {
   width: 100%;
+
   // max-height: 360px;
   &-active {
     .preview-item__picture {
       .preview-item__image {
-        width: 100%;
-        height: 100%;
+        width: 90%;
+        height: 90%;
       }
     }
   }
@@ -107,18 +119,18 @@ export default {
   width: 100%;
   // height: 100%;
   height: 360px;
-  margin-bottom: 20px;
-  border-radius: 4px;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
   overflow: hidden;
-  // background-color: lightpink;
+  background-color: $color-default-white;
 
   .preview-item__image {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 90%;
-    height: 90%;
+    width: 80%;
+    height: 80%;
     object-fit: contain;
     object-position: bottom;
     border-radius: 4px;
@@ -127,8 +139,8 @@ export default {
 
   &:hover {
     .preview-item__image {
-      width: 100%;
-      height: 100%;
+      width: 90%;
+      height: 90%;
     }
   }
 }
@@ -139,8 +151,9 @@ export default {
   justify-content: center;
   align-items: center;
   padding: 20px 50px;
-  border-radius: 4px;
-  box-shadow: -4px 4px 8px 0px rgba(34, 60, 80, 0.2);
+  border-bottom-right-radius: 15px;
+  border-bottom-left-radius: 15px;
+  background-color: $color-default-white;
   text-align: center;
 }
 

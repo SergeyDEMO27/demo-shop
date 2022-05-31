@@ -1,7 +1,7 @@
 <template>
   <section class="main-electronic">
     <div class="main-electronic__container">
-      <h2 class="main-electronic__title">Best Electronic of West Coast</h2>
+      <h2 class="main-electronic__title">Best Electronics of Demo Shop</h2>
       <div class="main-electronic__preview">
         <!-- <ProductPreview :previews="previews" /> -->
         <PreviewItem
@@ -9,6 +9,18 @@
           :preview="previews.electronics[0]"
           :horisonal="true"
         />
+      </div>
+      <div class="main-electronic__text">
+        <p class="main-electronic__description">
+          Extremity sweetness difficult behaviour he of. On disposal of as landlord horrible. Afraid
+          at highly months do things on at. Situation recommend objection do intention so questions.
+          As greatly removed calling pleased improve an. Last ask him cold feel met spot shy want.
+          Children me laughing we prospect answered followed. At it went is song that held help
+          face. Now residence dashwoods she excellent you. Shade being under his bed her, Much read
+          on as draw. Blessing for ignorant exercise any yourself unpacked. Pleasant horrible but
+          confined day end marriage. Eagerness furniture set preserved far recommend. Did even but
+          nor are most gave hope. Secure active living depend son repair day ladies now.
+        </p>
       </div>
       <div class="main-electronic__wrapper">
         <div class="main-electronic__wrapper-item">
@@ -87,7 +99,7 @@ export default {
   min-height: 700px;
   // padding-top: 60px;
   // padding-bottom: 60px;
-  // background-color: rgb(245, 244, 243);
+  background-color: rgb(245, 244, 243);
 }
 
 .main-electronic__container {
@@ -97,31 +109,32 @@ export default {
 }
 
 .main-electronic__title {
-  margin-bottom: 50px;
+  margin-bottom: 30px;
   font-family: 'Lexend Deca', Arial, Helvetica, sans-serif;
   font-size: 38px;
   font-weight: normal;
   text-transform: capitalize;
 }
 
-.main-electronic__preview {
-  margin-bottom: 100px;
-}
-
 .main-electronic__wrapper {
   display: flex;
   justify-content: space-between;
+  padding-top: 50px;
 
   .main-electronic__wrapper-item {
     width: 48%;
   }
 }
 
+.main-electronic__text {
+  width: 100%;
+  text-align: center;
+}
+
 .main-electronic__description {
-  max-width: 600px;
-  margin-left: auto;
-  font-family: 'Supreme', Arial, Helvetica, sans-serif;
-  font-size: 20px;
-  text-indent: 40px;
+  display: inline-block;
+  @include main-description;
+  max-width: 50%;
+  margin-top: 40px;
 }
 </style>

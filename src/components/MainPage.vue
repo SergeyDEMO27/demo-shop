@@ -1,34 +1,26 @@
 <template>
   <MainHeader @openLogin="isLoginForm = true" :isMainPage="true" />
-
-  <!-- <TransitionGroup name="fade">
-    <MainPresentation
-      v-show="parseInt(previewId, 10) === index"
-      v-for="(presentation, index) in presentationItems"
-      :key="presentation"
-      :preview="presentation"
-    />
-  </TransitionGroup> -->
-  <Transition>
-    <MainPresentation :key="presentationItems[previewId]" :preview="presentationItems[previewId]" />
-  </Transition>
+  <transition-group name="fade">
+    <MainPresentation :key="previewId" :preview="presentationItems[previewId]" />
+  </transition-group>
   <AboutUs />
   <MainElectronic />
   <MainGoods />
   <MainFeedback />
   <MainFooter />
-  <MainModal
-    v-show="isLoginForm"
-    @click="isLoginForm = false"
-    @keypress.enter="isLoginForm = false"
-  >
-    <MainLogin @click.stop @closeForm="isLoginForm = false" />
-    <ButtonClose class="main-page__close" />
-  </MainModal>
+  <Transition name="slide-fade">
+    <MainModal
+      v-show="isLoginForm"
+      @click="isLoginForm = false"
+      @keypress.enter="isLoginForm = false"
+    >
+      <MainLogin @click.stop @closeForm="isLoginForm = false" />
+      <ButtonClose class="main-page__close" />
+    </MainModal>
+  </Transition>
 </template>
 
 <script>
-// import axios from 'axios';
 import MainModal from '@/components/MainModal.vue';
 import MainLogin from '@/components/MainLogin.vue';
 import ButtonClose from '@/components/ButtonClose.vue';
@@ -58,6 +50,7 @@ export default {
       previewId: 0,
       previewInterval: '',
       isLoginForm: false,
+      scrollPosition: 0,
       presentationItems: [
         {
           id: 0,
@@ -97,15 +90,20 @@ export default {
         this.previewId + 1 > this.presentationItems.length - 1 ? 0 : this.previewId + 1;
     },
     setPreviewInterval() {
-      this.previewInterval = setInterval(this.changePreviewId, 5000);
+      this.previewInterval = setInterval(this.changePreviewId, 8000);
+    },
+    updateScroll() {
+      this.scrollPosition = window.scrollY;
     },
   },
-  // mounted() {
-  //   this.setPreviewInterval();
-  // },
-  // beforeUnmount() {
-  //   clearInterval(this.previewInterval);
-  // },
+  mounted() {
+    this.setPreviewInterval();
+    window.addEventListener('scroll', this.updateScroll);
+  },
+  beforeUnmount() {
+    clearInterval(this.previewInterval);
+    window.removeEventListener('scroll', this.updateScroll);
+  },
 };
 </script>
 
@@ -116,13 +114,28 @@ export default {
   right: 35px;
 }
 
-.v-enter-active,
-.v-leave-active {
-  transition: opacity 0.5s ease;
+.slide-fade-enter-active {
+  transition: all 0.4s ease-out;
 }
 
-.v-enter-from,
-.v-leave-to {
-  opacity: 50%;
+.slide-fade-leave-active {
+  transition: all 0.4s ease-out;
+}
+
+.slide-fade-enter-from,
+.slide-fade-leave-to {
+  // transform: translateX(20px);
+  opacity: 0;
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 3s ease;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  position: absolute;
+  opacity: 0;
 }
 </style>

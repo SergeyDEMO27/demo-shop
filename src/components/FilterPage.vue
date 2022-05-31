@@ -1,5 +1,5 @@
 <template>
-  <MainHeader />
+  <MainHeader @openLogin="isLoginForm = true" />
   <div class="filter-page__goods">
     <div class="filter-page__container">
       <div class="filter-page__wrapper">
@@ -33,8 +33,25 @@
   </div>
   <MainFooter />
   <Transition name="slide-fade">
-    <MainModal v-show="isModalShown" @hideModal="isModalShown = false">
-      <FeedbackModal />
+    <MainModal
+      class="filter-page__modal"
+      v-show="isModalShown"
+      @hideModal="isModalShown = false"
+      @click="isModalShown = false"
+      @keypress.enter="isModalShown = false"
+    >
+      <FeedbackModal @click.stop />
+      <ButtonClose class="filter-page__close-modal" />
+    </MainModal>
+  </Transition>
+  <Transition name="slide-fade">
+    <MainModal
+      v-show="isLoginForm"
+      @click="isLoginForm = false"
+      @keypress.enter="isLoginForm = false"
+    >
+      <MainLogin @click.stop @closeForm="isLoginForm = false" />
+      <ButtonClose class="main-page__close" />
     </MainModal>
   </Transition>
 </template>
@@ -47,7 +64,9 @@ import ProductFilter from '@/components/ProductFilter.vue';
 import AllGoods from '@/components/AllGoods.vue';
 import MainSign from '@/components/MainSign.vue';
 import MainModal from '@/components/MainModal.vue';
-import FeedbackModal from './FeedbackModal.vue';
+import FeedbackModal from '@/components/FeedbackModal.vue';
+import ButtonClose from '@/components/ButtonClose.vue';
+import MainLogin from '@/components/MainLogin.vue';
 
 export default {
   components: {
@@ -58,6 +77,8 @@ export default {
     ProductFilter,
     MainModal,
     FeedbackModal,
+    ButtonClose,
+    MainLogin,
   },
   data() {
     return {
@@ -67,9 +88,12 @@ export default {
       activeCategory: 'all',
       products: [],
       selectOptions: [
-        { title: 'name', value: 'title' },
-        { title: 'price', value: 'price' },
+        { title: 'name up', value: 'titleUp' },
+        { title: 'name down', value: 'titleDown' },
+        { title: 'price up', value: 'priceUp' },
+        { title: 'price down', value: 'priceDown' },
       ],
+      isLoginForm: false,
       isModalShown: false,
     };
   },
@@ -113,13 +137,23 @@ export default {
   },
   computed: {
     filterGoods() {
-      if (this.selectValue === 'price') {
-        return [...this.products].sort((a, b) => a[this.selectValue] - b[this.selectValue]);
+      if (this.selectValue === 'priceUp') {
+        return [...this.products].sort((a, b) => a.price - b.price);
+        // eslint-disable-next-line no-else-return
+      } else if (this.selectValue === 'priceDown') {
+        return [...this.products].sort((a, b) => b.price - a.price);
+      } else if (this.selectValue === 'titleDown') {
+        return [...this.products].sort(
+          (a, b) =>
+            // eslint-disable-next-line comma-dangle, implicit-arrow-linebreak
+            b.title.localeCompare(a.title)
+          // eslint-disable-next-line function-paren-newline
+        );
       }
       return [...this.products].sort(
         (a, b) =>
           // eslint-disable-next-line comma-dangle, implicit-arrow-linebreak
-          a[this.selectValue]?.localeCompare(b[this.selectValue])
+          a.title.localeCompare(b.title)
         // eslint-disable-next-line function-paren-newline
       );
     },
@@ -221,6 +255,18 @@ export default {
     margin-left: auto;
     text-align: center;
   }
+}
+
+.filter-page__modal {
+  .main-modal__container {
+    width: 100%;
+  }
+}
+
+.filter-page__close-modal {
+  position: absolute;
+  top: 10px;
+  right: 40px;
 }
 
 .slide-fade-enter-active {

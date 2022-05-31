@@ -1,6 +1,6 @@
 <template>
   <div class="product-page">
-    <MainHeader />
+    <MainHeader @openLogin="isLoginForm = true" />
     <div class="product-page__main">
       <div class="product-page__container">
         <router-link class="product-page__category" :to="`/products/${product.category}`">
@@ -31,8 +31,24 @@
     </div>
     <MainFooter />
     <Transition name="slide-fade">
-      <MainModal v-if="isModalShown" @hideModal="isModalShown = false">
-        <FeedbackModal />
+      <MainModal
+        class="product-page__modal"
+        v-if="isModalShown"
+        @click="isModalShown = false"
+        @keypress.enter="isModalShown = false"
+      >
+        <FeedbackModal @click.stop />
+        <ButtonClose class="product-page__close-modal" />
+      </MainModal>
+    </Transition>
+    <Transition name="slide-fade">
+      <MainModal
+        v-show="isLoginForm"
+        @click="isLoginForm = false"
+        @keypress.enter="isLoginForm = false"
+      >
+        <MainLogin @click.stop @closeForm="isLoginForm = false" />
+        <ButtonClose class="main-page__close" />
       </MainModal>
     </Transition>
   </div>
@@ -46,7 +62,9 @@ import ProductInfo from '@/components/ProductInfo.vue';
 import ProductSlider from '@/components/ProductSlider.vue';
 import MainSign from '@/components/MainSign.vue';
 import MainModal from '@/components/MainModal.vue';
-import FeedbackModal from './FeedbackModal.vue';
+import ButtonClose from '@/components/ButtonClose.vue';
+import FeedbackModal from '@/components/FeedbackModal.vue';
+import MainLogin from '@/components/MainLogin.vue';
 
 export default {
   components: {
@@ -57,9 +75,12 @@ export default {
     MainSign,
     MainModal,
     FeedbackModal,
+    ButtonClose,
+    MainLogin,
   },
   data() {
     return {
+      isLoginForm: false,
       isModalShown: false,
       product: {},
       colors: ['white', 'black', 'orange', 'brown', 'blue', 'red', 'green'],
@@ -94,7 +115,7 @@ export default {
 
 .product-page__container {
   @include main-container;
-  padding-top: 80px;
+  padding-top: 110px;
 }
 
 .product-page__category {
@@ -156,6 +177,18 @@ export default {
     margin-left: auto;
     text-align: center;
   }
+}
+
+.product-page__modal {
+  .main-modal__container {
+    width: 100%;
+  }
+}
+
+.product-page__close-modal {
+  position: absolute;
+  top: 10px;
+  right: 40px;
 }
 
 .slide-fade-enter-active {

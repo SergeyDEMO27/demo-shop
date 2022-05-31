@@ -1,20 +1,15 @@
 <template>
   <section class="about-us">
+    <div ref="observer" class="about-us__observer"></div>
     <div class="about-us__preview">
       <CategoryPreviews :previews="previews" />
     </div>
-    <h2 class="about-us__title">Your senses. Set free.</h2>
+    <h2 class="about-us__title">Set Your Passions Free</h2>
     <p class="about-us__description">
-      Extremity sweetness difficult behaviour he of. On disposal of as landlord horrible. Afraid at
-      highly months do things on at. Situation recommend objection do intention so questions. As
-      greatly removed calling pleased improve an. Last ask him cold feel met spot shy want. Children
-      me laughing we prospect answered followed. At it went is song that held help face.
-      <br />
-      <br />
-      Now residence dashwoods she excellent you. Shade being under his bed her, Much read on as
-      draw. Blessing for ignorant exercise any yourself unpacked. Pleasant horrible but confined day
-      end marriage. Eagerness furniture set preserved far recommend. Did even but nor are most gave
-      hope. Secure active living depend son repair day ladies now.
+      An accessories boutique focused on creating a pleasant shopping experience for visitors and
+      locals alike. Our carefully curated wares are both fashion forward and classic, featuring all
+      kind of electronic devices, sterling silver and costume jewelry, handbags, hats, scarves,
+      bridal and evening accessories, and much more.
     </p>
   </section>
 </template>
@@ -29,6 +24,7 @@ export default {
 
   data() {
     return {
+      scrollPosition: 0,
       previews: [
         {
           id: Date.now(),
@@ -44,18 +40,60 @@ export default {
         },
         {
           id: Date.now(),
-          title: 'cloth',
+          title: 'clothing',
           path: '2',
           link: "MEN'S CLOTHING",
         },
       ],
     };
   },
+  mounted() {
+    const header = document.querySelector('#mainHeader');
+    const thresholdArray = (steps) =>
+      // eslint-disable-next-line implicit-arrow-linebreak
+      Array(steps + 1)
+        .fill(0)
+        .map((_, index) => index / steps || 0);
+
+    let previousY = 0;
+    let previousRatio = 0;
+
+    const handleIntersect = (entries) => {
+      entries.forEach((entry) => {
+        const currentY = entry.boundingClientRect.y;
+        const currentRatio = entry.intersectionRatio;
+        // eslint-disable-next-line prefer-destructuring
+        const isIntersecting = entry.isIntersecting;
+
+        if (currentY < previousY) {
+          if (currentRatio > previousRatio && isIntersecting) {
+            header.className = 'mainHeader';
+          } else {
+            header.className = 'mainHeader mainHeader-moved';
+          }
+        } else if (currentY > previousY && isIntersecting) {
+          if (currentRatio > previousRatio) {
+            header.className = 'mainHeader';
+          }
+        }
+
+        previousY = currentY;
+        previousRatio = currentRatio;
+      });
+    };
+
+    const observer = new IntersectionObserver(handleIntersect, {
+      threshold: thresholdArray(1),
+    });
+
+    observer.observe(this.$refs.observer);
+  },
 };
 </script>
 
 <style lang="scss">
 .about-us {
+  position: relative;
   min-height: 700px;
   padding-top: 60px;
   padding-bottom: 60px;
@@ -70,19 +108,26 @@ export default {
 }
 
 .about-us__title {
+  @include main-description;
   margin-bottom: 30px;
-  font-family: 'Supreme', Arial, Helvetica, sans-serif;
   font-size: 38px;
   letter-spacing: 0.09rem;
   text-transform: capitalize;
 }
 
 .about-us__description {
+  @include main-description;
   max-width: 510px;
   margin-right: auto;
   margin-left: auto;
-  font-family: 'Supreme', Arial, Helvetica, sans-serif;
   font-size: 20px;
-  // letter-spacing: 0.07rem;
+}
+
+.about-us__observer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 1px;
 }
 </style>

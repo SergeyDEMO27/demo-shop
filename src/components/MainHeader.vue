@@ -1,14 +1,14 @@
 <template>
-  <div id="mainHeader" class="mainHeader">
+  <div id="mainHeader" class="mainHeader" :class="{ 'mainHeader-moved': !isMainPage }">
     <div class="mainHeader__wrapper">
       <div class="mainHeader__container">
         <div v-if="isMainPage" class="mainHeader__logo">
           <img class="mainHeader__logo-image" :src="mainLogoSrc" alt="my-logo" />
-          <h1 class="mainHeader__title">THE SHOP PROJECT LOGO</h1>
+          <h1 class="mainHeader__title">The Demo Shop LOGO</h1>
         </div>
         <router-link to="/" v-else class="mainHeader__logo">
           <img class="mainHeader__logo-image" :src="mainLogoSrc" alt="my-logo" />
-          <h1 class="mainHeader__title">THE SHOP PROJECT LOGO</h1>
+          <h1 class="mainHeader__title">The Demo Shop</h1>
         </router-link>
         <MainNavigation :navItems="mainNavItems" />
       </div>
@@ -22,9 +22,9 @@
           >
             <use :href="`${sprite}#icon-login`"></use>
           </svg>
-          <span>login</span>
+          <span class="mainHeader__user-nav-label">login</span>
         </div>
-        <div>
+        <div class="main-header__bin">
           <svg
             class="main-header__icon main-header__icon-bin"
             width="22"
@@ -33,12 +33,12 @@
           >
             <use :href="`${sprite}#icon-bin`"></use>
           </svg>
-          <span>shoping-cart</span>
+          <span class="mainHeader__user-nav-label">shoping-cart</span>
+          <MainBin class="main-header__bin-item" />
         </div>
       </div>
     </div>
     <!-- <MainNavigation :navItems="userNavItems" /> -->
-    <!-- <MainBin /> -->
   </div>
 </template>
 
@@ -46,12 +46,12 @@
 import mainLogoSrc from '@/images/svg/vue-logo.svg';
 import MainNavigation from '@/components/MainNavigation.vue';
 import sprite from '@/images/sprite/sprite.svg';
-// import MainBin from '@/components/MainBin.vue';
+import MainBin from '@/components/MainBin.vue';
 
 export default {
   components: {
     MainNavigation,
-    // MainBin,
+    MainBin,
   },
   props: {
     isMainPage: Boolean,
@@ -74,19 +74,36 @@ export default {
 <style lang="scss">
 .mainHeader {
   position: fixed;
-  left: 50%;
-  transform: translate(-50%);
+  // left: 50%;
+  // transform: translate(-50%);
   // display: flex;
   // justify-content: space-between;
-  max-width: 1512px;
+  // max-width: 1512px;
   width: 100%;
-  margin: 0 auto;
-  padding: 0 36px;
-  background-color: transparent;
+  height: 60px;
+  // margin: 0 auto;
+  // padding: 0 36px;
+  // background-color: blue;
   z-index: 100;
+  transition: 0.4s;
 
   &-moved {
-    background-color: red;
+    background-color: $color-default-white;
+    box-shadow: 0px 4px 6px -3px rgba(34, 60, 80, 0.6);
+
+    .mainHeader__wrapper {
+      .mainHeader__logo-image {
+        width: 40px;
+      }
+
+      .mainNavigation__link {
+        color: $color-default-black;
+      }
+    }
+
+    .main-header__icon {
+      fill: $color-default-black;
+    }
   }
 }
 
@@ -94,6 +111,10 @@ export default {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  max-width: 1512px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 36px;
 }
 
 .mainHeader__container {
@@ -106,6 +127,7 @@ export default {
 
   .mainHeader__logo-image {
     width: 60px;
+    transition: 0.4s;
   }
 
   .mainHeader__title {
@@ -117,7 +139,7 @@ export default {
   display: flex;
   align-items: center;
 
-  span {
+  &-label {
     @include visually-hidden;
   }
 }
@@ -136,6 +158,29 @@ export default {
 
   &:hover {
     fill: $color-orange;
+  }
+}
+
+.main-header__bin {
+  position: relative;
+
+  &-item .main-bin__main {
+    // display: none;
+    position: absolute;
+    top: 25px;
+    // top: 0;
+    right: 0;
+    visibility: hidden;
+    opacity: 0;
+    transition: 0.1s;
+  }
+
+  &:hover {
+    .main-header__bin-item .main-bin__main {
+      // display: block;
+      visibility: visible;
+      opacity: 1;
+    }
   }
 }
 </style>
