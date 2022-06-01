@@ -3,25 +3,33 @@
     <MainHeader @openLogin="isLoginForm = true" />
     <div class="product-page__main">
       <div class="product-page__container">
-        <router-link class="product-page__category" :to="`/products/${product.category}`">
-          {{ product.category }}
-        </router-link>
-        <section class="product-page__info">
-          <div class="product-page__wrapper">
-            <ProductSlider
-              class="product-page__item"
-              :product="product"
-              :activeColor="activeColor"
-            />
-            <ProductInfo
-              class="product-page__item"
-              :product="product"
-              :colors="colors"
-              :activeColor="activeColor"
-              @changeColor="changeColorHandler"
-            />
-          </div>
-        </section>
+        <MainLoader
+          v-if="isLoad"
+          :viewBox="'0 0 400 180'"
+          :rectWidth="'100%'"
+          :rectHeight="'170px'"
+        />
+        <div v-else>
+          <router-link class="product-page__category" :to="`/products/${product.category}`">
+            {{ product.category }}
+          </router-link>
+          <section class="product-page__info">
+            <div class="product-page__wrapper">
+              <ProductSlider
+                class="product-page__item"
+                :product="product"
+                :activeColor="activeColor"
+              />
+              <ProductInfo
+                class="product-page__item"
+                :product="product"
+                :colors="colors"
+                :activeColor="activeColor"
+                @changeColor="changeColorHandler"
+              />
+            </div>
+          </section>
+        </div>
       </div>
       <section class="product-page__sign">
         <div class="product-page__sign-wrapper">
@@ -56,6 +64,7 @@
 
 <script>
 import axios from 'axios';
+import MainLoader from '@/components/MainLoader.vue';
 import MainHeader from '@/components/MainHeader.vue';
 import MainFooter from '@/components/MainFooter.vue';
 import ProductInfo from '@/components/ProductInfo.vue';
@@ -77,9 +86,11 @@ export default {
     FeedbackModal,
     ButtonClose,
     MainLogin,
+    MainLoader,
   },
   data() {
     return {
+      isLoad: false,
       isLoginForm: false,
       isModalShown: false,
       product: {},
@@ -90,8 +101,10 @@ export default {
   methods: {
     async fetchProduct() {
       try {
+        this.isLoad = true;
         const response = await axios(`https://fakestoreapi.com/products/${this.$route.params.id}`);
         this.product = response.data;
+        this.isLoad = false;
       } catch (error) {
         console.log(error);
       }
@@ -115,14 +128,14 @@ export default {
 
 .product-page__container {
   @include main-container;
-  padding-top: 110px;
+  padding-top: 125px;
 }
 
 .product-page__category {
   @include main-description;
   position: relative;
   display: inline-block;
-  margin-bottom: 30px;
+  margin-bottom: 50px;
   color: $color-default-black;
   text-decoration: none;
   text-transform: capitalize;

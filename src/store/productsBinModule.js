@@ -8,8 +8,13 @@ export const productsBinModule = {
     setProductsInBin(state, product) {
       state.productsInBin = [...state.productsInBin, product];
     },
+    setProductsOnMount(state) {
+      if (localStorage.getItem('productsInBin')) {
+        state.productsInBin = JSON.parse(localStorage.getItem('productsInBin'));
+      }
+    },
     removeProductInBin(state, id) {
-      state.productsInBin = state.productsInBin.filter((product) => product.id !== id);
+      state.productsInBin = state.productsInBin.filter((product) => product.idUnique !== id);
     },
     removeProductsInBin(state) {
       state.productsInBin = [];
@@ -24,6 +29,9 @@ export const productsBinModule = {
     },
     removeAllProductsInBin({ commit }) {
       commit('removeProductsInBin');
+    },
+    setProductsOnMount({ commit }) {
+      commit('setProductsOnMount');
     },
   },
   namespaced: true,

@@ -2,6 +2,12 @@
   <section class="main-electronic">
     <div class="main-electronic__container">
       <h2 class="main-electronic__title">Best Electronics of Demo Shop</h2>
+      <MainLoader
+        v-if="isLoading"
+        :viewBox="'0 0 400 110'"
+        :rectWidth="'100%'"
+        :rectHeight="'100px'"
+      />
       <div class="main-electronic__preview">
         <!-- <ProductPreview :previews="previews" /> -->
         <PreviewItem
@@ -24,9 +30,21 @@
       </div>
       <div class="main-electronic__wrapper">
         <div class="main-electronic__wrapper-item">
+          <MainLoader
+            v-if="isLoading"
+            :viewBox="'0 0 97 100'"
+            :rectWidth="'100%'"
+            :rectHeight="'100px'"
+          />
           <PreviewItem v-if="previews.electronics" :preview="previews.electronics[1]" />
         </div>
         <div class="main-electronic__wrapper-item">
+          <MainLoader
+            v-if="isLoading"
+            :viewBox="'0 0 97 100'"
+            :rectWidth="'100%'"
+            :rectHeight="'100px'"
+          />
           <PreviewItem v-if="previews.electronics" :preview="previews.electronics[2]" />
           <!-- <p class="main-electronic__description">
             Extremity sweetness difficult behaviour he of. On disposal of as landlord horrible.
@@ -50,13 +68,14 @@
 <script>
 import axios from 'axios';
 // import ProductPreview from './ProductPreview.vue';
-import PreviewItem from './PreviewItem.vue';
+import MainLoader from '@/components/MainLoader.vue';
+import PreviewItem from '@/components/PreviewItem.vue';
 // import PreviewItem from './PreviewItem.vue';
 
 export default {
   components: {
-    // ProductPreview,
     PreviewItem,
+    MainLoader,
   },
   data() {
     return {
@@ -67,6 +86,7 @@ export default {
       //   { id: Date.now(), title: 'audiosystem', path: '0' },
       //   { id: Date.now(), title: 'computer', path: '1' },
       // ],
+      isLoading: false,
       previews: {},
       categories: 'electronics',
     };
@@ -74,15 +94,13 @@ export default {
   methods: {
     async fetchProducts() {
       try {
+        this.isLoading = true;
         const response = await axios(
           // eslint-disable-next-line comma-dangle
           'https://fakestoreapi.com/products/category/electronics?limit=5'
         );
         this.previews[this.categories] = response.data;
-        // console.log(response.data);
-        // console.log(this.previews);
-        console.log(this.previews);
-        console.log(this.previews[this.categories]);
+        this.isLoading = false;
       } catch (error) {
         console.log(error);
       }

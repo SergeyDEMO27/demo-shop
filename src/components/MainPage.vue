@@ -71,14 +71,14 @@ export default {
           title: "Like nothing you've mens cloth before",
           description:
             'One-point MENS CLOTH system and contemporary design icon with powerful sound and customisable design.',
-          link: "MEN'S CLOTHING",
+          link: "men's clothing",
         },
         {
           id: 3,
           title: "Like nothing you've womens cloth before",
           description:
             'One-point WOMENS CLOTHING system and contemporary design icon with powerful sound and customisable design.',
-          link: "WOMEN'S CLOTHING",
+          link: "women's clothing",
         },
       ],
     };

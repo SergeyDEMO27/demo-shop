@@ -23,6 +23,12 @@
           </li>
         </ul>
       </div>
+      <MainLoader
+        v-if="isLoading"
+        :viewBox="'0 0 400 210'"
+        :rectWidth="'100%'"
+        :rectHeight="'200px'"
+      />
       <AllGoods :products="searchGoods" />
     </div>
   </div>
@@ -58,6 +64,7 @@
 
 <script>
 import axios from 'axios';
+import MainLoader from '@/components/MainLoader.vue';
 import MainHeader from '@/components/MainHeader.vue';
 import MainFooter from '@/components/MainFooter.vue';
 import ProductFilter from '@/components/ProductFilter.vue';
@@ -79,6 +86,7 @@ export default {
     FeedbackModal,
     ButtonClose,
     MainLogin,
+    MainLoader,
   },
   data() {
     return {
@@ -93,6 +101,7 @@ export default {
         { title: 'price up', value: 'priceUp' },
         { title: 'price down', value: 'priceDown' },
       ],
+      isLoading: false,
       isLoginForm: false,
       isModalShown: false,
     };
@@ -106,18 +115,21 @@ export default {
     },
     async fetchCategorie() {
       try {
+        this.isLoading = true;
         const response = await axios.get(
           // eslint-disable-next-line comma-dangle
           `https://fakestoreapi.com/products/category/${this.$route.params.id}`
         );
         this.products = response.data;
-        // console.log(this.products);
+        this.isLoading = false;
       } catch (error) {
         console.log(error);
       }
     },
     async fetchCategorieHandler(category) {
       try {
+        this.products = [];
+        this.isLoading = true;
         // eslint-disable-next-line operator-linebreak
         const path =
           category === 'all'
@@ -126,6 +138,7 @@ export default {
         const response = await axios.get(path);
         this.products = response.data;
         this.activeCategory = category;
+        this.isLoading = false;
       } catch (error) {
         console.log(error);
       }

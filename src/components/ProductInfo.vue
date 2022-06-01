@@ -21,6 +21,7 @@
       @click.prevent="
         addProductInBin({
           id: product.id,
+          idUnique: Date.now(),
           imagePath: product.image,
           title: product.title,
           color: activeColor,

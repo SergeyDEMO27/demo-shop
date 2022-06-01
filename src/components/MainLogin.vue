@@ -9,7 +9,7 @@
             @inputActive="isInputsActive.logName = true"
             @inputNotActive="isInputsActive.logName = false"
             :inputType="'text'"
-            :label="'Name'"
+            :label="'name'"
             :inputValue="inputValues.logName"
             :isInputActive="isInputsActive.logName"
           />
@@ -18,13 +18,15 @@
             @inputActive="isInputsActive.logPassword = true"
             @inputNotActive="isInputsActive.logPassword = false"
             :inputType="'password'"
-            :label="'Password'"
+            :label="'password'"
             :inputValue="inputValues.logPassword"
             :isInputActive="isInputsActive.logPassword"
           />
           <MainButton class="main-login__button" @click="loginHandler">Log in</MainButton>
         </form>
-        <MainButton @click.prevent="isLogin = false">To registration</MainButton>
+        <MainButton class="main-login__button" @click.prevent="isLogin = false"
+          >To registration</MainButton
+        >
       </div>
       <div class="main-login__container" v-else>
         <h2 class="main-login__title">Registration</h2>
@@ -34,22 +36,31 @@
             @inputActive="isInputsActive.regName = true"
             @inputNotActive="isInputsActive.regName = false"
             :inputType="'text'"
-            :label="'Registrate name'"
+            :label="'name'"
             :inputValue="inputValues.regName"
             :isInputActive="isInputsActive.regName"
+          />
+          <MainInput
+            @addInput="(event) => (inputValues.regPassword = event.target.value)"
+            @inputActive="isInputsActive.regPassword = true"
+            @inputNotActive="isInputsActive.regPassword = false"
+            :inputType="'password'"
+            :label="'password'"
+            :inputValue="inputValues.regPassword"
+            :isInputActive="isInputsActive.regPassword"
           />
           <MainInput
             @addInput="(event) => (inputValues.regEmail = event.target.value)"
             @inputActive="isInputsActive.regEmail = true"
             @inputNotActive="isInputsActive.regEmail = false"
             :inputType="'email'"
-            :label="'Registrate email'"
+            :label="'email'"
             :inputValue="inputValues.regEmail"
             :isInputActive="isInputsActive.regEmail"
           />
           <MainButton class="main-login__button" @click="registrateHandler">Register</MainButton>
         </form>
-        <MainButton @click.prevent="isLogin = true">To login</MainButton>
+        <MainButton class="main-login__button" @click.prevent="isLogin = true">To login</MainButton>
       </div>
     </div>
     <div class="main-login__success" v-else-if="success.login">
@@ -77,12 +88,14 @@ export default {
         logName: '',
         logPassword: '',
         regName: '',
+        regPassword: '',
         regEmail: '',
       },
       isInputsActive: {
         logName: false,
         logPassword: false,
         regName: false,
+        regPassword: false,
         regEmail: false,
       },
       success: {
@@ -106,7 +119,7 @@ export default {
       setTimeout(() => {
         this.success.login = false;
         this.$emit('closeForm');
-      }, 3000);
+      }, 2000);
     },
     registrateHandler() {
       this.inputValues.regName = '';
@@ -116,7 +129,7 @@ export default {
       setTimeout(() => {
         this.success.registration = false;
         this.isLogin = true;
-      }, 3000);
+      }, 2000);
     },
   },
 };
@@ -132,15 +145,16 @@ export default {
   border-radius: 4px;
 }
 
-.main-login__container {
-  text-align: center;
-}
-
 .main-login__title {
   @include main-title;
   margin-bottom: 35px;
   font-size: 34px;
   text-align: center;
+}
+
+.main-login__container {
+  display: flex;
+  flex-direction: column;
 }
 
 .main-login__form {
@@ -149,6 +163,7 @@ export default {
 }
 
 .main-login__button {
+  margin: 0 auto;
   margin-bottom: 20px;
 }
 

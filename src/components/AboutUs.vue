@@ -42,7 +42,7 @@ export default {
           id: Date.now(),
           title: 'clothing',
           path: '2',
-          link: "MEN'S CLOTHING",
+          link: "men's clothing",
         },
       ],
     };

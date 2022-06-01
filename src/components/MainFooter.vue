@@ -6,7 +6,7 @@
         <ul class="main-footer__social">
           <li class="main-footer__item">
             <a class="main-footer__link" aria-label="telegram" href="https://t.me/barialibasov">
-              <svg class="main-footer__icon" width="27" height="27" viewBox="0 0 60 60">
+              <svg class="main-footer__icon" width="27" height="27" viewBox="0 0 27 27">
                 <use :href="`${sprite}#icon-telegram`"></use>
               </svg>
               <span>telegram</span></a
@@ -82,7 +82,7 @@ export default {
   @include reset-list;
   display: flex;
   justify-content: space-between;
-  width: 25%;
+  width: 20%;
 
   .main-footer__link {
     font-family: 'Supreme', Arial, Helvetica, sans-serif;
@@ -91,15 +91,17 @@ export default {
 
     .main-footer__icon {
       fill: $color-orange;
+      transition: 0.4s;
     }
 
     span {
       @include visually-hidden;
     }
 
-    &:hover {
+    &:hover,
+    &:active {
       .main-footer__icon {
-        opacity: 80%;
+        transform: scale(1.1);
       }
     }
   }

@@ -2,6 +2,12 @@
   <section class="main-goods">
     <div class="main-goods__container">
       <h2 class="main-goods__title">Best fineries of Demo Shop</h2>
+      <MainLoader
+        v-if="isLoading"
+        :viewBox="'0 0 400 110'"
+        :rectWidth="'100%'"
+        :rectHeight="'100px'"
+      />
       <PreviewItem
         v-if="previewsFake[categories[0]]"
         :preview="previewsFake[categories[0]]"
@@ -21,9 +27,21 @@
       </div>
       <div class="main-goods__wrapper">
         <div class="main-goods__item">
+          <MainLoader
+            v-if="isLoading"
+            :viewBox="'0 0 97 100'"
+            :rectWidth="'100%'"
+            :rectHeight="'100px'"
+          />
           <PreviewItem v-if="previewsFake[categories[1]]" :preview="previewsFake[categories[1]]" />
         </div>
         <div class="main-goods__item">
+          <MainLoader
+            v-if="isLoading"
+            :viewBox="'0 0 97 100'"
+            :rectWidth="'100%'"
+            :rectHeight="'100px'"
+          />
           <PreviewItem v-if="previewsFake[categories[2]]" :preview="previewsFake[categories[2]]" />
         </div>
       </div>
@@ -33,33 +51,39 @@
 
 <script>
 import axios from 'axios';
-import PreviewItem from './PreviewItem.vue';
+import MainLoader from '@/components/MainLoader.vue';
+import PreviewItem from '@/components/PreviewItem.vue';
 
 export default {
   components: {
     PreviewItem,
+    MainLoader,
   },
   data() {
     return {
-      previews: [
-        { id: Date.now(), title: 'watch', path: '0' },
-        { id: Date.now(), title: 'mobile', path: '1' },
-        { id: Date.now(), title: 'television', path: '2' },
-        { id: Date.now(), title: 'audiosystem', path: '0' },
-        { id: Date.now(), title: 'computer', path: '1' },
-      ],
+      // previews: [
+      //   { id: Date.now(), title: 'watch', path: '0' },
+      //   { id: Date.now(), title: 'mobile', path: '1' },
+      //   { id: Date.now(), title: 'television', path: '2' },
+      //   { id: Date.now(), title: 'audiosystem', path: '0' },
+      //   { id: Date.now(), title: 'computer', path: '1' },
+      // ],
+      isLoading: false,
       categories: ['jewelery', "men's clothing", "women's clothing"],
       previewsFake: {},
     };
   },
   methods: {
-    async fetchProducts() {
+    fetchProducts() {
       try {
+        this.isLoading = true;
         this.categories.map(async (categorie) => {
+          // this.isLoading = true;
           const requestPath = `https://fakestoreapi.com/products/category/${categorie}?limit=1`;
           const response = await axios(requestPath);
           // eslint-disable-next-line prefer-destructuring
           this.previewsFake[categorie] = response.data[0];
+          this.isLoading = false;
         });
       } catch (error) {
         console.log(error);

@@ -5,7 +5,7 @@
         <h3 class="category-previews__title">{{ preview.title }}</h3>
         <img
           class="category-previews__image"
-          :src="require(`@/images/background/main-bg-${preview.path}.jpeg`)"
+          :src="require(`@/images/background/preview-bg-${preview.path}.jpeg`)"
           :alt="preview.title"
         />
       </router-link>
@@ -43,8 +43,20 @@ export default {
 
 .category-previews__link {
   position: relative;
+  display: inline-block;
   width: 100%;
   height: 100%;
+
+  &::after {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    content: '';
+    background-color: $color-default-black;
+    opacity: 15%;
+  }
 
   .category-previews__image {
     width: 100%;
