@@ -28,21 +28,21 @@ export default {
   bottom: 0;
   width: 100%;
   height: 100%;
-  padding-top: 60px;
-  padding-bottom: 60px;
+  padding: 60px 20px;
   background-color: rgba(0, 0, 0, 50%);
   z-index: 10000;
+  overflow: scroll;
 }
 
 .main-modal__container {
   position: absolute;
   left: 50%;
+  // top: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
   max-width: 1250px;
   // width: 100%;
-  padding-right: 25px;
-  padding-left: 25px;
+  // padding: inherit;
 }
 
 .main-modal__wrapper {
@@ -55,5 +55,11 @@ export default {
   position: absolute;
   top: 10px;
   right: 15px;
+}
+
+@media (min-width: $viewport--sm) and (max-width: calc(#{$viewport--md} - 1px)) {
+  // .main-modal__container {
+  //   top: 111%;
+  // }
 }
 </style>

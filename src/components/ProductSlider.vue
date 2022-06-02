@@ -112,8 +112,7 @@ export default {
 
 <style lang="scss">
 .product-slider {
-  // width: 50%;
-  // padding: 40px 50px;
+  overflow: hidden;
 }
 
 .product-slider__picture {
@@ -242,11 +241,13 @@ export default {
   &-enter-active {
     position: absolute;
     transition: all 0.1s ease-out;
+    // opacity: 0;
   }
 
   &-leave-active {
     position: absolute;
     transition: all 0.1s cubic-bezier(1, 0.5, 0.8, 1);
+    // opacity: 0;
   }
 
   &-enter-from,
@@ -260,17 +261,26 @@ export default {
   &-enter-active {
     position: absolute;
     transition: all 0.1s ease-out;
+    // opacity: 0;
   }
 
   &-leave-active {
     position: absolute;
     transition: all 0.1s cubic-bezier(1, 0.5, 0.8, 1);
+    // opacity: 0;
   }
 
   &-enter-from,
   &-leave-to {
     transform: translateX(-20px);
     opacity: 0.1;
+  }
+}
+
+@media (min-width: $viewport--sm) and (max-width: calc(#{$viewport--md} - 1px)) {
+  .product-slider__controls {
+    max-width: 450px;
+    width: 90%;
   }
 }
 </style>

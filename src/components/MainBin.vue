@@ -104,17 +104,20 @@ export default {
   background-color: $color-default-white;
   box-shadow: 0 0 12px rgba(0, 0, 0, 16%);
 }
+
 .main-bin__wrapper {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
   padding-right: 30px;
 }
+
 .main-bin__title {
   @include main-title;
   margin-bottom: 5px;
   font-size: 16px;
 }
+
 .main-bin__removeAll,
 .main-bin__item-checkout {
   @include main-title;
@@ -131,14 +134,17 @@ export default {
     color: $color-orange;
   }
 }
+
 .main-bin__container {
   width: 100%;
   height: 210px;
   overflow-y: scroll;
 }
+
 .main-bin__list {
   @include reset-list;
 }
+
 .main-bin__item {
   position: relative;
   display: flex;
@@ -156,6 +162,7 @@ export default {
     background-color: $color-default-black;
   }
 }
+
 .main-bin__item-picture {
   width: 40px;
   height: 40px;
@@ -165,6 +172,7 @@ export default {
     object-fit: contain;
   }
 }
+
 .main-bin__item-link {
   max-width: 60%;
   color: $color-default-black;
@@ -174,20 +182,24 @@ export default {
     color: $color-orange;
   }
 }
+
 .main-bin__item-description {
   @include main-description;
   font-size: 14px;
 }
+
 .main-bin__item-price {
   @include main-description;
   max-width: 15%;
   font-size: 14px;
 }
+
 .main-bin__item-total {
   @include main-title;
   margin-top: 5px;
   font-size: 16px;
 }
+
 .main-bin__item-remove {
   position: absolute;
   top: 45%;
@@ -196,11 +208,14 @@ export default {
   height: 15px;
   transform: translateY(-45%);
 }
+
 .main-bin__info {
   display: flex;
   justify-content: space-between;
+  align-items: flex-end;
   padding-right: 30px;
 }
+
 .main-bin__count {
   position: absolute;
   top: -2px;
@@ -209,6 +224,7 @@ export default {
   opacity: 95%;
   background-color: $color-orange;
   border-radius: 50%;
+
   span {
     @include main-description;
     position: absolute;
@@ -233,5 +249,25 @@ export default {
 
 .list-leave-active {
   position: absolute;
+}
+
+@media (min-width: $viewport--sm) and (max-width: calc(#{$viewport--md} - 1px)) {
+  .main-bin__main {
+    max-width: 400px;
+    width: 88vw;
+  }
+
+  .main-bin__item-description {
+    font-size: 12px;
+  }
+
+  .main-bin__count {
+    right: -10px;
+    padding: 10px;
+
+    span {
+      font-size: 10px;
+    }
+  }
 }
 </style>

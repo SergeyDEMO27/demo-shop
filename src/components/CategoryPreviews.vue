@@ -86,4 +86,25 @@ export default {
   text-transform: capitalize;
   z-index: 10;
 }
+
+@media (min-width: $viewport--md) and (max-width: $viewport--lg) {
+  .category-previews__item {
+    width: 200px;
+    height: 200px;
+  }
+}
+
+@media (min-width: $viewport--sm) and (max-width: calc(#{$viewport--md} - 1px)) {
+  .category-previews {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .category-previews__item {
+    width: 200px;
+    height: 200px;
+    margin-bottom: 30px;
+  }
+}
 </style>

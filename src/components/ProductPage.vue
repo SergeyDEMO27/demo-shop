@@ -67,8 +67,8 @@ import axios from 'axios';
 import MainLoader from '@/components/MainLoader.vue';
 import MainHeader from '@/components/MainHeader.vue';
 import MainFooter from '@/components/MainFooter.vue';
-import ProductInfo from '@/components/ProductInfo.vue';
 import ProductSlider from '@/components/ProductSlider.vue';
+import ProductInfo from '@/components/ProductInfo.vue';
 import MainSign from '@/components/MainSign.vue';
 import MainModal from '@/components/MainModal.vue';
 import ButtonClose from '@/components/ButtonClose.vue';
@@ -79,8 +79,8 @@ export default {
   components: {
     MainHeader,
     MainFooter,
-    ProductInfo,
     ProductSlider,
+    ProductInfo,
     MainSign,
     MainModal,
     FeedbackModal,
@@ -127,8 +127,8 @@ export default {
 }
 
 .product-page__container {
-  @include main-container;
-  padding-top: 125px;
+  @include default-container;
+  padding-top: 130px;
 }
 
 .product-page__category {
@@ -194,7 +194,7 @@ export default {
 
 .product-page__modal {
   .main-modal__container {
-    width: 100%;
+    width: 96%;
   }
 }
 
@@ -216,5 +216,37 @@ export default {
 .slide-fade-leave-to {
   transform: translateX(20px);
   opacity: 0;
+}
+
+@media (min-width: $viewport--sm) and (max-width: calc(#{$viewport--md} - 1px)) {
+  // .product-page__category {
+  //   margin-bottom: 40px;
+  // }
+
+  .product-page__container {
+    padding-right: 10px;
+    padding-bottom: 60px;
+    padding-left: 10px;
+    text-align: center;
+  }
+
+  .product-page__wrapper {
+    flex-direction: column;
+    align-items: center;
+
+    .product-page__item {
+      width: 90%;
+      margin-bottom: 25px;
+    }
+  }
+
+  .product-page__modal {
+    max-height: unset;
+    // max-height: 30vh;
+
+    .feedback-modal {
+      // height: 550px;
+    }
+  }
 }
 </style>

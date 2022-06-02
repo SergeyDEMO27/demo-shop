@@ -118,4 +118,23 @@ export default {
     }
   }
 }
+
+@media (min-width: $viewport--sm) and (max-width: calc(#{$viewport--md} - 1px)) {
+  .product-filter__select {
+    width: 30%;
+    font-size: 14px;
+  }
+
+  .product-filter__item {
+    .product-filter__label {
+      font-size: 14px;
+    }
+
+    .product-filter__input {
+      width: 90%;
+      padding-left: 20px;
+      font-size: 14px;
+    }
+  }
+}
 </style>

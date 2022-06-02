@@ -1,78 +1,56 @@
 <template>
   <form class="feedback-form" @submit.prevent="submitHandler" action="">
     <div class="feedback-form__item">
-      <label
-        class="feedback-form__label"
-        :class="{
-          'feedback-form__label-active': inputValues.email || isInputsActive.email,
-        }"
-        for="feedbackEmail"
-        >Email</label
-      >
-      <input
-        @input="inputValues.email = $event.target.value"
-        @focus="isInputsActive.email = true"
-        @blur="isInputsActive.email = false"
-        :value="inputValues.email"
-        id="feedbackEmail"
-        type="email"
-        required
+      <MainInput
+        @addInput="(event) => (inputValues.email = event.target.value)"
+        @inputActive="isInputsActive.email = true"
+        @inputNotActive="isInputsActive.email = false"
+        :inputType="'email'"
+        :label="'Email'"
+        :inputValue="inputValues.email"
+        :isInputActive="isInputsActive.email"
       />
     </div>
     <div class="feedback-form__wrapper">
       <div class="feedback-form__item">
-        <label
-          class="feedback-form__label"
-          :class="{
-            'feedback-form__label-active': inputValues.firstName || isInputsActive.firstName,
-          }"
-          for="feedbackName"
-          >First name</label
-        >
-        <input
-          @input="inputValues.firstName = $event.target.value"
-          @focus="isInputsActive.firstName = true"
-          @blur="isInputsActive.firstName = false"
-          :value="inputValues.firstName"
-          id="feedbackName"
-          type="text"
-          require
+        <MainInput
+          @addInput="(event) => (inputValues.firstName = event.target.value)"
+          @inputActive="isInputsActive.firstName = true"
+          @inputNotActive="isInputsActive.firstName = false"
+          :inputType="'text'"
+          :label="'First name'"
+          :inputValue="inputValues.firstName"
+          :isInputActive="isInputsActive.firstName"
         />
       </div>
       <div class="feedback-form__item">
-        <label
-          class="feedback-form__label"
-          :class="{
-            'feedback-form__label-active': inputValues.lastName || isInputsActive.lastName,
-          }"
-          for="feedbackSurname"
-          >Last name</label
-        >
-        <input
-          @input="inputValues.lastName = $event.target.value"
-          @focus="isInputsActive.lastName = true"
-          @blur="isInputsActive.lastName = false"
-          :value="inputValues.lastName"
-          id="feedbackSurname"
-          type="text"
-          required
+        <MainInput
+          @addInput="(event) => (inputValues.lastName = event.target.value)"
+          @inputActive="isInputsActive.lastName = true"
+          @inputNotActive="isInputsActive.lastName = false"
+          :inputType="'text'"
+          :label="'Last name'"
+          :inputValue="inputValues.lastName"
+          :isInputActive="isInputsActive.lastName"
         />
       </div>
     </div>
     <p class="feedback-form__agreement">
-      By signing up to The Demo Shop you accept that The Demo Shop can contact you and send you
-      communication by email.
+      By subscribing to The Demo Shop you accept that we can contact you and send you communication
+      by email.
     </p>
-    <MainButton @click.prevent="submitHandler">Subscribe</MainButton>
+    <MainButton class="feedback-form__button" @click.prevent="submitHandler">Subscribe</MainButton>
   </form>
 </template>
 
 <script>
-import MainButton from './MainButton.vue';
+import MainInput from '@/components/MainInput.vue';
+import MainButton from '@/components/MainButton.vue';
 
 export default {
   components: {
     MainButton,
+    MainInput,
   },
   data() {
     return {
@@ -106,38 +84,16 @@ export default {
 
 .feedback-form__item {
   position: relative;
-
-  .feedback-form__label {
-    position: absolute;
-    top: 0;
-    left: 0;
-    cursor: auto;
-    transition: 0.4s;
-
-    &-active {
-      top: -25px;
-    }
-  }
-
-  input {
-    width: 100%;
-    height: 30px;
-    margin-bottom: 40px;
-    border: none;
-    border-bottom: 1px solid $color-gray;
-
-    &:active,
-    &:focus {
-      outline: none;
-      border-bottom: 1px solid $color-light-black;
-    }
-  }
 }
 
 .feedback-form__wrapper {
   display: flex;
   justify-content: space-between;
   width: 100%;
+
+  .feedback-form__item {
+    width: 45%;
+  }
 }
 
 .feedback-form__agreement {
@@ -145,5 +101,26 @@ export default {
   margin-bottom: 30px;
   font-size: 16px;
   opacity: 75%;
+}
+
+@media (min-width: $viewport--sm) and (max-width: calc(#{$viewport--md} - 1px)) {
+  .feedback-form__wrapper {
+    flex-direction: column;
+
+    .feedback-form__item {
+      width: 100%;
+    }
+  }
+
+  .feedback-form__agreement {
+    font-size: 14px;
+  }
+
+  .feedback-form__button {
+    .main-button__link {
+      min-width: unset;
+      padding: 10px 20px;
+    }
+  }
 }
 </style>

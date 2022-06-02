@@ -52,16 +52,19 @@ export default {
 <style lang="scss">
 .main-footer {
   width: 100%;
-  padding-top: 30px;
-  padding-bottom: 30px;
+  // padding-top: 30px;
+  // padding-bottom: 30px;
   background-color: $color-light-black;
   border-top: 1px solid $color-orange;
 }
 
 .main-footer__container {
-  max-width: 1200px;
-  margin-right: auto;
-  margin-left: auto;
+  @include default-container;
+  padding-top: 30px;
+  padding-bottom: 30px;
+  // max-width: 1200px;
+  // margin-right: auto;
+  // margin-left: auto;
   text-align: center;
 }
 
@@ -74,6 +77,7 @@ export default {
 .main-footer__wrapper {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   width: 50%;
   margin-left: auto;
 }
@@ -104,6 +108,35 @@ export default {
         transform: scale(1.1);
       }
     }
+  }
+}
+
+@media (min-width: $viewport--md) and (max-width: $viewport--lg) {
+  .main-footer__wrapper {
+    width: 60%;
+    margin-right: auto;
+  }
+
+  .main-footer__social {
+    width: 25%;
+  }
+}
+
+@media (min-width: $viewport--sm) and (max-width: calc(#{$viewport--md} - 1px)) {
+  .main-footer__copyright {
+    font-size: 14px;
+  }
+
+  .main-footer__wrapper {
+    flex-direction: column;
+    width: 100%;
+    margin-right: auto;
+  }
+
+  .main-footer__social {
+    width: 120px;
+    margin-bottom: 10px;
+    order: -1;
   }
 }
 </style>

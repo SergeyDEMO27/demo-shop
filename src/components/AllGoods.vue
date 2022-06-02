@@ -135,4 +135,33 @@ export default {
 .list-leave-active {
   position: absolute;
 }
+
+@media (min-width: $viewport--md) and (max-width: $viewport--lg) {
+  .all-goods {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (min-width: $viewport--sm) and (max-width: calc(#{$viewport--md} - 1px)) {
+  .all-goods {
+    grid-template-columns: 1fr;
+    justify-items: center;
+  }
+
+  .all-goods__item {
+    max-width: 450px;
+  }
+
+  .all-goods__picture {
+    height: 300px;
+  }
+
+  .all-goods__title {
+    font-size: 18px;
+  }
+
+  .all-goods__description {
+    font-size: 16px;
+  }
+}
 </style>

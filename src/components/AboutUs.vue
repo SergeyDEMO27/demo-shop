@@ -6,10 +6,10 @@
     </div>
     <h2 class="about-us__title">Set Your Passions Free</h2>
     <p class="about-us__description">
-      An accessories boutique focused on creating a pleasant shopping experience for visitors and
-      locals alike. Our carefully curated wares are both fashion forward and classic, featuring all
-      kind of electronic devices, sterling silver and costume jewelry, handbags, hats, scarves,
-      bridal and evening accessories, and much more.
+      The Demo Shop is an accessories boutique focused on creating a pleasant shopping experience
+      for visitors and locals alike. Our carefully curated wares are both fashion forward and
+      classic, featuring all kind of electronic devices, sterling silver and costume jewelry,
+      handbags, hats, scarves, bridal and evening accessories, and much more.
     </p>
   </section>
 </template>
@@ -95,8 +95,7 @@ export default {
 .about-us {
   position: relative;
   min-height: 700px;
-  padding-top: 60px;
-  padding-bottom: 60px;
+  padding: 80px 50px;
   background-color: $color-yellow;
   text-align: center;
 }
@@ -104,12 +103,12 @@ export default {
 .about-us__preview {
   max-width: 1200px;
   margin: auto;
-  margin-bottom: 100px;
+  margin-bottom: 80px;
 }
 
 .about-us__title {
   @include main-description;
-  margin-bottom: 30px;
+  margin-bottom: 40px;
   font-size: 38px;
   letter-spacing: 0.09rem;
   text-transform: capitalize;
@@ -125,9 +124,34 @@ export default {
 
 .about-us__observer {
   position: absolute;
-  top: 0;
+  top: -40px;
   left: 0;
   width: 100%;
   height: 1px;
+}
+
+@media (min-width: $viewport--md) and (max-width: $viewport--lg) {
+  .category-previews__item {
+    width: 200px;
+    height: 200px;
+  }
+}
+
+@media (min-width: $viewport--sm) and (max-width: calc(#{$viewport--md} - 1px)) {
+  .about-us {
+    padding: 80px 10px;
+  }
+
+  .about-us__preview {
+    margin-bottom: 30px;
+  }
+
+  .about-us__title {
+    font-size: 34px;
+  }
+
+  .about-us__description {
+    font-size: 18px;
+  }
 }
 </style>

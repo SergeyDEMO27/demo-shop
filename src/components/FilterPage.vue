@@ -29,7 +29,7 @@
         :rectWidth="'100%'"
         :rectHeight="'200px'"
       />
-      <AllGoods :products="searchGoods" />
+      <AllGoods v-if="searchGoods.length > 0" :products="searchGoods" />
     </div>
   </div>
   <div class="filter-page__sign">
@@ -64,24 +64,24 @@
 
 <script>
 import axios from 'axios';
-import MainLoader from '@/components/MainLoader.vue';
 import MainHeader from '@/components/MainHeader.vue';
-import MainFooter from '@/components/MainFooter.vue';
 import ProductFilter from '@/components/ProductFilter.vue';
 import AllGoods from '@/components/AllGoods.vue';
 import MainSign from '@/components/MainSign.vue';
+import MainFooter from '@/components/MainFooter.vue';
 import MainModal from '@/components/MainModal.vue';
 import FeedbackModal from '@/components/FeedbackModal.vue';
 import ButtonClose from '@/components/ButtonClose.vue';
 import MainLogin from '@/components/MainLogin.vue';
+import MainLoader from '@/components/MainLoader.vue';
 
 export default {
   components: {
     MainHeader,
-    MainFooter,
     AllGoods,
     MainSign,
     ProductFilter,
+    MainFooter,
     MainModal,
     FeedbackModal,
     ButtonClose,
@@ -193,7 +193,7 @@ export default {
 }
 
 .filter-page__container {
-  @include main-container;
+  @include default-container;
   // max-width: 1200px;
   // margin-right: auto;
   // margin-left: auto;
@@ -201,7 +201,7 @@ export default {
 
 .filter-page__wrapper {
   display: flex;
-  margin-bottom: 30px;
+  margin-bottom: 40px;
 }
 
 .filter-page__categories {
@@ -259,7 +259,7 @@ export default {
 .filter-page__sign {
   width: 100%;
   min-height: 400px;
-  padding: 60px 0;
+  padding: 60px 10px;
   background-color: $color-yellow;
 
   .filter-page__wrapper {
@@ -272,7 +272,7 @@ export default {
 
 .filter-page__modal {
   .main-modal__container {
-    width: 100%;
+    width: 96%;
   }
 }
 
@@ -294,5 +294,56 @@ export default {
 .slide-fade-leave-to {
   transform: translateX(20px);
   opacity: 0;
+}
+
+@media (min-width: $viewport--md) and (max-width: $viewport--lg) {
+  .filter-page__wrapper {
+    flex-direction: column;
+  }
+
+  .filter-page__filter {
+    margin-bottom: 20px;
+  }
+}
+
+@media (min-width: $viewport--sm) and (max-width: calc(#{$viewport--md} - 1px)) {
+  .filter-page__container {
+    @include default-container;
+    padding-right: 10px;
+    padding-left: 10px;
+  }
+
+  .filter-page__wrapper {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .filter-page__filter {
+    margin-bottom: 20px;
+  }
+
+  .filter-page__categories {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+
+    .filter-page__item {
+      margin-right: 20px;
+      margin-bottom: 10px;
+
+      button {
+        font-size: 14px;
+      }
+    }
+  }
+
+  .filter-page__modal {
+    max-height: unset;
+    // max-height: 30vh;
+
+    .feedback-modal {
+      // height: 550px;
+    }
+  }
 }
 </style>

@@ -9,7 +9,6 @@
         :rectHeight="'100px'"
       />
       <div class="main-electronic__preview">
-        <!-- <ProductPreview :previews="previews" /> -->
         <PreviewItem
           v-if="previews.electronics"
           :preview="previews.electronics[0]"
@@ -18,14 +17,11 @@
       </div>
       <div class="main-electronic__text">
         <p class="main-electronic__description">
-          Extremity sweetness difficult behaviour he of. On disposal of as landlord horrible. Afraid
-          at highly months do things on at. Situation recommend objection do intention so questions.
-          As greatly removed calling pleased improve an. Last ask him cold feel met spot shy want.
-          Children me laughing we prospect answered followed. At it went is song that held help
-          face. Now residence dashwoods she excellent you. Shade being under his bed her, Much read
-          on as draw. Blessing for ignorant exercise any yourself unpacked. Pleasant horrible but
-          confined day end marriage. Eagerness furniture set preserved far recommend. Did even but
-          nor are most gave hope. Secure active living depend son repair day ladies now.
+          We're dedicated to providing the best prices, selection, and overall experience you'll
+          find online. To put it simply, we've created a unique store that offers our customers the
+          ability to find what they want easily and quickly. And, with our free shipping,
+          hassle-free returns, lowest price, 30-day returns window and 3 years warranty we offer our
+          customers a no-risk opportunity to try us out.
         </p>
       </div>
       <div class="main-electronic__wrapper">
@@ -46,19 +42,6 @@
             :rectHeight="'100px'"
           />
           <PreviewItem v-if="previews.electronics" :preview="previews.electronics[2]" />
-          <!-- <p class="main-electronic__description">
-            Extremity sweetness difficult behaviour he of. On disposal of as landlord horrible.
-            Afraid at highly months do things on at. Situation recommend objection do intention so
-            questions. As greatly removed calling pleased improve an. Last ask him cold feel met
-            spot shy want. Children me laughing we prospect answered followed. At it went is song
-            that held help face.
-            <br />
-            <br />
-            Now residence dashwoods she excellent you. Shade being under his bed her, Much read on
-            as draw. Blessing for ignorant exercise any yourself unpacked. Pleasant horrible but
-            confined day end marriage. Eagerness furniture set preserved far recommend. Did even but
-            nor are most gave hope. Secure active living depend son repair day ladies now.
-          </p> -->
         </div>
       </div>
     </div>
@@ -79,13 +62,6 @@ export default {
   },
   data() {
     return {
-      // previews: [
-      //   { id: Date.now(), title: 'watch', path: '0' },
-      //   { id: Date.now(), title: 'mobile', path: '1' },
-      //   { id: Date.now(), title: 'television', path: '2' },
-      //   { id: Date.now(), title: 'audiosystem', path: '0' },
-      //   { id: Date.now(), title: 'computer', path: '1' },
-      // ],
       isLoading: false,
       previews: {},
       categories: 'electronics',
@@ -115,19 +91,15 @@ export default {
 <style lang="scss">
 .main-electronic {
   min-height: 700px;
-  // padding-top: 60px;
-  // padding-bottom: 60px;
   background-color: rgb(245, 244, 243);
 }
 
 .main-electronic__container {
-  max-width: 1440px;
-  margin: 0 auto;
-  padding: 60px 50px;
+  @include default-container;
 }
 
 .main-electronic__title {
-  margin-bottom: 30px;
+  margin-bottom: 80px;
   font-family: 'Lexend Deca', Arial, Helvetica, sans-serif;
   font-size: 38px;
   font-weight: normal;
@@ -137,7 +109,6 @@ export default {
 .main-electronic__wrapper {
   display: flex;
   justify-content: space-between;
-  padding-top: 50px;
 
   .main-electronic__wrapper-item {
     width: 48%;
@@ -146,6 +117,7 @@ export default {
 
 .main-electronic__text {
   width: 100%;
+  margin: 60px 0;
   text-align: center;
 }
 
@@ -153,6 +125,31 @@ export default {
   display: inline-block;
   @include main-description;
   max-width: 50%;
-  margin-top: 40px;
+}
+
+@media (min-width: $viewport--sm) and (max-width: calc(#{$viewport--md} - 1px)) {
+  .main-electronic__container {
+    padding: 80px 10px;
+  }
+
+  .main-electronic__title {
+    margin-bottom: 80px;
+    font-size: 30px;
+    text-align: center;
+  }
+
+  .main-electronic__wrapper {
+    flex-direction: column;
+
+    .main-electronic__wrapper-item {
+      width: 100%;
+      margin-bottom: 60px;
+    }
+  }
+
+  .main-electronic__description {
+    max-width: 100%;
+    font-size: 18px;
+  }
 }
 </style>

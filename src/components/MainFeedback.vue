@@ -18,15 +18,20 @@ export default {
 
 <style lang="scss">
 .main-feedback {
-  padding-top: 60px;
-  padding-bottom: 60px;
+  // padding-top: 60px;
+  // padding-bottom: 60px;
   background-color: $color-light-black;
   min-height: 700px;
 }
 
 .main-feedback__container {
-  max-width: 1200px;
-  margin-right: auto;
-  margin-left: auto;
+  @include default-container;
+  max-width: 1300px;
+}
+
+@media (min-width: $viewport--sm) and (max-width: calc(#{$viewport--md} - 1px)) {
+  .main-feedback__container {
+    padding: 80px 10px;
+  }
 }
 </style>

@@ -98,4 +98,41 @@ export default {
     opacity: 1;
   }
 }
+
+@media (min-width: $viewport--md) and (max-width: $viewport--lg) {
+  .main-presentation {
+    height: 40vh;
+    min-height: 540px;
+  }
+
+  .main-presentation__title {
+    max-width: 80%;
+  }
+
+  .main-presentation__description {
+    max-width: 50%;
+  }
+}
+
+@media (min-width: $viewport--sm) and (max-width: calc(#{$viewport--md} - 1px)) {
+  .main-presentation {
+    height: 40vh;
+    min-height: 540px;
+  }
+
+  .main-presentation__container {
+    max-width: 450px;
+    padding: 60px 10px;
+  }
+
+  .main-presentation__title {
+    max-width: 80%;
+    font-size: 30px;
+  }
+
+  .main-presentation__description {
+    max-width: 80%;
+    font-size: 20px;
+  }
+}
 </style>

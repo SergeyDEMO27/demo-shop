@@ -25,7 +25,7 @@
           <MainButton class="main-login__button" @click="loginHandler">Log in</MainButton>
         </form>
         <MainButton class="main-login__button" @click.prevent="isLogin = false"
-          >To registration</MainButton
+          >registration</MainButton
         >
       </div>
       <div class="main-login__container" v-else>
@@ -60,7 +60,7 @@
           />
           <MainButton class="main-login__button" @click="registrateHandler">Register</MainButton>
         </form>
-        <MainButton class="main-login__button" @click.prevent="isLogin = true">To login</MainButton>
+        <MainButton class="main-login__button" @click.prevent="isLogin = true">login</MainButton>
       </div>
     </div>
     <div class="main-login__success" v-else-if="success.login">
@@ -125,7 +125,6 @@ export default {
       this.inputValues.regName = '';
       this.inputValues.regEmail = '';
       this.success.registration = true;
-      // eslint-disable-next-line no-return-assign
       setTimeout(() => {
         this.success.registration = false;
         this.isLogin = true;
@@ -173,6 +172,24 @@ export default {
   &-title {
     @include main-title;
     font-size: 24px;
+  }
+}
+
+@media (min-width: $viewport--sm) and (max-width: calc(#{$viewport--md} - 1px)) {
+  .main-login {
+    padding: 30px 13vw;
+    width: 100%;
+  }
+
+  .main-login__container {
+    width: 100%;
+  }
+
+  .main-login__success {
+    &-title {
+      @include main-title;
+      font-size: 18px;
+    }
   }
 }
 </style>

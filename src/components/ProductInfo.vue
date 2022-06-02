@@ -131,8 +131,9 @@ export default {
 
       &:hover {
         div {
-          width: 17px;
-          height: 17px;
+          width: 21px;
+          height: 21px;
+          border: 1px solid rgba(0, 0, 0, 40%);
         }
       }
     }
@@ -156,12 +157,15 @@ export default {
   @include reset-list;
   @include main-description;
   display: flex;
-  justify-content: space-between;
-  margin-left: 16px;
+  flex-wrap: wrap;
+  // justify-content: space-between;
+  // margin-left: 16px;
   font-size: 16px;
 
   .product-info__special-item {
     // width: 30%;
+    margin-bottom: 10px;
+    margin-left: 30px;
     position: relative;
     text-align: center;
 
@@ -171,6 +175,39 @@ export default {
       left: -18px;
       content: '\2714';
     }
+  }
+}
+
+@media (min-width: $viewport--md) and (max-width: $viewport--lg) {
+  .product-info__special {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+@media (min-width: $viewport--sm) and (max-width: calc(#{$viewport--md} - 1px)) {
+  .product-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .product-info__color {
+    margin-bottom: 20px;
+    order: -1;
+  }
+
+  .product-info__title {
+    font-size: 28px;
+  }
+
+  .product-info__description {
+    font-size: 16px;
+  }
+
+  .product-info__special {
+    flex-direction: column;
+    align-items: flex-start;
   }
 }
 </style>

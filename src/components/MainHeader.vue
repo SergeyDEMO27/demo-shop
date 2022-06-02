@@ -10,7 +10,7 @@
           <img class="mainHeader__logo-image" :src="mainLogoSrc" alt="my-logo" />
           <h1 class="mainHeader__title">The Demo Shop</h1>
         </router-link>
-        <MainNavigation :navItems="mainNavItems" />
+        <MainNavigation class="mainHeader__nav" :navItems="mainNavItems" />
       </div>
       <div class="mainHeader__user-nav">
         <div @click="$emit('openLogin')" @keypress.enter="$emit('openLogin')">
@@ -43,7 +43,7 @@
 </template>
 
 <script>
-import mainLogoSrc from '@/images/svg/vue-logo.svg';
+import mainLogoSrc from '@/images/svg/main-logo.svg';
 import MainNavigation from '@/components/MainNavigation.vue';
 import sprite from '@/images/sprite/sprite.svg';
 import MainBin from '@/components/MainBin.vue';
@@ -74,16 +74,8 @@ export default {
 <style lang="scss">
 .mainHeader {
   position: fixed;
-  // left: 50%;
-  // transform: translate(-50%);
-  // display: flex;
-  // justify-content: space-between;
-  // max-width: 1512px;
   width: 100%;
   height: 60px;
-  // margin: 0 auto;
-  // padding: 0 36px;
-  // background-color: blue;
   z-index: 100;
   transition: 0.4s;
 
@@ -111,10 +103,10 @@ export default {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  max-width: 1512px;
+  max-width: 1440px;
   width: 100%;
   margin: 0 auto;
-  padding: 0 36px;
+  padding: 0 50px;
 }
 
 .mainHeader__container {
@@ -123,8 +115,6 @@ export default {
 }
 
 .mainHeader__logo {
-  padding-top: 10px;
-
   .mainHeader__logo-image {
     width: 60px;
     transition: 0.4s;
@@ -172,6 +162,7 @@ export default {
     right: 0;
     visibility: hidden;
     opacity: 0;
+
     transition: 0.1s;
   }
 
@@ -181,6 +172,55 @@ export default {
       visibility: visible;
       opacity: 1;
     }
+  }
+}
+
+@media (min-width: $viewport--md) and (max-width: $viewport--lg) {
+  .mainHeader {
+    // height: 100px;
+  }
+
+  .mainHeader__wrapper {
+    // flex-direction: column;
+    // max-width: 828px;
+    align-items: center;
+    padding: 0 30px;
+  }
+
+  .mainHeader__user-nav {
+    margin-left: auto;
+    // padding-right: 30px;
+    // padding-top: 16px;
+    // order: -1;
+  }
+}
+
+@media (min-width: $viewport--sm) and (max-width: calc(#{$viewport--md} - 1px)) {
+  .mainHeader {
+    height: 100px;
+  }
+
+  .mainHeader__wrapper {
+    max-width: 450px;
+    padding: 0 10px;
+  }
+
+  .mainHeader__logo {
+    .mainHeader__logo-image {
+      width: 40px;
+      transition: 0.4s;
+    }
+  }
+
+  .mainHeader__user-nav {
+    flex-direction: column;
+    justify-content: flex-end;
+    // padding-top: 16px;
+    // order: -1;
+  }
+
+  .main-header__icon-bin {
+    margin-left: 0;
   }
 }
 </style>

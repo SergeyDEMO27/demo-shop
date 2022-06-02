@@ -37,6 +37,7 @@ export default {
 
 .mainNavigation__item {
   margin: 5px 20px;
+  text-align: center;
 
   .mainNavigation__link {
     position: relative;
@@ -66,6 +67,32 @@ export default {
         width: 100%;
         background-color: $color-orange;
       }
+    }
+  }
+}
+
+@media (min-width: $viewport--md) and (max-width: $viewport--lg) {
+  .mainNavigation__item {
+    margin: 5px 7px;
+
+    .mainNavigation__link {
+      letter-spacing: 0.01px;
+    }
+  }
+}
+
+@media (min-width: $viewport--sm) and (max-width: calc(#{$viewport--md} - 1px)) {
+  .mainNavigation__list {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .mainNavigation__item {
+    margin: 5px 7px;
+
+    .mainNavigation__link {
+      font-size: 14px;
+      letter-spacing: 0.01px;
     }
   }
 }

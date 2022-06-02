@@ -5,7 +5,7 @@
     </div>
     <div class="feedback-modal__item">
       <div class="feedback-modal__wrapper">
-        <h3 class="feedback-modal__main-title">THE SHOP PROJECT</h3>
+        <h3 class="feedback-modal__main-title">The Demo Shop</h3>
         <h2 class="feedback-modal__title">Join our global community for exclusive benefits.</h2>
         <ul class="feedback-modal__list">
           <li>New & limited products</li>
@@ -34,12 +34,12 @@ export default {
 .feedback-modal {
   display: flex;
   width: 100%;
-  max-height: 730px;
+  max-height: 770px;
 }
 
 .feedback-modal__item {
   width: 50%;
-  min-height: 720px;
+  // min-height: 720px;
   background-color: $color-default-white;
 }
 
@@ -62,6 +62,7 @@ export default {
   @include main-title;
   margin-bottom: 20px;
   font-size: 20px;
+  text-transform: uppercase;
 }
 
 .feedback-modal__title {
@@ -87,6 +88,36 @@ export default {
       top: 0;
       left: -25px;
       content: '\2713';
+    }
+  }
+}
+
+@media (min-width: $viewport--md) and (max-width: $viewport--lg) {
+  .feedback-modal {
+    max-height: unset;
+  }
+}
+
+@media (min-width: $viewport--sm) and (max-width: calc(#{$viewport--md} - 1px)) {
+  .feedback-modal {
+    max-height: unset;
+  }
+
+  .feedback-modal__wrapper {
+    width: 90%;
+  }
+
+  .feedback-modal__main-title {
+    font-size: 18px;
+  }
+
+  .feedback-modal__title {
+    font-size: 16px;
+  }
+
+  .feedback-modal__list {
+    li {
+      font-size: 16px;
     }
   }
 }

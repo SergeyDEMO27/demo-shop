@@ -53,4 +53,21 @@ export default {
   margin-bottom: 40px;
   color: #555555;
 }
+
+@media (min-width: $viewport--sm) and (max-width: calc(#{$viewport--md} - 1px)) {
+  .main-sign {
+    &::after {
+      width: 70px;
+      height: 70px;
+    }
+  }
+
+  .main-sign__title {
+    font-size: 18px;
+  }
+
+  .main-sign__description {
+    font-size: 18px;
+  }
+}
 </style>

@@ -15,14 +15,11 @@
       />
       <div class="main-goods__text">
         <p class="main-goods__description">
-          Extremity sweetness difficult behaviour he of. On disposal of as landlord horrible. Afraid
-          at highly months do things on at. Situation recommend objection do intention so questions.
-          As greatly removed calling pleased improve an. Last ask him cold feel met spot shy want.
-          Children me laughing we prospect answered followed. At it went is song that held help
-          face. Now residence dashwoods she excellent you. Shade being under his bed her, Much read
-          on as draw. Blessing for ignorant exercise any yourself unpacked. Pleasant horrible but
-          confined day end marriage. Eagerness furniture set preserved far recommend. Did even but
-          nor are most gave hope. Secure active living depend son repair day ladies now.
+          Caters to thoughtful shoppers who appreciate unique designs and top quality pieces you
+          just can’t find anywhere else. We are constantly curating fresh new collections and
+          looking for the next big thing our customers will love. Our Mission is to make a
+          difference through our branding by staying ahead of the fashion trends, defining style and
+          giving customers what they want.
         </p>
       </div>
       <div class="main-goods__wrapper">
@@ -106,7 +103,7 @@ export default {
 }
 
 .main-goods__container {
-  @include main-container;
+  @include default-container;
   // max-width: 1200px;
   // margin-right: auto;
   // margin-left: auto;
@@ -115,11 +112,12 @@ export default {
 
 .main-goods__title {
   @include main-title;
-  margin-bottom: 30px;
+  margin-bottom: 80px;
 }
 
 .main-goods__text {
   width: 100%;
+  margin: 60px 0;
   text-align: center;
 }
 
@@ -127,17 +125,41 @@ export default {
   display: inline-block;
   @include main-description;
   max-width: 50%;
-  margin-top: 40px;
 }
 
 .main-goods__wrapper {
   display: flex;
   justify-content: space-between;
-  padding-top: 50px;
   text-align: left;
 }
 
 .main-goods__item {
   width: 49%;
+}
+
+@media (min-width: $viewport--sm) and (max-width: calc(#{$viewport--md} - 1px)) {
+  .main-goods__container {
+    padding: 80px 10px;
+  }
+
+  .main-goods__title {
+    margin-bottom: 80px;
+    font-size: 30px;
+    text-align: center;
+  }
+
+  .main-goods__wrapper {
+    flex-direction: column;
+
+    .main-goods__item {
+      width: 100%;
+      margin-bottom: 60px;
+    }
+  }
+
+  .main-goods__description {
+    max-width: 100%;
+    font-size: 18px;
+  }
 }
 </style>
