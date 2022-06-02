@@ -5,7 +5,9 @@
       Enjoy new and limited products, exclusive events, special offers and much more before anyone
       else.
     </p>
-    <MainButton @click.prevent="$emit('showModal')">Sign up now</MainButton>
+    <MainButton class="main-sign__button" @click.prevent="$emit('showModal')"
+      >Sign up now</MainButton
+    >
   </section>
 </template>
 
@@ -52,6 +54,10 @@ export default {
   @include main-description;
   margin-bottom: 40px;
   color: #555555;
+}
+
+.main-sign__button {
+  display: inline-block;
 }
 
 @media (min-width: $viewport--sm) and (max-width: calc(#{$viewport--md} - 1px)) {
