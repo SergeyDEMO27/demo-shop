@@ -39,7 +39,7 @@
 
 <script>
 import { mapState, mapActions } from 'vuex';
-import ButtonClose from '@/components/ButtonClose.vue';
+import ButtonClose from '@/components/UI/ButtonClose.vue';
 
 export default {
   components: {

@@ -12,7 +12,7 @@
 </template>
 
 <script>
-import MainButton from '@/components/MainButton.vue';
+import MainButton from '@/components/UI/MainButton.vue';
 
 export default {
   components: {
@@ -35,7 +35,7 @@ export default {
     height: 75px;
     content: '';
     background-color: $color-orange;
-    background-image: url('~@/images/background/envelope.png');
+    background-image: url('~@/assets/images/background/envelope.png');
     background-size: 60% auto;
     background-repeat: no-repeat;
     background-position: center;

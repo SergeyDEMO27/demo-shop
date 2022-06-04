@@ -48,7 +48,7 @@
 
 <script>
 import axios from 'axios';
-import MainLoader from '@/components/MainLoader.vue';
+import MainLoader from '@/components/UI/MainLoader.vue';
 import PreviewItem from '@/components/PreviewItem.vue';
 
 export default {

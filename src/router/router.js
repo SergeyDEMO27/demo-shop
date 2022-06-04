@@ -1,7 +1,7 @@
+import { createRouter, createWebHistory } from 'vue-router';
 import MainPage from '@/components/MainPage.vue';
 import FilterPage from '@/components/FilterPage.vue';
 import ProductPage from '@/components/ProductPage.vue';
-import { createRouter, createWebHistory } from 'vue-router';
 
 const scrollBehavior = () => window.scrollTo(0, 0);
 
@@ -13,10 +13,6 @@ const routes = [
   {
     path: '/products/:id',
     component: FilterPage,
-  },
-  {
-    path: '/product',
-    component: ProductPage,
   },
   {
     path: '/product/:id',

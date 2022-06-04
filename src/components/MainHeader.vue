@@ -43,9 +43,9 @@
 </template>
 
 <script>
-import mainLogoSrc from '@/images/svg/main-logo.svg';
+import mainLogoSrc from '@/assets/images/svg/main-logo.svg';
 import MainNavigation from '@/components/MainNavigation.vue';
-import sprite from '@/images/sprite/sprite.svg';
+import sprite from '@/assets/images/sprite/sprite.svg';
 import MainBin from '@/components/MainBin.vue';
 
 export default {
@@ -140,14 +140,14 @@ export default {
 
   &-login {
     cursor: pointer;
+
+    &:hover {
+      fill: $color-orange;
+    }
   }
 
   &-bin {
     margin-left: 30px;
-  }
-
-  &:hover {
-    fill: $color-orange;
   }
 }
 

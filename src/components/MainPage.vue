@@ -28,9 +28,9 @@ import MainElectronic from '@/components/MainElectronic.vue';
 import MainGoods from '@/components/MainGoods.vue';
 import MainFeedback from '@/components/MainFeedback.vue';
 import MainFooter from '@/components/MainFooter.vue';
-import MainModal from '@/components/MainModal.vue';
+import MainModal from '@/components/UI/MainModal.vue';
 import MainLogin from '@/components/MainLogin.vue';
-import ButtonClose from '@/components/ButtonClose.vue';
+import ButtonClose from '@/components/UI/ButtonClose.vue';
 
 export default {
   components: {
@@ -50,7 +50,6 @@ export default {
       previewId: 0,
       previewInterval: '',
       isLoginForm: false,
-      // scrollPosition: 0,
       presentationItems: [
         {
           id: 0,
@@ -92,22 +91,17 @@ export default {
     setPreviewInterval() {
       this.previewInterval = setInterval(this.changePreviewId, 8000);
     },
-    // updateScroll() {
-    //   this.scrollPosition = window.scrollY;
-    // },
   },
   mounted() {
     this.setPreviewInterval();
-    // window.addEventListener('scroll', this.updateScroll);
   },
   beforeUnmount() {
     clearInterval(this.previewInterval);
-    // window.removeEventListener('scroll', this.updateScroll);
   },
 };
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .main-page__close {
   position: absolute;
   top: 10px;
@@ -122,7 +116,6 @@ export default {
 }
 .slide-fade-enter-from,
 .slide-fade-leave-to {
-  // transform: translateX(20px);
   opacity: 0;
 }
 .fade-enter-active,

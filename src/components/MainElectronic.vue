@@ -51,7 +51,7 @@
 <script>
 import axios from 'axios';
 // import ProductPreview from './ProductPreview.vue';
-import MainLoader from '@/components/MainLoader.vue';
+import MainLoader from '@/components/UI/MainLoader.vue';
 import PreviewItem from '@/components/PreviewItem.vue';
 // import PreviewItem from './PreviewItem.vue';
 

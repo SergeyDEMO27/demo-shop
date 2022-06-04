@@ -35,7 +35,7 @@
 </template>
 
 <script>
-import sprite from '@/images/sprite/sprite.svg';
+import sprite from '@/assets/images/sprite/sprite.svg';
 
 export default {
   components: {

@@ -31,7 +31,7 @@ export default {
   padding: 60px 20px;
   background-color: rgba(0, 0, 0, 50%);
   z-index: 10000;
-  overflow: scroll;
+  overflow-y: scroll;
 }
 
 .main-modal__container {

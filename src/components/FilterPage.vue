@@ -69,11 +69,11 @@ import ProductFilter from '@/components/ProductFilter.vue';
 import AllGoods from '@/components/AllGoods.vue';
 import MainSign from '@/components/MainSign.vue';
 import MainFooter from '@/components/MainFooter.vue';
-import MainModal from '@/components/MainModal.vue';
+import MainModal from '@/components/UI/MainModal.vue';
 import FeedbackModal from '@/components/FeedbackModal.vue';
-import ButtonClose from '@/components/ButtonClose.vue';
+import ButtonClose from '@/components/UI/ButtonClose.vue';
 import MainLogin from '@/components/MainLogin.vue';
-import MainLoader from '@/components/MainLoader.vue';
+import MainLoader from '@/components/UI/MainLoader.vue';
 
 export default {
   components: {

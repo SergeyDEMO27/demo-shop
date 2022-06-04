@@ -32,7 +32,7 @@
 </template>
 
 <script>
-import MainButton from './MainButton.vue';
+import MainButton from '@/components/UI/MainButton.vue';
 
 export default {
   components: {

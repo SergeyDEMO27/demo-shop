@@ -1,7 +1,7 @@
 <template>
   <div class="feedback-modal">
     <div class="feedback-modal__item">
-      <img class="feedback-modal__image" src="../images/background/feedback-bg.jpeg" alt="" />
+      <img class="feedback-modal__image" src="@/assets/images/background/feedback-bg.jpeg" alt="" />
     </div>
     <div class="feedback-modal__item">
       <div class="feedback-modal__wrapper">

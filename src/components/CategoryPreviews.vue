@@ -5,7 +5,7 @@
         <h3 class="category-previews__title">{{ preview.title }}</h3>
         <img
           class="category-previews__image"
-          :src="require(`@/images/background/preview-bg-${preview.path}.jpeg`)"
+          :src="require(`@/assets/images/background/preview-bg-${preview.path}.jpeg`)"
           :alt="preview.title"
         />
       </router-link>

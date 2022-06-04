@@ -2,7 +2,7 @@
   <section
     class="main-presentation"
     :style="{
-      backgroundImage: `url(${require(`@/images/background/main-bg-${preview.id}.jpeg`)})`,
+      backgroundImage: `url(${require(`@/assets/images/background/main-bg-${preview.id}.jpeg`)})`,
     }"
   >
     <div class="main-presentation__container">
@@ -18,7 +18,7 @@
 </template>
 
 <script>
-import MainButton from './MainButton.vue';
+import MainButton from '@/components/UI/MainButton.vue';
 
 export default {
   components: {

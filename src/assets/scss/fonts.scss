@@ -1,0 +1,35 @@
+@font-face {
+  font-family: 'Supreme';
+  font-weight: 400;
+  font-style: normal;
+  font-display: auto;
+  src: url('@/assets/fonts/supreme/supreme-normal.woff2') format('woff2'),
+    url('@/assets/fonts/supreme/supreme-normal.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'Supreme';
+  font-weight: 700;
+  font-style: normal;
+  font-display: auto;
+  src: url('@/assets/fonts/supreme/supreme-bold.woff2') format('woff2'),
+    url('@/assets/fonts/supreme/supreme-bold.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'Lexend Deca';
+  font-weight: 400;
+  font-style: normal;
+  font-display: auto;
+  src: url('@/assets/fonts/lexend/LexendDeca-Regular.woff2') format('woff2'),
+    url('@/assets/fonts/lexend/LexendDeca-Regular.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'Lexend Deca';
+  font-weight: 700;
+  font-style: normal;
+  font-display: auto;
+  src: url('@/assets/fonts/lexend/LexendDeca-Bold.woff2') format('woff2'),
+    url('@/assets/fonts/lexend/LexendDeca-Bold.woff') format('woff');
+}

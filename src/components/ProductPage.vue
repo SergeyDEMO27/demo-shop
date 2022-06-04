@@ -64,14 +64,14 @@
 
 <script>
 import axios from 'axios';
-import MainLoader from '@/components/MainLoader.vue';
+import MainLoader from '@/components/UI/MainLoader.vue';
 import MainHeader from '@/components/MainHeader.vue';
 import MainFooter from '@/components/MainFooter.vue';
 import ProductSlider from '@/components/ProductSlider.vue';
 import ProductInfo from '@/components/ProductInfo.vue';
 import MainSign from '@/components/MainSign.vue';
-import MainModal from '@/components/MainModal.vue';
-import ButtonClose from '@/components/ButtonClose.vue';
+import MainModal from '@/components/UI/MainModal.vue';
+import ButtonClose from '@/components/UI/ButtonClose.vue';
 import FeedbackModal from '@/components/FeedbackModal.vue';
 import MainLogin from '@/components/MainLogin.vue';
 

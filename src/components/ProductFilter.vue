@@ -63,7 +63,7 @@ export default {
   border: none;
   border-bottom: 2px solid $color-default-black;
   text-transform: capitalize;
-  text-align: center;
+  text-align: left;
   outline: none;
   transition: 0.4s;
 
@@ -84,7 +84,7 @@ export default {
     @include main-title;
     position: absolute;
     top: 0;
-    left: 20px;
+    left: 0;
     font-size: 16px;
     cursor: auto;
     transition: 0.4s;
@@ -97,7 +97,6 @@ export default {
   .product-filter__input {
     @include main-title;
     margin-right: 20px;
-    padding-left: 20px;
     font-size: 16px;
     // width: 100%;
     // height: 30px;
@@ -132,7 +131,7 @@ export default {
 
     .product-filter__input {
       width: 90%;
-      padding-left: 20px;
+      // padding-left: 20px;
       font-size: 14px;
     }
   }

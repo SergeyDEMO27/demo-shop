@@ -40,7 +40,7 @@
 </template>
 
 <script>
-import MainButton from '@/components/MainButton.vue';
+import MainButton from '@/components/UI/MainButton.vue';
 import { mapActions } from 'vuex';
 
 export default {
