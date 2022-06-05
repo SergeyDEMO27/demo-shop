@@ -35,6 +35,7 @@
 import MainButton from '@/components/UI/MainButton.vue';
 
 export default {
+  name: 'PreviewItem',
   components: {
     MainButton,
   },
@@ -103,7 +104,6 @@ export default {
 .preview-item__picture {
   position: relative;
   width: 100%;
-  // height: 100%;
   height: 360px;
   border-top-left-radius: 15px;
   border-top-right-radius: 15px;
@@ -111,10 +111,7 @@ export default {
   background-color: $color-default-white;
 
   .preview-item__image {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    @include center-element;
     width: 80%;
     height: 80%;
     object-fit: contain;
@@ -144,8 +141,8 @@ export default {
 }
 
 .preview-item__title {
+  @include main-title;
   margin-bottom: 30px;
-  font-family: 'Lexend Deca', Arial, Helvetica, sans-serif;
   font-size: 28px;
   font-weight: normal;
   text-transform: lowercase;
@@ -162,17 +159,15 @@ export default {
 }
 
 .preview-item__description {
+  @include main-description;
   margin-bottom: 30px;
-  font-family: 'Supreme', Arial, Helvetica, sans-serif;
   font-size: 20px;
   color: rgba(0, 0, 0, 80%);
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
-  // color: #e5e5e5;
   display: -webkit-box;
   height: 3.9em;
   line-height: 1.3em;
-  // max-width: 40%;
   overflow: hidden;
 }
 

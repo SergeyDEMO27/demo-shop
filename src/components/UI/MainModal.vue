@@ -1,21 +1,15 @@
 <template>
   <div class="main-modal">
     <div class="main-modal__container">
-      <div class="main-modal__wrapper">
-        <!-- <ButtonClose class="main-modal__close" @click="$emit('hideModal')" /> -->
-      </div>
+      <div class="main-modal__wrapper"></div>
       <slot></slot>
     </div>
   </div>
 </template>
 
 <script>
-// import ButtonClose from '@/components/ButtonClose.vue';
-
 export default {
-  components: {
-    // ButtonClose,
-  },
+  name: 'MainModal',
 };
 </script>
 
@@ -35,14 +29,8 @@ export default {
 }
 
 .main-modal__container {
-  position: absolute;
-  left: 50%;
-  // top: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
+  @include center-element;
   max-width: 1250px;
-  // width: 100%;
-  // padding: inherit;
 }
 
 .main-modal__wrapper {
@@ -55,11 +43,5 @@ export default {
   position: absolute;
   top: 10px;
   right: 15px;
-}
-
-@media (min-width: $viewport--sm) and (max-width: calc(#{$viewport--md} - 1px)) {
-  // .main-modal__container {
-  //   top: 111%;
-  // }
 }
 </style>

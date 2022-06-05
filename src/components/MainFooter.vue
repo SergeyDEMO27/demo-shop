@@ -38,9 +38,7 @@
 import sprite from '@/assets/images/sprite/sprite.svg';
 
 export default {
-  components: {
-    // SvgSprite,
-  },
+  name: 'MainFooter',
   setup() {
     return {
       sprite,
@@ -52,8 +50,6 @@ export default {
 <style lang="scss">
 .main-footer {
   width: 100%;
-  // padding-top: 30px;
-  // padding-bottom: 30px;
   background-color: $color-light-black;
   border-top: 1px solid $color-orange;
 }
@@ -62,15 +58,12 @@ export default {
   @include default-container;
   padding-top: 30px;
   padding-bottom: 30px;
-  // max-width: 1200px;
-  // margin-right: auto;
-  // margin-left: auto;
   text-align: center;
 }
 
 .main-footer__copyright {
-  font-family: 'Lexend Deca', Arial, Helvetica, sans-serif;
-  font-weight: normal;
+  @include main-title;
+  font-size: 16px;
   color: $color-yellow;
 }
 
@@ -89,13 +82,13 @@ export default {
   width: 20%;
 
   .main-footer__link {
-    font-family: 'Supreme', Arial, Helvetica, sans-serif;
+    @include main-description;
     color: $color-orange;
     text-decoration: none;
 
     .main-footer__icon {
+      @include default-transition;
       fill: $color-orange;
-      transition: 0.4s;
     }
 
     span {

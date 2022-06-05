@@ -3,7 +3,9 @@
 </template>
 
 <script>
-export default {};
+export default {
+  name: 'ButtonClose',
+};
 </script>
 
 <style lang="scss">
@@ -16,6 +18,7 @@ export default {};
 
   &::before,
   &::after {
+    @include default-transition;
     position: absolute;
     top: 8px;
     right: 0;
@@ -24,7 +27,6 @@ export default {};
     content: '';
     background-color: rgba(0, 0, 0, 50%);
     transform: rotate(45deg);
-    transition: 0.4s;
   }
 
   &::after {

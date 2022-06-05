@@ -10,6 +10,7 @@
 import FeedbackModal from '@/components/FeedbackModal.vue';
 
 export default {
+  name: 'MainFeedback',
   components: {
     FeedbackModal,
   },
@@ -18,8 +19,6 @@ export default {
 
 <style lang="scss">
 .main-feedback {
-  // padding-top: 60px;
-  // padding-bottom: 60px;
   background-color: $color-light-black;
   min-height: 700px;
 }

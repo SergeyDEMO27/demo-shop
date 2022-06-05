@@ -50,12 +50,11 @@
 
 <script>
 import axios from 'axios';
-// import ProductPreview from './ProductPreview.vue';
 import MainLoader from '@/components/UI/MainLoader.vue';
 import PreviewItem from '@/components/PreviewItem.vue';
-// import PreviewItem from './PreviewItem.vue';
 
 export default {
+  name: 'MainElectronic',
   components: {
     PreviewItem,
     MainLoader,
@@ -99,11 +98,8 @@ export default {
 }
 
 .main-electronic__title {
+  @include main-title;
   margin-bottom: 80px;
-  font-family: 'Lexend Deca', Arial, Helvetica, sans-serif;
-  font-size: 38px;
-  font-weight: normal;
-  text-transform: capitalize;
 }
 
 .main-electronic__wrapper {
@@ -122,8 +118,8 @@ export default {
 }
 
 .main-electronic__description {
-  display: inline-block;
   @include main-description;
+  display: inline-block;
   max-width: 50%;
 }
 

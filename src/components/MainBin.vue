@@ -1,13 +1,13 @@
 <template>
   <div class="main-bin">
-    <div v-if="productCount" class="main-bin__main">
+    <div class="main-bin__main">
       <div class="main-bin__wrapper">
         <h2 class="main-bin__title">Main Products({{ productCount }})</h2>
         <button class="main-bin__removeAll" type="button" @click="removeAllProductsInBin">
           clear list
         </button>
       </div>
-      <div class="main-bin__container">
+      <div v-if="productCount" class="main-bin__container">
         <TransitionGroup class="main-bin__list" name="list" tag="ul">
           <li class="main-bin__item" v-for="product in productsInBin" :key="product">
             <div class="main-bin__item-picture">
@@ -23,6 +23,9 @@
             />
           </li>
         </TransitionGroup>
+      </div>
+      <div v-else class="main-bin__container">
+        <p class="main-bin__empty">Your basket is empty</p>
       </div>
       <div class="main-bin__info">
         <p class="main-bin__item-total">
@@ -42,6 +45,7 @@ import { mapState, mapActions } from 'vuex';
 import ButtonClose from '@/components/UI/ButtonClose.vue';
 
 export default {
+  name: 'MainBin',
   components: {
     ButtonClose,
   },
@@ -69,6 +73,7 @@ export default {
   watch: {
     productsInBin: {
       handler(newValue) {
+        console.log(newValue);
         localStorage.setItem('productsInBin', JSON.stringify(newValue));
         this.totalPrice = 0;
         let newPrice = 0;
@@ -86,15 +91,6 @@ export default {
 </script>
 
 <style lang="scss">
-// .main-bin {
-//   width: 400px;
-//   height: 300px;
-//   padding: 20px;
-//   padding-right: 0;
-//   border-radius: 15px;
-//   background-color: $color-default-white;
-//   box-shadow: 0 0 12px rgba(0, 0, 0, 16%);
-// }
 .main-bin__main {
   width: 400px;
   height: 300px;
@@ -121,6 +117,7 @@ export default {
 .main-bin__removeAll,
 .main-bin__item-checkout {
   @include main-title;
+  @include default-transition;
   font-size: 16px;
   text-transform: lowercase;
   color: $color-default-black;
@@ -128,8 +125,8 @@ export default {
   background-color: transparent;
   border: none;
   text-decoration: none;
-  transition: 0.4s;
   cursor: pointer;
+
   &:hover {
     color: $color-orange;
   }
@@ -152,6 +149,7 @@ export default {
   align-items: center;
   margin-bottom: 10px;
   padding-right: 25px;
+
   &::after {
     position: absolute;
     bottom: -5px;
@@ -166,6 +164,7 @@ export default {
 .main-bin__item-picture {
   width: 40px;
   height: 40px;
+
   .main-bin__item-image {
     width: 100%;
     height: 100%;
@@ -174,10 +173,11 @@ export default {
 }
 
 .main-bin__item-link {
+  @include default-transition;
   max-width: 60%;
   color: $color-default-black;
   text-decoration: none;
-  transition: 0.4s;
+
   &:hover {
     color: $color-orange;
   }
@@ -216,6 +216,12 @@ export default {
   padding-right: 30px;
 }
 
+.main-bin__empty {
+  @include center-element;
+  @include main-title;
+  font-size: 19px;
+}
+
 .main-bin__count {
   position: absolute;
   top: -2px;
@@ -224,13 +230,11 @@ export default {
   opacity: 95%;
   background-color: $color-orange;
   border-radius: 50%;
+  cursor: default;
 
   span {
+    @include center-element;
     @include main-description;
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
     font-size: 12px;
   }
 }

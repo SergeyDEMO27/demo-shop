@@ -15,6 +15,7 @@
 import MainButton from '@/components/UI/MainButton.vue';
 
 export default {
+  name: 'MainSign',
   components: {
     MainButton,
   },

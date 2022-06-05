@@ -15,6 +15,7 @@
 
 <script>
 export default {
+  name: 'CategoryPreviews',
   props: {
     previews: {
       type: Array,
@@ -59,12 +60,12 @@ export default {
   }
 
   .category-previews__image {
+    @include default-transition;
     width: 100%;
     height: 100%;
     object-fit: cover;
     object-position: center;
     border-radius: 4px;
-    transition: transform 0.4s;
   }
 
   &:hover {
@@ -75,12 +76,12 @@ export default {
 }
 
 .category-previews__title {
+  @include main-description;
   position: absolute;
   bottom: 30px;
   left: 50%;
   transform: translate(-50%, 0);
   color: $color-yellow;
-  font-family: 'Supreme', Arial, Helvetica, sans-serif;
   font-size: 26px;
   letter-spacing: 0.07rem;
   text-transform: capitalize;

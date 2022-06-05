@@ -24,6 +24,7 @@
 import FeedbackForm from '@/components/FeedbackForm.vue';
 
 export default {
+  name: 'FeedbackModal',
   components: {
     FeedbackForm,
   },
@@ -39,7 +40,6 @@ export default {
 
 .feedback-modal__item {
   width: 50%;
-  // min-height: 720px;
   background-color: $color-default-white;
 }
 
@@ -66,9 +66,14 @@ export default {
 }
 
 .feedback-modal__title {
-  font-family: 'Lexend Deca', Arial, Helvetica, sans-serif;
-  font-weight: normal;
+  @include main-title;
   margin-bottom: 40px;
+  font-size: 24px;
+  text-transform: lowercase;
+
+  &::first-letter {
+    text-transform: uppercase;
+  }
 }
 
 .feedback-modal__list {
@@ -77,9 +82,9 @@ export default {
   padding-left: 25px;
 
   li {
+    @include main-title;
     position: relative;
-    font-family: 'Lexend Deca', Arial, Helvetica, sans-serif;
-    font-weight: normal;
+    font-size: 16px;
     letter-spacing: 0.03em;
     margin-bottom: 20px;
 

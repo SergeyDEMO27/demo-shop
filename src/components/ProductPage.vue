@@ -76,6 +76,7 @@ import FeedbackModal from '@/components/FeedbackModal.vue';
 import MainLogin from '@/components/MainLogin.vue';
 
 export default {
+  name: 'ProductPage',
   components: {
     MainHeader,
     MainFooter,
@@ -120,10 +121,16 @@ export default {
 </script>
 
 <style lang="scss">
-.product-page__main {
+.product-page {
+  display: flex;
+  flex-direction: column;
   width: 100%;
-  // padding-top: 100px;
-  // background-color: $color-gray;
+  min-height: 100%;
+}
+
+.product-page__main {
+  flex: 1 1 auto;
+  width: 100%;
 }
 
 .product-page__container {
@@ -141,6 +148,7 @@ export default {
   text-transform: capitalize;
 
   &::after {
+    @include default-transition;
     position: absolute;
     bottom: -5px;
     left: 0;
@@ -149,7 +157,6 @@ export default {
     content: '';
     background-color: $color-orange;
     border-radius: 25px;
-    transition: 0.4s;
   }
 
   &:hover {
@@ -160,12 +167,6 @@ export default {
 }
 
 .product-page__info {
-  // max-width: 1200px;
-  // min-height: 200px;
-  // padding-top: 60px;
-  // padding-bottom: 60px;
-  // margin-right: auto;
-  // margin-left: auto;
   margin-bottom: 30px;
 }
 
@@ -205,11 +206,11 @@ export default {
 }
 
 .slide-fade-enter-active {
-  transition: all 0.4s ease-out;
+  @include default-transition;
 }
 
 .slide-fade-leave-active {
-  transition: all 0.4s ease-out;
+  @include default-transition;
 }
 
 .slide-fade-enter-from,
@@ -219,10 +220,6 @@ export default {
 }
 
 @media (min-width: $viewport--sm) and (max-width: calc(#{$viewport--md} - 1px)) {
-  // .product-page__category {
-  //   margin-bottom: 40px;
-  // }
-
   .product-page__container {
     padding-right: 10px;
     padding-bottom: 60px;
@@ -242,11 +239,6 @@ export default {
 
   .product-page__modal {
     max-height: unset;
-    // max-height: 30vh;
-
-    .feedback-modal {
-      // height: 550px;
-    }
   }
 }
 </style>

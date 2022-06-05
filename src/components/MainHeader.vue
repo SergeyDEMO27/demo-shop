@@ -38,17 +38,17 @@
         </div>
       </div>
     </div>
-    <!-- <MainNavigation :navItems="userNavItems" /> -->
   </div>
 </template>
 
 <script>
-import mainLogoSrc from '@/assets/images/svg/main-logo.svg';
 import MainNavigation from '@/components/MainNavigation.vue';
-import sprite from '@/assets/images/sprite/sprite.svg';
 import MainBin from '@/components/MainBin.vue';
+import mainLogoSrc from '@/assets/images/svg/main-logo.svg';
+import sprite from '@/assets/images/sprite/sprite.svg';
 
 export default {
+  name: 'MainHeader',
   components: {
     MainNavigation,
     MainBin,
@@ -73,11 +73,11 @@ export default {
 
 <style lang="scss">
 .mainHeader {
+  @include default-transition;
   position: fixed;
   width: 100%;
   height: 60px;
   z-index: 100;
-  transition: 0.4s;
 
   &-moved {
     background-color: $color-default-white;
@@ -135,19 +135,19 @@ export default {
 }
 
 .main-header__icon {
+  @include default-transition;
   fill: $color-default-white;
-  transition: 0.4s;
 
   &-login {
     cursor: pointer;
-
-    &:hover {
-      fill: $color-orange;
-    }
   }
 
   &-bin {
     margin-left: 30px;
+  }
+
+  &:hover {
+    fill: $color-orange;
   }
 }
 
@@ -155,10 +155,8 @@ export default {
   position: relative;
 
   &-item .main-bin__main {
-    // display: none;
     position: absolute;
     top: 25px;
-    // top: 0;
     right: 0;
     visibility: hidden;
     opacity: 0;
@@ -168,7 +166,6 @@ export default {
 
   &:hover {
     .main-header__bin-item .main-bin__main {
-      // display: block;
       visibility: visible;
       opacity: 1;
     }
@@ -176,22 +173,13 @@ export default {
 }
 
 @media (min-width: $viewport--md) and (max-width: $viewport--lg) {
-  .mainHeader {
-    // height: 100px;
-  }
-
   .mainHeader__wrapper {
-    // flex-direction: column;
-    // max-width: 828px;
     align-items: center;
     padding: 0 30px;
   }
 
   .mainHeader__user-nav {
     margin-left: auto;
-    // padding-right: 30px;
-    // padding-top: 16px;
-    // order: -1;
   }
 }
 
@@ -208,15 +196,12 @@ export default {
   .mainHeader__logo {
     .mainHeader__logo-image {
       width: 40px;
-      transition: 0.4s;
     }
   }
 
   .mainHeader__user-nav {
     flex-direction: column;
     justify-content: flex-end;
-    // padding-top: 16px;
-    // order: -1;
   }
 
   .main-header__icon-bin {

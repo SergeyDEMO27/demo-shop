@@ -1,65 +1,71 @@
 <template>
-  <MainHeader @openLogin="isLoginForm = true" />
-  <div class="filter-page__goods">
-    <div class="filter-page__container">
-      <div class="filter-page__wrapper">
-        <ProductFilter
-          class="filter-page__filter"
-          @updateSearch="updateSearchHandler"
-          @updateSelect="updateSelectHandler"
-          :searchValue="searchValue"
-          :selectValue="selectValue"
-          :selectOptions="selectOptions"
-        />
+  <div class="filter-page">
+    <MainHeader @openLogin="isLoginForm = true" />
+    <div class="filter-page__main">
+      <div class="filter-page__goods">
+        <div class="filter-page__container">
+          <div class="filter-page__wrapper">
+            <ProductFilter
+              class="filter-page__filter"
+              @updateSearch="updateSearchHandler"
+              @updateSelect="updateSelectHandler"
+              :searchValue="searchValue"
+              :selectValue="selectValue"
+              :selectOptions="selectOptions"
+            />
 
-        <ul class="filter-page__categories">
-          <li
-            class="filter-page__item"
-            :class="{ 'filter-page__item-active': activeCategory === category }"
-            v-for="category in categories"
-            :key="category"
-          >
-            <button @click="fetchCategorieHandler(category)" type="button">{{ category }}</button>
-          </li>
-        </ul>
+            <ul class="filter-page__categories">
+              <li
+                class="filter-page__item"
+                :class="{ 'filter-page__item-active': activeCategory === category }"
+                v-for="category in categories"
+                :key="category"
+              >
+                <button @click="fetchCategorieHandler(category)" type="button">
+                  {{ category }}
+                </button>
+              </li>
+            </ul>
+          </div>
+          <MainLoader
+            v-if="isLoading"
+            :viewBox="'0 0 400 210'"
+            :rectWidth="'100%'"
+            :rectHeight="'200px'"
+          />
+          <AllGoods v-if="searchGoods.length > 0" :products="searchGoods" />
+        </div>
       </div>
-      <MainLoader
-        v-if="isLoading"
-        :viewBox="'0 0 400 210'"
-        :rectWidth="'100%'"
-        :rectHeight="'200px'"
-      />
-      <AllGoods v-if="searchGoods.length > 0" :products="searchGoods" />
+      <div class="filter-page__sign">
+        <div class="filter-page__wrapper">
+          <MainSign @showModal="isModalShown = true" />
+        </div>
+      </div>
     </div>
+    <MainFooter />
+    <Transition name="slide-fade">
+      <MainModal
+        class="filter-page__modal"
+        v-show="isModalShown"
+        @hideModal="isModalShown = false"
+        @click="isModalShown = false"
+        @keypress.enter="isModalShown = false"
+      >
+        <FeedbackModal @click.stop />
+        <ButtonClose class="filter-page__close-modal" />
+      </MainModal>
+    </Transition>
+    <Transition name="slide-fade">
+      <MainModal
+        v-show="isLoginForm"
+        @click="isLoginForm = false"
+        @keypress.enter="isLoginForm = false"
+      >
+        <MainLogin @click.stop @closeForm="isLoginForm = false" />
+        <ButtonClose class="main-page__close" />
+      </MainModal>
+    </Transition>
   </div>
-  <div class="filter-page__sign">
-    <div class="filter-page__wrapper">
-      <MainSign @showModal="isModalShown = true" />
-    </div>
-  </div>
-  <MainFooter />
-  <Transition name="slide-fade">
-    <MainModal
-      class="filter-page__modal"
-      v-show="isModalShown"
-      @hideModal="isModalShown = false"
-      @click="isModalShown = false"
-      @keypress.enter="isModalShown = false"
-    >
-      <FeedbackModal @click.stop />
-      <ButtonClose class="filter-page__close-modal" />
-    </MainModal>
-  </Transition>
-  <Transition name="slide-fade">
-    <MainModal
-      v-show="isLoginForm"
-      @click="isLoginForm = false"
-      @keypress.enter="isLoginForm = false"
-    >
-      <MainLogin @click.stop @closeForm="isLoginForm = false" />
-      <ButtonClose class="main-page__close" />
-    </MainModal>
-  </Transition>
 </template>
 
 <script>
@@ -76,6 +82,7 @@ import MainLogin from '@/components/MainLogin.vue';
 import MainLoader from '@/components/UI/MainLoader.vue';
 
 export default {
+  name: 'FilterPage',
   components: {
     MainHeader,
     AllGoods,
@@ -184,6 +191,16 @@ export default {
 </script>
 
 <style lang="scss">
+.filter-page {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+}
+
+.filter-page__main {
+  flex: 1 1 auto;
+}
+
 .filter-page__goods {
   width: 100%;
   min-height: 400px;
@@ -194,9 +211,6 @@ export default {
 
 .filter-page__container {
   @include default-container;
-  // max-width: 1200px;
-  // margin-right: auto;
-  // margin-left: auto;
 }
 
 .filter-page__wrapper {
@@ -221,6 +235,7 @@ export default {
       outline: none;
 
       &::after {
+        @include default-transition;
         position: absolute;
         bottom: -5px;
         left: 0;
@@ -229,7 +244,6 @@ export default {
         content: '';
         background-color: $color-orange;
         border-radius: 25px;
-        transition: 0.4s;
       }
 
       &:hover,
@@ -339,11 +353,6 @@ export default {
 
   .filter-page__modal {
     max-height: unset;
-    // max-height: 30vh;
-
-    .feedback-modal {
-      // height: 550px;
-    }
   }
 }
 </style>

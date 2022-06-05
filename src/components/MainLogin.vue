@@ -77,6 +77,7 @@ import MainInput from '@/components/UI/MainInput.vue';
 import MainButton from '@/components/UI/MainButton.vue';
 
 export default {
+  name: 'MainLogin',
   components: {
     MainInput,
     MainButton,

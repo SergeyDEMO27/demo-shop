@@ -19,6 +19,7 @@
 
 <script>
 export default {
+  name: 'MainInput',
   props: {
     inputType: String,
     label: String,
@@ -34,12 +35,12 @@ export default {
 
   .main-input__label {
     @include main-description;
+    @include default-transition;
     position: absolute;
     top: 0;
     left: 0;
     font-size: 16px;
     cursor: auto;
-    transition: 0.4s;
 
     &-active {
       top: -25px;

@@ -17,6 +17,7 @@
 
 <script>
 export default {
+  name: 'MainNavigation',
   props: {
     navItems: {
       type: Array,
@@ -26,7 +27,7 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .mainNavigation__list {
   display: flex;
   justify-content: space-between;
@@ -40,16 +41,17 @@ export default {
   text-align: center;
 
   .mainNavigation__link {
+    @include main-description;
+    @include default-transition;
     position: relative;
-    font-family: 'Supreme', Arial, Helvetica, sans-serif;
     font-size: 16px;
     color: $color-default-white;
     letter-spacing: 0.07rem;
     text-transform: uppercase;
     text-decoration: none;
-    transition: 0.4s ease-in-out;
 
     &::after {
+      @include default-transition;
       position: absolute;
       bottom: -5px;
       left: 0;
@@ -57,12 +59,9 @@ export default {
       width: 0;
       height: 2px;
       background-color: $color-default-white;
-      transition: 0.4s ease-in-out;
     }
 
     &:hover {
-      // color: $color-default-black;
-
       &::after {
         width: 100%;
         background-color: $color-orange;

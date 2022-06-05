@@ -1,23 +1,27 @@
 <template>
-  <MainHeader @openLogin="isLoginForm = true" :isMainPage="true" />
-  <transition-group name="fade">
-    <MainPresentation :key="previewId" :preview="presentationItems[previewId]" />
-  </transition-group>
-  <AboutUs />
-  <MainElectronic />
-  <MainGoods />
-  <MainFeedback />
-  <MainFooter />
-  <Transition name="slide-fade">
-    <MainModal
-      v-show="isLoginForm"
-      @click="isLoginForm = false"
-      @keypress.enter="isLoginForm = false"
-    >
-      <MainLogin @click.stop @closeForm="isLoginForm = false" />
-      <ButtonClose class="main-page__close" />
-    </MainModal>
-  </Transition>
+  <div class="main-page">
+    <MainHeader @openLogin="isLoginForm = true" :isMainPage="true" />
+    <div class="main-page__main">
+      <transition-group name="fade">
+        <MainPresentation :key="previewId" :preview="presentationItems[previewId]" />
+      </transition-group>
+      <AboutUs />
+      <MainElectronic />
+      <MainGoods />
+      <MainFeedback />
+    </div>
+    <MainFooter />
+    <Transition name="slide-fade">
+      <MainModal
+        v-show="isLoginForm"
+        @click="isLoginForm = false"
+        @keypress.enter="isLoginForm = false"
+      >
+        <MainLogin @click.stop @closeForm="isLoginForm = false" />
+        <ButtonClose class="main-page__close" />
+      </MainModal>
+    </Transition>
+  </div>
 </template>
 
 <script>
@@ -33,6 +37,7 @@ import MainLogin from '@/components/MainLogin.vue';
 import ButtonClose from '@/components/UI/ButtonClose.vue';
 
 export default {
+  name: 'MainPage',
   components: {
     MainHeader,
     MainPresentation,
@@ -101,7 +106,17 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
+.main-page {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+}
+
+.main-page__main {
+  flex: 1 1 auto;
+}
+
 .main-page__close {
   position: absolute;
   top: 10px;
@@ -109,10 +124,10 @@ export default {
 }
 
 .slide-fade-enter-active {
-  transition: all 0.4s ease-out;
+  @include default-transition;
 }
 .slide-fade-leave-active {
-  transition: all 0.4s ease-out;
+  @include default-transition;
 }
 .slide-fade-enter-from,
 .slide-fade-leave-to {

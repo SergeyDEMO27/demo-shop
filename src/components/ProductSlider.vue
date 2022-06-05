@@ -45,6 +45,7 @@
 
 <script>
 export default {
+  name: 'ProductSlider',
   props: {
     product: Object,
     activeColor: String,
@@ -118,7 +119,6 @@ export default {
 .product-slider__picture {
   position: relative;
   width: 100%;
-  // width: 576px;
   height: 360px;
   margin-bottom: 20px;
   border-radius: 4px;
@@ -134,10 +134,6 @@ export default {
   }
 
   .product-slider__image {
-    // position: absolute;
-    // top: 50%;
-    // left: 50%;
-    // transform: translate(-50%, -50%);
     width: 100%;
     height: 100%;
     object-fit: contain;
@@ -173,6 +169,7 @@ export default {
     }
 
     &::before {
+      @include default-transition;
       position: absolute;
       top: 50%;
       left: 0;
@@ -180,7 +177,6 @@ export default {
       height: 8px;
       content: '';
       background-color: rgba(0, 0, 0, 30%);
-      transition: 0.4s;
     }
 
     &-active {
@@ -208,6 +204,7 @@ export default {
   }
 
   &::after {
+    @include default-transition;
     position: absolute;
     top: 25%;
     left: 35%;
@@ -216,7 +213,6 @@ export default {
     content: '';
     border-left: 2px solid rgba(0, 0, 0, 50%);
     border-top: 2px solid rgba(0, 0, 0, 50%);
-    transition: 0.4s;
   }
 
   &-prev {
@@ -241,13 +237,11 @@ export default {
   &-enter-active {
     position: absolute;
     transition: all 0.1s ease-out;
-    // opacity: 0;
   }
 
   &-leave-active {
     position: absolute;
     transition: all 0.1s cubic-bezier(1, 0.5, 0.8, 1);
-    // opacity: 0;
   }
 
   &-enter-from,
@@ -261,13 +255,11 @@ export default {
   &-enter-active {
     position: absolute;
     transition: all 0.1s ease-out;
-    // opacity: 0;
   }
 
   &-leave-active {
     position: absolute;
     transition: all 0.1s cubic-bezier(1, 0.5, 0.8, 1);
-    // opacity: 0;
   }
 
   &-enter-from,

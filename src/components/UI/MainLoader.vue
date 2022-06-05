@@ -11,6 +11,7 @@
 import { ContentLoader } from 'vue-content-loader';
 
 export default {
+  name: 'MainLoader',
   components: {
     ContentLoader,
   },

@@ -21,6 +21,7 @@
 import MainButton from '@/components/UI/MainButton.vue';
 
 export default {
+  name: 'MainPresentation',
   components: {
     MainButton,
   },
@@ -84,6 +85,7 @@ export default {
     padding-bottom: 12px;
     background-color: $color-orange;
     border: none;
+
     &:hover {
       background-color: $color-default-white;
     }

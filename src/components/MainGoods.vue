@@ -52,19 +52,13 @@ import MainLoader from '@/components/UI/MainLoader.vue';
 import PreviewItem from '@/components/PreviewItem.vue';
 
 export default {
+  name: 'MainGoods',
   components: {
     PreviewItem,
     MainLoader,
   },
   data() {
     return {
-      // previews: [
-      //   { id: Date.now(), title: 'watch', path: '0' },
-      //   { id: Date.now(), title: 'mobile', path: '1' },
-      //   { id: Date.now(), title: 'television', path: '2' },
-      //   { id: Date.now(), title: 'audiosystem', path: '0' },
-      //   { id: Date.now(), title: 'computer', path: '1' },
-      // ],
       isLoading: false,
       categories: ['jewelery', "men's clothing", "women's clothing"],
       previewsFake: {},
@@ -75,7 +69,6 @@ export default {
       try {
         this.isLoading = true;
         this.categories.map(async (categorie) => {
-          // this.isLoading = true;
           const requestPath = `https://fakestoreapi.com/products/category/${categorie}?limit=1`;
           const response = await axios(requestPath);
           // eslint-disable-next-line prefer-destructuring
@@ -96,18 +89,12 @@ export default {
 <style lang="scss">
 .main-goods {
   min-height: 700px;
-  // padding-top: 60px;
-  // padding-bottom: 60px;
   background-color: $color-default-white;
   text-align: right;
 }
 
 .main-goods__container {
   @include default-container;
-  // max-width: 1200px;
-  // margin-right: auto;
-  // margin-left: auto;
-  // text-align: right;
 }
 
 .main-goods__title {
@@ -122,8 +109,8 @@ export default {
 }
 
 .main-goods__description {
-  display: inline-block;
   @include main-description;
+  display: inline-block;
   max-width: 50%;
 }
 

@@ -35,6 +35,7 @@
 
 <script>
 export default {
+  name: 'ProductFilter',
   props: {
     searchValue: String,
     selectValue: String,
@@ -56,6 +57,7 @@ export default {
 
 .product-filter__select {
   @include main-title;
+  @include default-transition;
   min-width: 100px;
   margin-right: 20px;
   font-size: 16px;
@@ -65,7 +67,6 @@ export default {
   text-transform: capitalize;
   text-align: left;
   outline: none;
-  transition: 0.4s;
 
   & > option {
     background-color: $color-default-white;
@@ -82,12 +83,12 @@ export default {
 
   .product-filter__label {
     @include main-title;
+    @include default-transition;
     position: absolute;
     top: 0;
     left: 0;
     font-size: 16px;
     cursor: auto;
-    transition: 0.4s;
 
     &-active {
       top: -25px;
@@ -96,15 +97,13 @@ export default {
 
   .product-filter__input {
     @include main-title;
+    @include default-transition;
     margin-right: 20px;
     font-size: 16px;
-    // width: 100%;
-    // height: 30px;
     border: none;
     border-bottom: 2px solid $color-default-black;
     background-color: $color-default-white;
     text-transform: none;
-    transition: 0.4s;
 
     &-active {
       border-color: $color-orange;
@@ -113,7 +112,6 @@ export default {
     &:active,
     &:focus {
       outline: none;
-      // border-bottom: 1px solid $color-light-black;
     }
   }
 }
@@ -131,7 +129,6 @@ export default {
 
     .product-filter__input {
       width: 90%;
-      // padding-left: 20px;
       font-size: 14px;
     }
   }

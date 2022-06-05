@@ -40,10 +40,11 @@
 </template>
 
 <script>
-import MainButton from '@/components/UI/MainButton.vue';
 import { mapActions } from 'vuex';
+import MainButton from '@/components/UI/MainButton.vue';
 
 export default {
+  name: 'ProductInfo',
   props: {
     product: Object,
     colors: Array,
@@ -51,12 +52,6 @@ export default {
   },
   components: {
     MainButton,
-  },
-  data() {
-    return {
-      // colors: ['white', 'black', 'orange', 'brown', 'blue', 'red', 'green'],
-      // activeColor: 0,
-    };
   },
   methods: {
     ...mapActions({
@@ -87,7 +82,6 @@ export default {
 .product-info__color {
   @include reset-list;
   display: flex;
-  // justify-content: space-between;
   margin-bottom: 30px;
 
   .product-info__color-item {
@@ -141,9 +135,8 @@ export default {
 }
 
 .product-info__price {
+  @include main-title;
   margin-bottom: 30px;
-  font-family: 'Lexend Deca', Arial, Helvetica, sans-serif;
-  font-weight: normal;
   text-transform: capitalize;
   font-size: 20px;
 }
@@ -158,12 +151,9 @@ export default {
   @include main-description;
   display: flex;
   flex-wrap: wrap;
-  // justify-content: space-between;
-  // margin-left: 16px;
   font-size: 16px;
 
   .product-info__special-item {
-    // width: 30%;
     margin-bottom: 10px;
     margin-left: 30px;
     position: relative;

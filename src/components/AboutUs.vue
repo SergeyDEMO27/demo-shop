@@ -18,10 +18,10 @@
 import CategoryPreviews from './CategoryPreviews.vue';
 
 export default {
+  name: 'AboutUs',
   components: {
     CategoryPreviews,
   },
-
   data() {
     return {
       scrollPosition: 0,

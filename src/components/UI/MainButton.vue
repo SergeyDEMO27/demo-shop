@@ -7,15 +7,19 @@
 </template>
 
 <script>
-export default {};
+export default {
+  name: 'MainButton',
+};
 </script>
 
 <style lang="scss">
 .main-button__link {
+  @include main-title;
+  @include default-transition;
   display: inline-block;
   min-width: 140px;
   padding: 10px 32px;
-  font-family: 'Lexend Deca', Arial, Helvetica, sans-serif;
+  font-size: 16px;
   color: $color-black;
   text-transform: capitalize;
   text-align: center;
@@ -24,7 +28,6 @@ export default {};
   background-color: transparent;
   text-decoration: none;
   overflow: hidden;
-  transition: 0.4s;
 
   &:hover {
     background-color: $color-orange;

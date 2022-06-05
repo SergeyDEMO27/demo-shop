@@ -17,6 +17,7 @@
 
 <script>
 export default {
+  name: 'AllGoods',
   props: {
     products: Array,
   },
@@ -54,6 +55,7 @@ export default {
       &::after {
         width: 100%;
       }
+
       &::first-letter {
         color: $color-orange;
       }
@@ -70,15 +72,12 @@ export default {
   overflow: hidden;
 
   .all-goods__image {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    @include center-element;
+    @include default-transition;
     width: 90%;
     height: 90%;
     object-fit: contain;
     border-radius: 4px;
-    transition: 0.4s;
   }
 }
 
@@ -92,6 +91,7 @@ export default {
   transition: 1s;
 
   &::after {
+    @include default-transition;
     position: absolute;
     bottom: -5px;
     left: 0;
@@ -100,7 +100,6 @@ export default {
     content: '';
     background-color: $color-orange;
     border-radius: 25px;
-    transition: 0.4s;
   }
 
   &::first-letter {
