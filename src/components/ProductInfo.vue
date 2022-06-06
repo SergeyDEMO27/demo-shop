@@ -29,6 +29,7 @@
         })
       "
       class="product-info__button"
+      :buttonType="'button'"
       >Add to basket</MainButton
     >
     <ul class="product-info__special">
@@ -142,7 +143,6 @@ export default {
 }
 
 .product-info__button {
-  width: 290px;
   margin-bottom: 30px;
 }
 

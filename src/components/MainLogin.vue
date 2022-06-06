@@ -22,9 +22,14 @@
             :inputValue="inputValues.logPassword"
             :isInputActive="isInputsActive.logPassword"
           />
-          <MainButton class="main-login__button" @click="loginHandler">Log in</MainButton>
+          <MainButton class="main-login__button" @click="loginHandler" :buttonType="'button'"
+            >Submit</MainButton
+          >
         </form>
-        <MainButton class="main-login__button" @click.prevent="isLogin = false"
+        <MainButton
+          class="main-login__button"
+          @click.prevent="isLogin = false"
+          :buttonType="'button'"
           >registration</MainButton
         >
       </div>
@@ -58,9 +63,16 @@
             :inputValue="inputValues.regEmail"
             :isInputActive="isInputsActive.regEmail"
           />
-          <MainButton class="main-login__button" @click="registrateHandler">Register</MainButton>
+          <MainButton class="main-login__button" @click="registrateHandler" :buttonType="'button'"
+            >Submit</MainButton
+          >
         </form>
-        <MainButton class="main-login__button" @click.prevent="isLogin = true">login</MainButton>
+        <MainButton
+          class="main-login__button"
+          @click.prevent="isLogin = true"
+          :buttonType="'button'"
+          >login</MainButton
+        >
       </div>
     </div>
     <div class="main-login__success" v-else-if="success.login">

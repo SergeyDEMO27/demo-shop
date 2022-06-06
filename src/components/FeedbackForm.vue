@@ -39,7 +39,9 @@
       By subscribing to The Demo Shop you accept that we can contact you and send you communication
       by email.
     </p>
-    <MainButton class="feedback-form__button" @click.prevent="submitHandler">Subscribe</MainButton>
+    <MainButton class="feedback-form__button" @click.prevent="submitHandler" :buttonType="'button'"
+      >Subscribe</MainButton
+    >
   </form>
 </template>
 
@@ -118,7 +120,7 @@ export default {
   }
 
   .feedback-form__button {
-    .main-button__link {
+    .main-button__item {
       min-width: unset;
       padding: 10px 20px;
     }

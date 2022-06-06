@@ -25,6 +25,7 @@
         @focus="this.isHover = true"
         @blur="this.isHover = false"
         @click="$router.push(`/product/${preview.id}`)"
+        :buttonType="'link'"
         >show more</MainButton
       >
     </div>

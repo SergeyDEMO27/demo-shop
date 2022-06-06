@@ -11,7 +11,7 @@
         {{ preview.description }}
       </p>
       <router-link :to="`/products/${preview.link}`" class="mainNavigation__link" href="#"
-        ><MainButton class="main-presentation__link">Discover More</MainButton>
+        ><MainButton class="main-presentation__link" :buttonType="'link'">Discover More</MainButton>
       </router-link>
     </div>
   </section>
@@ -79,16 +79,13 @@ export default {
 }
 
 .main-presentation__link {
-  display: inline-block;
-  a {
-    padding-top: 12px;
-    padding-bottom: 12px;
-    background-color: $color-orange;
-    border: none;
+  padding-top: 12px;
+  padding-bottom: 12px;
+  background-color: $color-orange;
+  border: none;
 
-    &:hover {
-      background-color: $color-default-white;
-    }
+  &:hover {
+    background-color: $color-default-white;
   }
 }
 

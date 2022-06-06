@@ -120,7 +120,7 @@ export default {
 .main-page__close {
   position: absolute;
   top: 10px;
-  right: 35px;
+  right: 15px;
 }
 
 .slide-fade-enter-active {

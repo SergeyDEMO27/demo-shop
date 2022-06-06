@@ -5,7 +5,7 @@
       Enjoy new and limited products, exclusive events, special offers and much more before anyone
       else.
     </p>
-    <MainButton class="main-sign__button" @click.prevent="$emit('showModal')"
+    <MainButton class="main-sign__button" @click.prevent="$emit('showModal')" :buttonType="'button'"
       >Sign up now</MainButton
     >
   </section>

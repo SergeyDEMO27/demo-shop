@@ -201,8 +201,8 @@ export default {
 
 .product-page__close-modal {
   position: absolute;
-  top: 10px;
-  right: 40px;
+  top: 15px;
+  right: 20px;
 }
 
 .slide-fade-enter-active {

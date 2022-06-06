@@ -1,19 +1,23 @@
 <template>
-  <div class="main-button">
-    <a class="main-button__link" href="#">
-      <slot></slot>
-    </a>
-  </div>
+  <a v-if="buttonType === 'link'" class="main-button" href="#">
+    <slot></slot>
+  </a>
+  <button v-else class="main-button" type="button">
+    <slot></slot>
+  </button>
 </template>
 
 <script>
 export default {
   name: 'MainButton',
+  props: {
+    buttonType: String,
+  },
 };
 </script>
 
 <style lang="scss">
-.main-button__link {
+.main-button {
   @include main-title;
   @include default-transition;
   display: inline-block;
@@ -27,6 +31,7 @@ export default {
   border-radius: 24px;
   background-color: transparent;
   text-decoration: none;
+  cursor: pointer;
   overflow: hidden;
 
   &:hover {
