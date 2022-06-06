@@ -2,7 +2,7 @@
   <div class="main-bin">
     <div class="main-bin__main">
       <div class="main-bin__wrapper">
-        <h2 class="main-bin__title">Main Products({{ productCount }})</h2>
+        <h2 class="main-bin__title">Main Products ({{ productCount }})</h2>
         <button class="main-bin__removeAll" type="button" @click="removeAllProductsInBin">
           clear list
         </button>
@@ -188,7 +188,7 @@ export default {
   .main-bin__decrease {
     position: absolute;
     top: 0;
-    right: -14px;
+    left: 1px;
     width: 11px;
     height: 11px;
     background-color: transparent;
@@ -204,7 +204,7 @@ export default {
   }
 
   .main-bin__increase {
-    top: -10px;
+    top: -15px;
 
     &::before {
       @include center-element;
@@ -226,7 +226,7 @@ export default {
   }
 
   .main-bin__decrease {
-    top: 13px;
+    top: 18px;
 
     &::after {
       @include center-element;
@@ -256,7 +256,7 @@ export default {
 
 .main-bin__item-link {
   @include default-transition;
-  max-width: 55%;
+  max-width: 60%;
   color: $color-default-black;
   text-decoration: none;
 

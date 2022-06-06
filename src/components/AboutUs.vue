@@ -49,11 +49,8 @@ export default {
   },
   mounted() {
     const header = document.querySelector('#mainHeader');
-    const thresholdArray = (steps) =>
-      // eslint-disable-next-line implicit-arrow-linebreak
-      Array(steps + 1)
-        .fill(0)
-        .map((_, index) => index / steps || 0);
+    // prettier-ignore
+    const thresholdArr = (steps) => Array(steps + 1).fill(0).map((_, index) => index / steps || 0);
 
     let previousY = 0;
     let previousRatio = 0;
@@ -62,8 +59,7 @@ export default {
       entries.forEach((entry) => {
         const currentY = entry.boundingClientRect.y;
         const currentRatio = entry.intersectionRatio;
-        // eslint-disable-next-line prefer-destructuring
-        const isIntersecting = entry.isIntersecting;
+        const { isIntersecting } = entry;
 
         if (currentY < previousY) {
           if (currentRatio > previousRatio && isIntersecting) {
@@ -83,7 +79,7 @@ export default {
     };
 
     const observer = new IntersectionObserver(handleIntersect, {
-      threshold: thresholdArray(1),
+      threshold: thresholdArr(1),
     });
 
     observer.observe(this.$refs.observer);

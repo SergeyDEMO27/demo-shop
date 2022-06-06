@@ -3,11 +3,11 @@
     <MainHeader @openLogin="isLoginForm = true" :isMainPage="true" />
     <div class="main-page__main">
       <transition-group name="fade">
-        <MainPresentation :key="previewId" :preview="presentationItems[previewId]" />
+        <MainPresentation :key="previewId" :preview="presentItems[previewId]" />
       </transition-group>
       <AboutUs />
-      <MainElectronic />
-      <MainGoods />
+      <MainElectronic @elError="isError = true" />
+      <MainGoods @goodError="isError = true" />
       <MainFeedback />
     </div>
     <MainFooter />
@@ -19,6 +19,11 @@
       >
         <MainLogin @click.stop @closeForm="isLoginForm = false" />
         <ButtonClose class="main-page__close" />
+      </MainModal>
+    </Transition>
+    <Transition name="slide-fade">
+      <MainModal v-if="isError" @click="isError = false" @keypress.enter="isError = false">
+        <MainError>Something went wrong. Try to reload page</MainError>
       </MainModal>
     </Transition>
   </div>
@@ -34,6 +39,7 @@ import MainFeedback from '@/components/MainFeedback.vue';
 import MainFooter from '@/components/MainFooter.vue';
 import MainModal from '@/components/UI/MainModal.vue';
 import MainLogin from '@/components/MainLogin.vue';
+import MainError from '@/components/UI/MainError.vue';
 import ButtonClose from '@/components/UI/ButtonClose.vue';
 
 export default {
@@ -48,6 +54,7 @@ export default {
     MainFooter,
     MainModal,
     MainLogin,
+    MainError,
     ButtonClose,
   },
   data() {
@@ -55,7 +62,8 @@ export default {
       previewId: 0,
       previewInterval: '',
       isLoginForm: false,
-      presentationItems: [
+      isError: false,
+      presentItems: [
         {
           id: 0,
           title: 'Highest standards',
@@ -89,9 +97,7 @@ export default {
   },
   methods: {
     changePreviewId() {
-      // eslint-disable-next-line operator-linebreak
-      this.previewId =
-        this.previewId + 1 > this.presentationItems.length - 1 ? 0 : this.previewId + 1;
+      this.previewId = this.previewId + 1 > this.presentItems.length - 1 ? 0 : this.previewId + 1;
     },
     setPreviewInterval() {
       this.previewInterval = setInterval(this.changePreviewId, 8000);

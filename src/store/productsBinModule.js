@@ -1,14 +1,13 @@
-// eslint-disable-next-line import/prefer-default-export
-export const productsBinModule = {
+export default {
   state: () => ({
     productsInBin: [],
   }),
   getters: {},
   mutations: {
     setProductsInBin(state, product) {
+      // prettier-ignore
       const uniqueValues = [...state.productsInBin, product].filter(
-        // eslint-disable-next-line comma-dangle
-        (value, index, self) => index === self.findIndex((t) => t.idUnique === value.idUnique)
+        (value, index, self) => index === self.findIndex((t) => t.idUnique === value.idUnique),
       );
 
       state.productsInBin = uniqueValues;
@@ -21,7 +20,6 @@ export const productsBinModule = {
     increaseProducts(state, id) {
       state.productsInBin = [...state.productsInBin].map((product) => {
         if (product.idUnique === id) {
-          // eslint-disable-next-line no-param-reassign
           product.count += 1;
         }
         return product;
@@ -30,7 +28,6 @@ export const productsBinModule = {
     decreaseProducts(state, id) {
       state.productsInBin = [...state.productsInBin].map((product) => {
         if (product.idUnique === id) {
-          // eslint-disable-next-line no-param-reassign
           product.count -= 1;
         }
         return product;

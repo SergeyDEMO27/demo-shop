@@ -59,6 +59,11 @@
         <ButtonClose class="main-page__close" />
       </MainModal>
     </Transition>
+    <Transition name="slide-fade">
+      <MainModal v-if="isError" @click="isError = false" @keypress.enter="isError = false">
+        <MainError>Something went wrong. Try to reload page</MainError>
+      </MainModal>
+    </Transition>
   </div>
 </template>
 
@@ -73,6 +78,7 @@ import MainSign from '@/components/MainSign.vue';
 import MainModal from '@/components/UI/MainModal.vue';
 import ButtonClose from '@/components/UI/ButtonClose.vue';
 import FeedbackModal from '@/components/FeedbackModal.vue';
+import MainError from '@/components/UI/MainError.vue';
 import MainLogin from '@/components/MainLogin.vue';
 
 export default {
@@ -87,11 +93,13 @@ export default {
     FeedbackModal,
     ButtonClose,
     MainLogin,
+    MainError,
     MainLoader,
   },
   data() {
     return {
       isLoad: false,
+      isError: false,
       isLoginForm: false,
       isModalShown: false,
       product: {},
@@ -107,7 +115,7 @@ export default {
         this.product = response.data;
         this.isLoad = false;
       } catch (error) {
-        console.log(error);
+        this.isError = true;
       }
     },
     changeColorHandler(color) {

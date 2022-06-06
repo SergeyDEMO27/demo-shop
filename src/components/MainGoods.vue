@@ -66,18 +66,18 @@ export default {
   },
   methods: {
     fetchProducts() {
-      try {
-        this.isLoading = true;
-        this.categories.map(async (categorie) => {
+      this.categories.map(async (categorie) => {
+        try {
+          this.isLoading = true;
           const requestPath = `https://fakestoreapi.com/products/category/${categorie}?limit=1`;
           const response = await axios(requestPath);
           // eslint-disable-next-line prefer-destructuring
           this.previewsFake[categorie] = response.data[0];
           this.isLoading = false;
-        });
-      } catch (error) {
-        console.log(error);
-      }
+        } catch (error) {
+          this.$emit('goodError');
+        }
+      });
     },
   },
   mounted() {

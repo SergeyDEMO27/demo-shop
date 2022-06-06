@@ -65,6 +65,11 @@
         <ButtonClose class="main-page__close" />
       </MainModal>
     </Transition>
+    <Transition name="slide-fade">
+      <MainModal v-if="isError" @click="isError = false" @keypress.enter="isError = false">
+        <MainError>Something went wrong. Try to reload page</MainError>
+      </MainModal>
+    </Transition>
   </div>
 </template>
 
@@ -79,6 +84,7 @@ import MainModal from '@/components/UI/MainModal.vue';
 import FeedbackModal from '@/components/FeedbackModal.vue';
 import ButtonClose from '@/components/UI/ButtonClose.vue';
 import MainLogin from '@/components/MainLogin.vue';
+import MainError from '@/components/UI/MainError.vue';
 import MainLoader from '@/components/UI/MainLoader.vue';
 
 export default {
@@ -93,6 +99,7 @@ export default {
     FeedbackModal,
     ButtonClose,
     MainLogin,
+    MainError,
     MainLoader,
   },
   data() {
@@ -109,6 +116,7 @@ export default {
         { title: 'price down', value: 'priceDown' },
       ],
       isLoading: false,
+      isError: false,
       isLoginForm: false,
       isModalShown: false,
     };
@@ -123,31 +131,30 @@ export default {
     async fetchCategorie() {
       try {
         this.isLoading = true;
+        // prettier-ignore
         const response = await axios.get(
-          // eslint-disable-next-line comma-dangle
-          `https://fakestoreapi.com/products/category/${this.$route.params.id}`
+          `https://fakestoreapi.com/products/category/${this.$route.params.id}`,
         );
         this.products = response.data;
         this.isLoading = false;
       } catch (error) {
-        console.log(error);
+        this.isError = true;
       }
     },
     async fetchCategorieHandler(category) {
       try {
         this.products = [];
         this.isLoading = true;
-        // eslint-disable-next-line operator-linebreak
-        const path =
-          category === 'all'
-            ? 'https://fakestoreapi.com/products'
-            : `https://fakestoreapi.com/products/category/${category}`;
+        // prettier-ignore
+        const path = category === 'all'
+          ? 'https://fakestoreapi.com/products'
+          : `https://fakestoreapi.com/products/category/${category}`;
         const response = await axios.get(path);
         this.products = response.data;
         this.activeCategory = category;
         this.isLoading = false;
       } catch (error) {
-        console.log(error);
+        this.isError = true;
       }
     },
   },
@@ -155,35 +162,27 @@ export default {
     this.activeCategory = this.$route.params.id;
     this.fetchCategorie();
   },
+
   computed: {
     filterGoods() {
       if (this.selectValue === 'priceUp') {
         return [...this.products].sort((a, b) => a.price - b.price);
-        // eslint-disable-next-line no-else-return
-      } else if (this.selectValue === 'priceDown') {
-        return [...this.products].sort((a, b) => b.price - a.price);
-      } else if (this.selectValue === 'titleDown') {
-        return [...this.products].sort(
-          (a, b) =>
-            // eslint-disable-next-line comma-dangle, implicit-arrow-linebreak
-            b.title.localeCompare(a.title)
-          // eslint-disable-next-line function-paren-newline
-        );
       }
-      return [...this.products].sort(
-        (a, b) =>
-          // eslint-disable-next-line comma-dangle, implicit-arrow-linebreak
-          a.title.localeCompare(b.title)
-        // eslint-disable-next-line function-paren-newline
-      );
+      if (this.selectValue === 'priceDown') {
+        return [...this.products].sort((a, b) => b.price - a.price);
+      }
+      if (this.selectValue === 'titleDown') {
+        return [...this.products].sort((a, b) => b.title.localeCompare(a.title));
+      }
+      return [...this.products].sort((a, b) => a.title.localeCompare(b.title));
     },
     searchGoods() {
+      // prettier-ignore
       return this.filterGoods.filter(
         ({ title, description }) =>
-          // eslint-disable-next-line implicit-arrow-linebreak, operator-linebreak
-          title.toLocaleLowerCase().includes(this.searchValue.toLocaleLowerCase()) ||
-          // eslint-disable-next-line comma-dangle,
-          description.toLocaleLowerCase().includes(this.searchValue.toLocaleLowerCase())
+          // eslint-disable-next-line implicit-arrow-linebreak
+          title.toLocaleLowerCase().includes(this.searchValue.toLocaleLowerCase())
+          || description.toLocaleLowerCase().includes(this.searchValue.toLocaleLowerCase()),
       );
     },
   },

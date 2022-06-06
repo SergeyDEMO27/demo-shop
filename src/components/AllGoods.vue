@@ -84,7 +84,6 @@ export default {
 .all-goods__title {
   @include main-title;
   position: relative;
-  // display: inline;
   margin-bottom: 20px;
   font-size: 20px;
   text-transform: lowercase;

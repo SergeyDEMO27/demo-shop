@@ -70,14 +70,14 @@ export default {
     async fetchProducts() {
       try {
         this.isLoading = true;
+        // prettier-ignore
         const response = await axios(
-          // eslint-disable-next-line comma-dangle
-          'https://fakestoreapi.com/products/category/electronics?limit=5'
+          'https://fakestoreapi.com/products/category/electronics?limit=5',
         );
         this.previews[this.categories] = response.data;
         this.isLoading = false;
       } catch (error) {
-        console.log(error);
+        this.$emit('elError');
       }
     },
   },
