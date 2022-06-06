@@ -20,8 +20,8 @@ export default {
   &::after {
     @include default-transition;
     position: absolute;
-    top: 8px;
-    right: 0;
+    top: 9px;
+    right: 2px;
     width: 100%;
     height: 2px;
     content: '';

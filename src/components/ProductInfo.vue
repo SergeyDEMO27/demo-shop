@@ -21,11 +21,12 @@
       @click.prevent="
         addProductInBin({
           id: product.id,
-          idUnique: Date.now(),
+          idUnique: `${product.title}${activeColor}`,
           imagePath: product.image,
           title: product.title,
           color: activeColor,
           price: product.price,
+          count: 1,
         })
       "
       class="product-info__button"

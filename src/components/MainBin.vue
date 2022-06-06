@@ -10,6 +10,23 @@
       <div v-if="productCount" class="main-bin__container">
         <TransitionGroup class="main-bin__list" name="list" tag="ul">
           <li class="main-bin__item" v-for="product in productsInBin" :key="product">
+            <div class="main-bin__counter">
+              {{ product.count }}
+              <div>
+                <button class="main-bin__increase" @click="increaseProductCount(product.idUnique)">
+                  <span class="main-bin__label">increase</span></button
+                ><button
+                  class="main-bin__decrease"
+                  @click="
+                    if (product.count > 1) {
+                      decreaseProductCount(product.idUnique);
+                    }
+                  "
+                >
+                  <span class="main-bin__label">decrease</span>
+                </button>
+              </div>
+            </div>
             <div class="main-bin__item-picture">
               <img class="main-bin__item-image" :src="product.imagePath" alt="" />
             </div>
@@ -57,9 +74,11 @@ export default {
   },
   methods: {
     ...mapActions({
+      setProductsOnMount: 'productsBin/setProductsOnMount',
+      increaseProductCount: 'productsBin/increaseProductCount',
+      decreaseProductCount: 'productsBin/decreaseProductCount',
       removeProductInBin: 'productsBin/removeProductInBin',
       removeAllProductsInBin: 'productsBin/removeAllProductsInBin',
-      setProductsOnMount: 'productsBin/setProductsOnMount',
     }),
   },
   computed: {
@@ -73,16 +92,17 @@ export default {
   watch: {
     productsInBin: {
       handler(newValue) {
-        console.log(newValue);
         localStorage.setItem('productsInBin', JSON.stringify(newValue));
+        this.productCount = 0;
         this.totalPrice = 0;
-        let newPrice = 0;
         if (newValue.length !== 0) {
-          // eslint-disable-next-line no-return-assign
-          newValue.map(({ price }) => (newPrice += price));
+          // eslint-disable-next-line array-callback-return
+          newValue.map(({ count, price }) => {
+            this.productCount += count;
+            this.totalPrice += price * count;
+          });
         }
-        this.totalPrice = Math.floor(newPrice);
-        this.productCount = this.productsInBin.length;
+        this.totalPrice = Math.floor(this.totalPrice);
       },
       deep: true,
     },
@@ -161,6 +181,68 @@ export default {
   }
 }
 
+.main-bin__counter {
+  position: relative;
+
+  .main-bin__increase,
+  .main-bin__decrease {
+    position: absolute;
+    top: 0;
+    right: -14px;
+    width: 11px;
+    height: 11px;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+
+    &:hover {
+      &::before,
+      &::after {
+        background-color: $color-default-black;
+      }
+    }
+  }
+
+  .main-bin__increase {
+    top: -10px;
+
+    &::before {
+      @include center-element;
+      @include default-transition;
+      content: '';
+      width: 2px;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+    }
+
+    &::after {
+      @include center-element;
+      @include default-transition;
+      content: '';
+      width: 100%;
+      height: 2px;
+      background-color: rgba(0, 0, 0, 0.5);
+    }
+  }
+
+  .main-bin__decrease {
+    top: 13px;
+
+    &::after {
+      @include center-element;
+      @include default-transition;
+      content: '';
+      width: 100%;
+      height: 2px;
+      background-color: rgba(0, 0, 0, 0.5);
+    }
+  }
+}
+
+.main-bin__label {
+  @include visually-hidden;
+}
+
 .main-bin__item-picture {
   width: 40px;
   height: 40px;
@@ -174,7 +256,7 @@ export default {
 
 .main-bin__item-link {
   @include default-transition;
-  max-width: 60%;
+  max-width: 55%;
   color: $color-default-black;
   text-decoration: none;
 
@@ -183,7 +265,8 @@ export default {
   }
 }
 
-.main-bin__item-description {
+.main-bin__item-description,
+.main-bin__counter {
   @include main-description;
   font-size: 14px;
 }
