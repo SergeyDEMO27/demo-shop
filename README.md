@@ -1,24 +1,16 @@
-# shop-project
+## 'The Demo Shop'
 
-## Project setup
-```
-npm install
-```
+'The Demo Shop' - интернет-магазин, в котором можно найти и добавить в корзину разнообразную электронику, украшения и одежду, воспользовавшись фильтрами и поиском.
 
-### Compiles and hot-reloads for development
-```
+Ссылка на интернет-магазин 'The Demo Shop' - https://demo-shop-six.vercel.app
+
+### `Установка локально`
+
+1. Установите Node.js последней версии в систему глобально (установка JavaScript).
+2. Склонируйте созданный репозиторий проекта локально (git clone https://github.com/edji777/demo-shop).
+3. Перейдите в директорию склонированного проекта (cd demo-shop).
+4. Выполните установку зависимостей (npm install).
+
+### `Запуск проекта`
+
 npm run serve
-```
-
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
