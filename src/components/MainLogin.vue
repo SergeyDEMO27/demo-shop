@@ -198,6 +198,10 @@ export default {
     width: 100%;
   }
 
+  .main-login__title {
+    font-size: 32px;
+  }
+
   .main-login__success {
     &-title {
       @include main-title;

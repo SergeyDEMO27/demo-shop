@@ -1,8 +1,6 @@
 <template>
   <div class="feedback-modal">
-    <div class="feedback-modal__item">
-      <img class="feedback-modal__image" src="@/assets/images/background/feedback-bg.jpeg" alt="" />
-    </div>
+    <div class="feedback-modal__item feedback-modal__item-image"></div>
     <div class="feedback-modal__item">
       <div class="feedback-modal__wrapper">
         <h3 class="feedback-modal__main-title">The Demo Shop</h3>
@@ -35,12 +33,19 @@ export default {
 .feedback-modal {
   display: flex;
   width: 100%;
-  max-height: 770px;
+  min-height: 770px;
 }
 
 .feedback-modal__item {
   width: 50%;
   background-color: $color-default-white;
+
+  &-image {
+    background-image: url('@/assets/images/background/feedback-bg.jpeg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+  }
 }
 
 .feedback-modal__image {
@@ -106,10 +111,20 @@ export default {
 @media (min-width: $viewport--sm) and (max-width: calc(#{$viewport--md} - 1px)) {
   .feedback-modal {
     max-height: unset;
+    // text-align: center;
+  }
+
+  .feedback-modal__item {
+    width: 100%;
+
+    &-image {
+      width: 0;
+    }
   }
 
   .feedback-modal__wrapper {
-    width: 90%;
+    width: 50%;
+    min-width: 200px;
   }
 
   .feedback-modal__main-title {

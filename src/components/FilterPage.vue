@@ -292,7 +292,7 @@ export default {
 .filter-page__close-modal {
   position: absolute;
   top: 10px;
-  right: 40px;
+  right: 20px;
 }
 
 .slide-fade-enter-active {
