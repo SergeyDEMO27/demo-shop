@@ -111,7 +111,6 @@ export default {
 @media (min-width: $viewport--sm) and (max-width: calc(#{$viewport--md} - 1px)) {
   .feedback-modal {
     max-height: unset;
-    // text-align: center;
   }
 
   .feedback-modal__item {

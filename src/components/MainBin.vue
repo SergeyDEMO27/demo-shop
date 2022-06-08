@@ -188,7 +188,7 @@ export default {
   .main-bin__decrease {
     position: absolute;
     top: 0;
-    left: 1px;
+    left: 0;
     width: 11px;
     height: 11px;
     background-color: transparent;
@@ -211,7 +211,7 @@ export default {
       @include default-transition;
       content: '';
       width: 2px;
-      height: 100%;
+      height: 90%;
       background-color: rgba(0, 0, 0, 0.5);
     }
 
@@ -219,7 +219,7 @@ export default {
       @include center-element;
       @include default-transition;
       content: '';
-      width: 100%;
+      width: 90%;
       height: 2px;
       background-color: rgba(0, 0, 0, 0.5);
     }
