@@ -69,8 +69,15 @@ export default {
       this.categories.map(async (categorie) => {
         try {
           this.isLoading = true;
-          const requestPath = `https://fakestoreapi.com/products/category/${categorie}?limit=1`;
-          const response = await axios(requestPath);
+          // prettier-ignore
+          const response = await axios.get(
+            `https://fakestoreapi.com/products/category/${categorie}`,
+            {
+              params: {
+                limit: 1,
+              },
+            },
+          );
           // eslint-disable-next-line prefer-destructuring
           this.previewsFake[categorie] = response.data[0];
           this.isLoading = false;

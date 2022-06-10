@@ -111,7 +111,10 @@ export default {
     async fetchProduct() {
       try {
         this.isLoad = true;
-        const response = await axios(`https://fakestoreapi.com/products/${this.$route.params.id}`);
+        // prettier-ignore
+        const response = await axios.get(
+          `https://fakestoreapi.com/products/${this.$route.params.id}`,
+        );
         this.product = response.data;
         this.isLoad = false;
       } catch (error) {

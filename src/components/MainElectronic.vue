@@ -71,9 +71,11 @@ export default {
       try {
         this.isLoading = true;
         // prettier-ignore
-        const response = await axios(
-          'https://fakestoreapi.com/products/category/electronics?limit=5',
-        );
+        const response = await axios.get('https://fakestoreapi.com/products/category/electronics', {
+          params: {
+            limit: 5,
+          },
+        });
         this.previews[this.categories] = response.data;
         this.isLoading = false;
       } catch (error) {
