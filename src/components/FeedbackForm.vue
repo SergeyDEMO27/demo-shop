@@ -9,6 +9,7 @@
         :label="'Email'"
         :inputValue="inputValues.email"
         :isInputActive="isInputsActive.email"
+        :isFocus="true"
       />
     </div>
     <div class="feedback-form__wrapper">

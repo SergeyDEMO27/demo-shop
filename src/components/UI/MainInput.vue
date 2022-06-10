@@ -7,6 +7,17 @@
       >{{ label }}</label
     >
     <input
+      v-if="isFocus"
+      v-vfocus
+      :id="label"
+      :type="inputType"
+      @input="$emit('addInput', $event)"
+      :value="inputValue"
+      @focus="$emit('inputActive')"
+      @blur="$emit('inputNotActive')"
+    />
+    <input
+      v-else
       :id="label"
       :type="inputType"
       @input="$emit('addInput', $event)"
@@ -25,6 +36,10 @@ export default {
     label: String,
     inputValue: String,
     isInputActive: Boolean,
+    isFocus: {
+      type: Boolean,
+      default: false,
+    },
   },
 };
 </script>

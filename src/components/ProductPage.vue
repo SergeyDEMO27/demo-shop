@@ -51,7 +51,7 @@
     </Transition>
     <Transition name="slide-fade">
       <MainModal
-        v-show="isLoginForm"
+        v-if="isLoginForm"
         @click="isLoginForm = false"
         @keypress.enter="isLoginForm = false"
       >

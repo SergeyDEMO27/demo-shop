@@ -12,6 +12,7 @@
             :label="'name'"
             :inputValue="inputValues.logName"
             :isInputActive="isInputsActive.logName"
+            :isFocus="true"
           />
           <MainInput
             @addInput="(event) => (inputValues.logPassword = event.target.value)"
@@ -44,6 +45,7 @@
             :label="'name'"
             :inputValue="inputValues.regName"
             :isInputActive="isInputsActive.regName"
+            :isFocus="true"
           />
           <MainInput
             @addInput="(event) => (inputValues.regPassword = event.target.value)"

@@ -13,7 +13,7 @@
     <MainFooter />
     <Transition name="slide-fade">
       <MainModal
-        v-show="isLoginForm"
+        v-if="isLoginForm"
         @click="isLoginForm = false"
         @keypress.enter="isLoginForm = false"
       >
@@ -132,17 +132,21 @@ export default {
 .slide-fade-enter-active {
   @include default-transition;
 }
+
 .slide-fade-leave-active {
   @include default-transition;
 }
+
 .slide-fade-enter-from,
 .slide-fade-leave-to {
   opacity: 0;
 }
+
 .fade-enter-active,
 .fade-leave-active {
   transition: opacity 3s ease;
 }
+
 .fade-enter-from,
 .fade-leave-to {
   position: absolute;

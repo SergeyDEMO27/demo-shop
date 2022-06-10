@@ -46,7 +46,7 @@
     <Transition name="slide-fade">
       <MainModal
         class="filter-page__modal"
-        v-show="isModalShown"
+        v-if="isModalShown"
         @hideModal="isModalShown = false"
         @click="isModalShown = false"
         @keypress.enter="isModalShown = false"
@@ -57,7 +57,7 @@
     </Transition>
     <Transition name="slide-fade">
       <MainModal
-        v-show="isLoginForm"
+        v-if="isLoginForm"
         @click="isLoginForm = false"
         @keypress.enter="isLoginForm = false"
       >
