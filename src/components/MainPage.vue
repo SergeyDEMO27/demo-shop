@@ -6,8 +6,19 @@
         <MainPresentation :key="previewId" :preview="presentItems[previewId]" />
       </transition-group>
       <AboutUs />
-      <MainElectronic @elError="isError = true" />
-      <MainGoods @goodError="isError = true" />
+      <MainProducts
+        :title="productsElec.title"
+        :categories="productsElec.items"
+        :productsLimit="3 / productsElec.items.length"
+        @fetchError="isError = true"
+      />
+      <MainProducts
+        class="main-page__clothing"
+        :title="productsCloth.title"
+        :categories="productsCloth.items"
+        :productsLimit="3 / productsCloth.items.length"
+        @fetchError="isError = true"
+      />
       <MainFeedback />
     </div>
     <MainFooter />
@@ -33,8 +44,7 @@
 import MainHeader from '@/components/MainHeader.vue';
 import MainPresentation from '@/components/MainPresentation.vue';
 import AboutUs from '@/components/AboutUs.vue';
-import MainElectronic from '@/components/MainElectronic.vue';
-import MainGoods from '@/components/MainGoods.vue';
+import MainProducts from '@/components/MainProducts.vue';
 import MainFeedback from '@/components/MainFeedback.vue';
 import MainFooter from '@/components/MainFooter.vue';
 import MainModal from '@/components/UI/MainModal.vue';
@@ -48,8 +58,7 @@ export default {
     MainHeader,
     MainPresentation,
     AboutUs,
-    MainElectronic,
-    MainGoods,
+    MainProducts,
     MainFeedback,
     MainFooter,
     MainModal,
@@ -93,6 +102,16 @@ export default {
           link: "women's clothing",
         },
       ],
+      productsElec: {
+        title:
+          "We're dedicated to providing the best prices, selection, and overall experience you'll find online. To put it simply, we've created a unique store that offers our customers the ability to find what they want easily and quickly. And, with our free shipping, hassle-free returns, lowest price, 30-day returns window and 3 years warranty we offer our customers a no-risk opportunity to try us out.",
+        items: ['electronics'],
+      },
+      productsCloth: {
+        title:
+          "Caters to thoughtful shoppers who appreciate unique designs and top quality pieces you just can't find anywhere else. We are constantly curating fresh new collections and looking for the next big thing our customers will love. Our Mission is to make a difference through our branding by staying ahead of the fashion trends, defining style and giving customers what they want.",
+        items: ['jewelery', "men's clothing", "women's clothing"],
+      },
     };
   },
   methods: {
@@ -121,6 +140,11 @@ export default {
 
 .main-page__main {
   flex: 1 1 auto;
+}
+
+.main-page__clothing {
+  background-color: $color-default-white;
+  text-align: right;
 }
 
 .main-page__close {
