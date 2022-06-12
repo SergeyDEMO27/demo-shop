@@ -2,7 +2,7 @@
   <div class="main-input">
     <label
       class="main-input__label"
-      :class="{ 'main-input__label-active': isInputActive || inputValue }"
+      :class="{ 'main-input__label-active': isInputActive || modelValue }"
       :for="label"
       >{{ label }}</label
     >
@@ -11,8 +11,8 @@
       v-vfocus
       :id="label"
       :type="inputType"
-      @input="$emit('addInput', $event)"
-      :value="inputValue"
+      @input="(event) => $emit('update:modelValue', event.target.value)"
+      :value="modelValue"
       @focus="$emit('inputActive')"
       @blur="$emit('inputNotActive')"
     />
@@ -20,8 +20,8 @@
       v-else
       :id="label"
       :type="inputType"
-      @input="$emit('addInput', $event)"
-      :value="inputValue"
+      @input="(event) => $emit('update:modelValue', event.target.value)"
+      :value="modelValue"
       @focus="$emit('inputActive')"
       @blur="$emit('inputNotActive')"
     />
@@ -32,9 +32,9 @@
 export default {
   name: 'MainInput',
   props: {
+    modelValue: [String, Number],
     inputType: String,
     label: String,
-    inputValue: String,
     isInputActive: Boolean,
     isFocus: {
       type: Boolean,

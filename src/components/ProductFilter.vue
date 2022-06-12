@@ -4,8 +4,8 @@
       class="product-filter__select"
       name=""
       id=""
-      @change="$emit('updateSelect', $event)"
-      :value="selectValue"
+      @change="(event) => $emit('update:select', event.target.value)"
+      :value="select"
     >
       <option value="" disabled selected>Filter by</option>
       <option v-for="option in selectOptions" :key="option.title" :value="option.value">
@@ -15,19 +15,19 @@
     <div class="product-filter__item">
       <label
         class="product-filter__label"
-        :class="{ 'product-filter__label-active': searchValue || isInputActive }"
+        :class="{ 'product-filter__label-active': search || isInputActive }"
         for="searchProduct"
         >Search</label
       >
       <input
         class="product-filter__input"
-        :class="{ 'product-filter__input-active': searchValue || isInputActive }"
-        @input="$emit('updateSearch', $event)"
+        :class="{ 'product-filter__input-active': search || isInputActive }"
+        @input="(event) => $emit('update:search', event.target.value)"
         @focus="isInputActive = true"
         @blur="isInputActive = false"
         id="searchProduct"
         type="search"
-        :value="searchValue"
+        :value="search"
       />
     </div>
   </form>
@@ -37,8 +37,8 @@
 export default {
   name: 'ProductFilter',
   props: {
-    searchValue: String,
-    selectValue: String,
+    select: String,
+    search: [String, Number],
     selectOptions: Array,
   },
   data() {

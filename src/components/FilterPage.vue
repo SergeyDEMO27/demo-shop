@@ -7,10 +7,8 @@
           <div class="filter-page__wrapper">
             <ProductFilter
               class="filter-page__filter"
-              @updateSearch="updateSearchHandler"
-              @updateSelect="updateSelectHandler"
-              :searchValue="searchValue"
-              :selectValue="selectValue"
+              v-model:select="selectValue"
+              v-model:search="searchValue"
               :selectOptions="selectOptions"
             />
 
@@ -122,12 +120,6 @@ export default {
     };
   },
   methods: {
-    updateSearchHandler(event) {
-      this.searchValue = event.target.value;
-    },
-    updateSelectHandler(event) {
-      this.selectValue = event.target.value;
-    },
     async fetchCategorie() {
       try {
         this.isLoading = true;

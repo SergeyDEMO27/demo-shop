@@ -2,37 +2,34 @@
   <form class="feedback-form" @submit.prevent="submitHandler" action="">
     <div class="feedback-form__item">
       <MainInput
-        @addInput="(event) => (inputValues.email = event.target.value)"
         @inputActive="isInputsActive.email = true"
         @inputNotActive="isInputsActive.email = false"
         :inputType="'email'"
         :label="'Email'"
-        :inputValue="inputValues.email"
         :isInputActive="isInputsActive.email"
         :isFocus="true"
+        v-model="inputValues.email"
       />
     </div>
     <div class="feedback-form__wrapper">
       <div class="feedback-form__item">
         <MainInput
-          @addInput="(event) => (inputValues.firstName = event.target.value)"
           @inputActive="isInputsActive.firstName = true"
           @inputNotActive="isInputsActive.firstName = false"
           :inputType="'text'"
           :label="'First name'"
-          :inputValue="inputValues.firstName"
           :isInputActive="isInputsActive.firstName"
+          v-model="inputValues.firstName"
         />
       </div>
       <div class="feedback-form__item">
         <MainInput
-          @addInput="(event) => (inputValues.lastName = event.target.value)"
           @inputActive="isInputsActive.lastName = true"
           @inputNotActive="isInputsActive.lastName = false"
           :inputType="'text'"
           :label="'Last name'"
-          :inputValue="inputValues.lastName"
           :isInputActive="isInputsActive.lastName"
+          v-model="inputValues.lastName"
         />
       </div>
     </div>

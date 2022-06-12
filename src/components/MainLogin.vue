@@ -5,23 +5,21 @@
         <h2 class="main-login__title">Login</h2>
         <form @submit.prevent="" class="main-login__form" action="">
           <MainInput
-            @addInput="(event) => (inputValues.logName = event.target.value)"
             @inputActive="isInputsActive.logName = true"
             @inputNotActive="isInputsActive.logName = false"
             :inputType="'text'"
             :label="'name'"
-            :inputValue="inputValues.logName"
             :isInputActive="isInputsActive.logName"
             :isFocus="true"
+            v-model="inputValues.logName"
           />
           <MainInput
-            @addInput="(event) => (inputValues.logPassword = event.target.value)"
             @inputActive="isInputsActive.logPassword = true"
             @inputNotActive="isInputsActive.logPassword = false"
             :inputType="'password'"
             :label="'password'"
-            :inputValue="inputValues.logPassword"
             :isInputActive="isInputsActive.logPassword"
+            v-model="inputValues.logPassword"
           />
           <MainButton class="main-login__button" @click="loginHandler" :buttonType="'button'"
             >Submit</MainButton
@@ -38,32 +36,29 @@
         <h2 class="main-login__title">Registration</h2>
         <form @submit.prevent="" class="main-login__form" action="">
           <MainInput
-            @addInput="(event) => (inputValues.regName = event.target.value)"
             @inputActive="isInputsActive.regName = true"
             @inputNotActive="isInputsActive.regName = false"
             :inputType="'text'"
             :label="'name'"
-            :inputValue="inputValues.regName"
             :isInputActive="isInputsActive.regName"
             :isFocus="true"
+            v-model="inputValues.regName"
           />
           <MainInput
-            @addInput="(event) => (inputValues.regPassword = event.target.value)"
             @inputActive="isInputsActive.regPassword = true"
             @inputNotActive="isInputsActive.regPassword = false"
             :inputType="'password'"
             :label="'password'"
-            :inputValue="inputValues.regPassword"
             :isInputActive="isInputsActive.regPassword"
+            v-model="inputValues.regPassword"
           />
           <MainInput
-            @addInput="(event) => (inputValues.regEmail = event.target.value)"
             @inputActive="isInputsActive.regEmail = true"
             @inputNotActive="isInputsActive.regEmail = false"
             :inputType="'email'"
             :label="'email'"
-            :inputValue="inputValues.regEmail"
             :isInputActive="isInputsActive.regEmail"
+            v-model="inputValues.regEmail"
           />
           <MainButton class="main-login__button" @click="registrateHandler" :buttonType="'button'"
             >Submit</MainButton
