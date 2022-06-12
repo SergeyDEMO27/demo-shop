@@ -1,39 +1,39 @@
 <template>
   <section class="main-products">
     <div class="main-products__container">
-      <h2 class="main-products__title">Best Electronics of Demo Shop</h2>
+      <h2 class="main-products__title">{{ title }}</h2>
       <MainLoader
-        v-if="isLoading"
+        v-if="isProductsLoading"
         :viewBox="'0 0 400 110'"
         :rectWidth="'100%'"
         :rectHeight="'100px'"
       />
       <div class="main-products__preview">
-        <PreviewItem v-if="previews.length" :preview="previews[0]" :horisonal="true" />
+        <PreviewItem v-if="products.length" :preview="products[0]" :horisonal="true" />
       </div>
       <div class="main-products__text">
         <p class="main-products__description">
-          {{ title }}
+          {{ description }}
         </p>
       </div>
       <div class="main-products__wrapper">
         <div class="main-products__wrapper-item">
           <MainLoader
-            v-if="isLoading"
+            v-if="isProductsLoading"
             :viewBox="'0 0 97 100'"
             :rectWidth="'100%'"
             :rectHeight="'100px'"
           />
-          <PreviewItem v-if="previews.length > 1" :preview="previews[1]" />
+          <PreviewItem v-if="products.length > 1" :preview="products[1]" />
         </div>
         <div class="main-products__wrapper-item">
           <MainLoader
-            v-if="isLoading"
+            v-if="isProductsLoading"
             :viewBox="'0 0 97 100'"
             :rectWidth="'100%'"
             :rectHeight="'100px'"
           />
-          <PreviewItem v-if="previews.length > 2" :preview="previews[2]" />
+          <PreviewItem v-if="products.length > 2" :preview="products[2]" />
         </div>
       </div>
     </div>
@@ -41,14 +41,15 @@
 </template>
 
 <script>
-import axios from 'axios';
 import MainLoader from '@/components/UI/MainLoader.vue';
 import PreviewItem from '@/components/PreviewItem.vue';
+import useProducts from '@/hooks/useProducts';
 
 export default {
   name: 'MainProducts',
   props: {
     title: String,
+    description: String,
     categories: Array,
     productsLimit: Number,
   },
@@ -56,36 +57,23 @@ export default {
     PreviewItem,
     MainLoader,
   },
-  data() {
+  setup(props) {
+    // prettier-ignore
+    const { products, isProductsLoading, isError } = useProducts(
+      props.categories,
+      props.productsLimit,
+    );
+
     return {
-      isLoading: false,
-      previews: [],
+      products,
+      isProductsLoading,
+      isError,
     };
   },
-  methods: {
-    fetchProducts() {
-      this.categories.map(async (categorie) => {
-        try {
-          this.isLoading = true;
-          // prettier-ignore
-          const response = await axios.get(
-            `https://fakestoreapi.com/products/category/${categorie}`,
-            {
-              params: {
-                limit: this.productsLimit,
-              },
-            },
-          );
-          this.previews = [...this.previews, ...response.data];
-          this.isLoading = false;
-        } catch (error) {
-          this.$emit('fetchError');
-        }
-      });
+  watch: {
+    isError() {
+      this.$emit('fetchError');
     },
-  },
-  mounted() {
-    this.fetchProducts();
   },
 };
 </script>

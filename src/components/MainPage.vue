@@ -8,6 +8,7 @@
       <AboutUs />
       <MainProducts
         :title="productsElec.title"
+        :description="productsElec.description"
         :categories="productsElec.items"
         :productsLimit="3 / productsElec.items.length"
         @fetchError="isError = true"
@@ -15,6 +16,7 @@
       <MainProducts
         class="main-page__clothing"
         :title="productsCloth.title"
+        :description="productsCloth.description"
         :categories="productsCloth.items"
         :productsLimit="3 / productsCloth.items.length"
         @fetchError="isError = true"
@@ -103,12 +105,14 @@ export default {
         },
       ],
       productsElec: {
-        title:
+        title: 'Best Electronics Of Demo Shop',
+        description:
           "We're dedicated to providing the best prices, selection, and overall experience you'll find online. To put it simply, we've created a unique store that offers our customers the ability to find what they want easily and quickly. And, with our free shipping, hassle-free returns, lowest price, 30-day returns window and 3 years warranty we offer our customers a no-risk opportunity to try us out.",
         items: ['electronics'],
       },
       productsCloth: {
-        title:
+        title: 'Best fineries of Demo Shop',
+        description:
           "Caters to thoughtful shoppers who appreciate unique designs and top quality pieces you just can't find anywhere else. We are constantly curating fresh new collections and looking for the next big thing our customers will love. Our Mission is to make a difference through our branding by staying ahead of the fashion trends, defining style and giving customers what they want.",
         items: ['jewelery', "men's clothing", "women's clothing"],
       },
