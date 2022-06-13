@@ -42,7 +42,7 @@
 </template>
 
 <script>
-import { mapActions } from 'vuex';
+import { mapMutations } from 'vuex';
 import MainButton from '@/components/UI/MainButton.vue';
 
 export default {
@@ -56,8 +56,8 @@ export default {
     MainButton,
   },
   methods: {
-    ...mapActions({
-      addProductInBin: 'productsBin/addProductInBin',
+    ...mapMutations({
+      addProductInBin: 'productsBin/setProductsInBin',
     }),
   },
 };

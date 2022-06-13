@@ -11,7 +11,6 @@
               v-model:search="searchValue"
               :selectOptions="selectOptions"
             />
-
             <ul class="filter-page__categories">
               <li
                 class="filter-page__item"
@@ -19,7 +18,7 @@
                 v-for="category in categories"
                 :key="category"
               >
-                <button @click="fetchCategorieHandler(category)" type="button">
+                <button @click="fetchCategory(category)" type="button">
                   {{ category }}
                 </button>
               </li>
@@ -31,7 +30,7 @@
             :rectWidth="'100%'"
             :rectHeight="'200px'"
           />
-          <AllGoods v-if="searchGoods.length > 0" :products="searchGoods" />
+          <AllGoods v-if="filterSearchedProducts.length" :products="filterSearchedProducts" />
         </div>
       </div>
       <div class="filter-page__sign">
@@ -72,7 +71,10 @@
 </template>
 
 <script>
-import axios from 'axios';
+import { useRoute } from 'vue-router';
+import useCategories from '@/hooks/useCategories';
+import useFilteredProducts from '@/hooks/useFilteredProducts';
+import useFilterSearchedProducts from '@/hooks/useFilterSearchedProducts';
 import MainHeader from '@/components/MainHeader.vue';
 import ProductFilter from '@/components/ProductFilter.vue';
 import AllGoods from '@/components/AllGoods.vue';
@@ -102,81 +104,38 @@ export default {
   },
   data() {
     return {
-      searchValue: '',
-      selectValue: '',
       categories: ['all', 'electronics', 'jewelery', "men's clothing", "women's clothing"],
-      activeCategory: 'all',
-      products: [],
       selectOptions: [
         { title: 'name up', value: 'titleUp' },
         { title: 'name down', value: 'titleDown' },
         { title: 'price up', value: 'priceUp' },
         { title: 'price down', value: 'priceDown' },
       ],
-      isLoading: false,
-      isError: false,
       isLoginForm: false,
       isModalShown: false,
     };
   },
-  methods: {
-    async fetchCategorie() {
-      try {
-        this.isLoading = true;
-        // prettier-ignore
-        const response = await axios.get(
-          `https://fakestoreapi.com/products/category/${this.$route.params.id}`,
-        );
-        this.products = response.data;
-        this.isLoading = false;
-      } catch (error) {
-        this.isError = true;
-      }
-    },
-    async fetchCategorieHandler(category) {
-      try {
-        this.products = [];
-        this.isLoading = true;
-        // prettier-ignore
-        const path = category === 'all'
-          ? 'https://fakestoreapi.com/products'
-          : `https://fakestoreapi.com/products/category/${category}`;
-        const response = await axios.get(path);
-        this.products = response.data;
-        this.activeCategory = category;
-        this.isLoading = false;
-      } catch (error) {
-        this.isError = true;
-      }
-    },
-  },
-  mounted() {
-    this.activeCategory = this.$route.params.id;
-    this.fetchCategorie();
-  },
 
-  computed: {
-    filterGoods() {
-      if (this.selectValue === 'priceUp') {
-        return [...this.products].sort((a, b) => a.price - b.price);
-      }
-      if (this.selectValue === 'priceDown') {
-        return [...this.products].sort((a, b) => b.price - a.price);
-      }
-      if (this.selectValue === 'titleDown') {
-        return [...this.products].sort((a, b) => b.title.localeCompare(a.title));
-      }
-      return [...this.products].sort((a, b) => a.title.localeCompare(b.title));
-    },
-    searchGoods() {
-      // prettier-ignore
-      return this.filterGoods.filter(
-        ({ title, description }) =>
-          // eslint-disable-next-line implicit-arrow-linebreak
-          title.toLocaleLowerCase().includes(this.searchValue.toLocaleLowerCase())
-          || description.toLocaleLowerCase().includes(this.searchValue.toLocaleLowerCase()),
-      );
-    },
+  setup() {
+    const route = useRoute();
+    // prettier-ignore
+    const {
+      fetchCategory, products, activeCategory, isLoading, isError,
+    } = useCategories(route.params.id);
+
+    const { filteredProducts, selectValue } = useFilteredProducts(products);
+    const { filterSearchedProducts, searchValue } = useFilterSearchedProducts(filteredProducts);
+
+    return {
+      fetchCategory,
+      products,
+      filterSearchedProducts,
+      activeCategory,
+      selectValue,
+      searchValue,
+      isLoading,
+      isError,
+    };
   },
 };
 </script>

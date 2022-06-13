@@ -13,7 +13,11 @@
         <MainNavigation class="mainHeader__nav" :navItems="mainNavItems" />
       </div>
       <div class="mainHeader__user-nav">
-        <div @click="$emit('openLogin')" @keypress.enter="$emit('openLogin')">
+        <div
+          class="main-header__login"
+          @click="$emit('openLogin')"
+          @keypress.enter="$emit('openLogin')"
+        >
           <svg
             class="main-header__icon main-header__icon-login"
             width="20"
@@ -92,9 +96,11 @@ export default {
         color: $color-default-black;
       }
     }
-
-    .main-header__icon {
-      fill: $color-default-black;
+    .main-header__login,
+    .main-header__bin {
+      .main-header__icon {
+        fill: $color-default-black;
+      }
     }
   }
 }
@@ -134,20 +140,25 @@ export default {
   }
 }
 
-.main-header__icon {
-  @include default-transition;
-  fill: $color-default-white;
+.main-header__login,
+.main-header__bin {
+  .main-header__icon {
+    @include default-transition;
+    fill: $color-default-white;
 
-  &-login {
-    cursor: pointer;
-  }
+    &-login {
+      cursor: pointer;
+    }
 
-  &-bin {
-    margin-left: 30px;
+    &-bin {
+      margin-left: 30px;
+    }
   }
 
   &:hover {
-    fill: $color-orange;
+    .main-header__icon {
+      fill: $color-orange;
+    }
   }
 }
 

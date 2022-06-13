@@ -3,7 +3,7 @@
     <div class="main-bin__main">
       <div class="main-bin__wrapper">
         <h2 class="main-bin__title">Main Products ({{ productCount }})</h2>
-        <button class="main-bin__removeAll" type="button" @click="removeAllProductsInBin">
+        <button class="main-bin__removeAll" type="button" @click="removeProductsInBin">
           clear list
         </button>
       </div>
@@ -13,13 +13,13 @@
             <div class="main-bin__counter">
               {{ product.count }}
               <div>
-                <button class="main-bin__increase" @click="increaseProductCount(product.idUnique)">
+                <button class="main-bin__increase" @click="increaseProducts(product.idUnique)">
                   <span class="main-bin__label">increase</span></button
                 ><button
                   class="main-bin__decrease"
                   @click="
                     if (product.count > 1) {
-                      decreaseProductCount(product.idUnique);
+                      decreaseProducts(product.idUnique);
                     }
                   "
                 >
@@ -58,7 +58,7 @@
 </template>
 
 <script>
-import { mapState, mapActions } from 'vuex';
+import { mapState, mapMutations } from 'vuex';
 import ButtonClose from '@/components/UI/ButtonClose.vue';
 
 export default {
@@ -73,12 +73,12 @@ export default {
     };
   },
   methods: {
-    ...mapActions({
+    ...mapMutations({
       setProductsOnMount: 'productsBin/setProductsOnMount',
-      increaseProductCount: 'productsBin/increaseProductCount',
-      decreaseProductCount: 'productsBin/decreaseProductCount',
+      increaseProducts: 'productsBin/increaseProducts',
+      decreaseProducts: 'productsBin/decreaseProducts',
       removeProductInBin: 'productsBin/removeProductInBin',
-      removeAllProductsInBin: 'productsBin/removeAllProductsInBin',
+      removeProductsInBin: 'productsBin/removeProductsInBin',
     }),
   },
   computed: {
@@ -155,6 +155,7 @@ export default {
 .main-bin__container {
   width: 100%;
   height: 210px;
+  padding-top: 3px;
   overflow-y: scroll;
 }
 

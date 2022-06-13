@@ -40,25 +40,5 @@ export default {
       state.productsInBin = [];
     },
   },
-  actions: {
-    setProductsOnMount({ commit }) {
-      commit('setProductsOnMount');
-    },
-    addProductInBin({ commit }, product) {
-      commit('setProductsInBin', product);
-    },
-    increaseProductCount({ commit }, id) {
-      commit('increaseProducts', id);
-    },
-    decreaseProductCount({ commit }, id) {
-      commit('decreaseProducts', id);
-    },
-    removeProductInBin({ commit }, id) {
-      commit('removeProductInBin', id);
-    },
-    removeAllProductsInBin({ commit }) {
-      commit('removeProductsInBin');
-    },
-  },
   namespaced: true,
 };

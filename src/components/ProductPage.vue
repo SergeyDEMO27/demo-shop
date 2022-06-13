@@ -4,7 +4,7 @@
     <div class="product-page__main">
       <div class="product-page__container">
         <MainLoader
-          v-if="isLoad"
+          v-if="isLoading"
           :viewBox="'0 0 400 180'"
           :rectWidth="'100%'"
           :rectHeight="'170px'"
@@ -68,7 +68,8 @@
 </template>
 
 <script>
-import axios from 'axios';
+import { useRoute } from 'vue-router';
+import useSingleProduct from '@/hooks/useSingleProduct';
 import MainLoader from '@/components/UI/MainLoader.vue';
 import MainHeader from '@/components/MainHeader.vue';
 import MainFooter from '@/components/MainFooter.vue';
@@ -98,35 +99,27 @@ export default {
   },
   data() {
     return {
-      isLoad: false,
-      isError: false,
-      isLoginForm: false,
-      isModalShown: false,
-      product: {},
       colors: ['white', 'black', 'orange', 'brown', 'blue', 'red', 'green'],
       activeColor: 'white',
+      isLoginForm: false,
+      isModalShown: false,
     };
   },
   methods: {
-    async fetchProduct() {
-      try {
-        this.isLoad = true;
-        // prettier-ignore
-        const response = await axios.get(
-          `https://fakestoreapi.com/products/${this.$route.params.id}`,
-        );
-        this.product = response.data;
-        this.isLoad = false;
-      } catch (error) {
-        this.isError = true;
-      }
-    },
     changeColorHandler(color) {
       this.activeColor = color;
     },
   },
-  mounted() {
-    this.fetchProduct();
+
+  setup() {
+    const route = useRoute();
+    const { product, isLoading, isError } = useSingleProduct(route.params.id);
+
+    return {
+      product,
+      isLoading,
+      isError,
+    };
   },
 };
 </script>

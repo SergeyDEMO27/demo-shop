@@ -41,9 +41,9 @@
 </template>
 
 <script>
+import useProducts from '@/hooks/useProducts';
 import MainLoader from '@/components/UI/MainLoader.vue';
 import PreviewItem from '@/components/PreviewItem.vue';
-import useProducts from '@/hooks/useProducts';
 
 export default {
   name: 'MainProducts',
