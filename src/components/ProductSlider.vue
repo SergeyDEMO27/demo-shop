@@ -160,11 +160,18 @@ export default {
     width: 6px;
     height: 25px;
     padding-bottom: 15px;
+    outline: none;
     cursor: pointer;
 
     &:hover {
       &::before {
         background-color: rgba(0, 0, 0, 80%);
+      }
+    }
+
+    &:focus {
+      &::before {
+        background-color: $color-orange;
       }
     }
 
@@ -180,6 +187,20 @@ export default {
     }
 
     &-active {
+      cursor: auto;
+
+      &:hover {
+        &::before {
+          background-color: rgba(0, 0, 0, 80%);
+        }
+      }
+
+      &:focus {
+        &::before {
+          background-color: rgba(0, 0, 0, 80%);
+        }
+      }
+
       &::before {
         top: 4px;
         height: 14px;
@@ -195,11 +216,18 @@ export default {
   height: 30px;
   border: none;
   background-color: transparent;
+  outline: none;
   cursor: pointer;
 
   &:hover {
     &::after {
       border-color: rgba(0, 0, 0, 80%);
+    }
+  }
+
+  &:focus {
+    &::after {
+      border-color: $color-orange;
     }
   }
 

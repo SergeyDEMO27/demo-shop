@@ -68,9 +68,16 @@ export default {
     border-radius: 4px;
   }
 
-  &:hover {
+  &:hover,
+  &:focus {
     .category-previews__image {
       transform: scale(1.1);
+    }
+  }
+
+  &:focus {
+    .category-previews__title {
+      color: $color-orange;
     }
   }
 }

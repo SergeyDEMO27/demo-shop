@@ -96,7 +96,8 @@ export default {
     }
 
     &:hover,
-    &:active {
+    &:active,
+    &:focus {
       .main-footer__icon {
         transform: scale(1.1);
       }

@@ -49,6 +49,7 @@ export default {
     letter-spacing: 0.07rem;
     text-transform: uppercase;
     text-decoration: none;
+    outline: none;
 
     &::after {
       @include default-transition;
@@ -61,7 +62,8 @@ export default {
       background-color: $color-default-white;
     }
 
-    &:hover {
+    &:hover,
+    &:focus {
       &::after {
         width: 100%;
         background-color: $color-orange;

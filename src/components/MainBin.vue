@@ -145,9 +145,11 @@ export default {
   background-color: transparent;
   border: none;
   text-decoration: none;
+  outline: none;
   cursor: pointer;
 
-  &:hover {
+  &:hover,
+  &:focus {
     color: $color-orange;
   }
 }
@@ -194,12 +196,20 @@ export default {
     height: 11px;
     background-color: transparent;
     border: none;
+    outline: none;
     cursor: pointer;
 
     &:hover {
       &::before,
       &::after {
         background-color: $color-default-black;
+      }
+    }
+
+    &:focus {
+      &::before,
+      &::after {
+        background-color: $color-orange;
       }
     }
   }
@@ -260,8 +270,10 @@ export default {
   max-width: 60%;
   color: $color-default-black;
   text-decoration: none;
+  outline: none;
 
-  &:hover {
+  &:hover,
+  &:focus {
     color: $color-orange;
   }
 }
@@ -291,6 +303,14 @@ export default {
   width: 15px;
   height: 15px;
   transform: translateY(-45%);
+  outline: none;
+
+  &:focus {
+    &::before,
+    &::after {
+      background-color: $color-orange;
+    }
+  }
 }
 
 .main-bin__info {

@@ -78,6 +78,16 @@ export default {
   font-size: 22px;
 }
 
+.mainNavigation__link {
+  outline: none;
+
+  &:focus {
+    .main-presentation__link {
+      background-color: $color-default-white;
+    }
+  }
+}
+
 .main-presentation__link {
   padding-top: 12px;
   padding-bottom: 12px;

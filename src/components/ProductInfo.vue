@@ -12,6 +12,7 @@
         @keypress.enter="$emit('changeColor', color)"
         v-for="color in colors"
         :key="color"
+        tabindex="0"
       >
         <div :style="{ backgroundColor: color }"></div>
       </li>
@@ -108,7 +109,8 @@ export default {
       transition: 0.1s;
     }
 
-    &:hover {
+    &:hover,
+    &:focus {
       div {
         width: 100%;
         height: 100%;
@@ -145,6 +147,12 @@ export default {
 
 .product-info__button {
   margin-bottom: 30px;
+
+  &:focus {
+    background-color: $color-orange;
+    border-color: $color-orange;
+    outline: none;
+  }
 }
 
 .product-info__special {

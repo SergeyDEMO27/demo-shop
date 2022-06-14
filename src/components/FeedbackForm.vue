@@ -104,6 +104,14 @@ export default {
   opacity: 75%;
 }
 
+.feedback-form__button {
+  &:focus {
+    background-color: $color-orange;
+    border-color: $color-orange;
+    outline: none;
+  }
+}
+
 @media (min-width: $viewport--sm) and (max-width: calc(#{$viewport--md} - 1px)) {
   .feedback-form__wrapper {
     flex-direction: column;

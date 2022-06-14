@@ -150,6 +150,7 @@ export default {
   color: $color-default-black;
   text-decoration: none;
   text-transform: capitalize;
+  outline: none;
 
   &::after {
     @include default-transition;
@@ -163,7 +164,8 @@ export default {
     border-radius: 25px;
   }
 
-  &:hover {
+  &:hover,
+  &:focus {
     &::after {
       width: 100%;
     }

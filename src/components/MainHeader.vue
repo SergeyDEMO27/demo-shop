@@ -17,6 +17,7 @@
           class="main-header__login"
           @click="$emit('openLogin')"
           @keypress.enter="$emit('openLogin')"
+          tabindex="0"
         >
           <svg
             class="main-header__icon main-header__icon-login"
@@ -28,7 +29,7 @@
           </svg>
           <span class="mainHeader__user-nav-label">login</span>
         </div>
-        <div class="main-header__bin">
+        <div class="main-header__bin" tabindex="0">
           <svg
             class="main-header__icon main-header__icon-bin"
             width="22"
@@ -38,7 +39,7 @@
             <use :href="`${sprite}#icon-bin`"></use>
           </svg>
           <span class="mainHeader__user-nav-label">shoping-cart</span>
-          <MainBin class="main-header__bin-item" />
+          <MainBin class="main-header__bin-item" tabindex="0" />
         </div>
       </div>
     </div>
@@ -142,6 +143,8 @@ export default {
 
 .main-header__login,
 .main-header__bin {
+  outline: none;
+
   .main-header__icon {
     @include default-transition;
     fill: $color-default-white;
@@ -155,7 +158,8 @@ export default {
     }
   }
 
-  &:hover {
+  &:hover,
+  &:focus {
     .main-header__icon {
       fill: $color-orange;
     }
@@ -175,11 +179,19 @@ export default {
     transition: 0.1s;
   }
 
-  &:hover {
+  &:hover,
+  &:focus {
     .main-header__bin-item .main-bin__main {
       visibility: visible;
       opacity: 1;
     }
+  }
+}
+
+.main-header__bin-item {
+  &:focus {
+    visibility: visible;
+    opacity: 1;
   }
 }
 

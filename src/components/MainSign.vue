@@ -59,6 +59,12 @@ export default {
 
 .main-sign__button {
   display: inline-block;
+
+  &:focus {
+    background-color: $color-orange;
+    border-color: $color-orange;
+    outline: none;
+  }
 }
 
 @media (min-width: $viewport--sm) and (max-width: calc(#{$viewport--md} - 1px)) {

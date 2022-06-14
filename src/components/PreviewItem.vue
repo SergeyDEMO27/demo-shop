@@ -19,6 +19,7 @@
       </h3>
       <p class="preview-item__description">{{ preview.description }}</p>
       <MainButton
+        class="preview-item__button"
         :class="{ 'preview-item__button-active': this.isHover }"
         @mouseover="this.isHover = true"
         @mouseout="this.isHover = false"
@@ -91,6 +92,7 @@ export default {
 
 .preview-item__link {
   width: 100%;
+  outline: none;
 
   &-active {
     .preview-item__picture {
@@ -172,10 +174,18 @@ export default {
   overflow: hidden;
 }
 
-.preview-item__button-active {
-  a {
+.preview-item__button {
+  &:focus {
     background-color: $color-orange;
     border-color: $color-orange;
+    outline: none;
+  }
+
+  &-active {
+    a {
+      background-color: $color-orange;
+      border-color: $color-orange;
+    }
   }
 }
 
